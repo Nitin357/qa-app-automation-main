@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="AndroidTestSuite">
+    <test name="Before Suite">
+        <classes>
+            <class name="Parent.BeforeSuite"/>
+        </classes>
+    </test>
+
+    <test name="Test Method">
+        <classes>
+            <class name="Android.LoginFunctionality"/>
+            <class name="Android.ForYou_GreetingMessageVerification"/>
+        </classes>
+    </test>
+
+    <test name="After Suite">
+        <classes>
+            <class name="Parent.AfterSuite"/>
+        </classes>
+    </test>
+</suite>
