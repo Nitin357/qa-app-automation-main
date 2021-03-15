@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!--This xml file includes test cases to be executed.-->
+<!--Test cases can be commented /uncommented as per excecution requirement-->
 <suite name="AndroidTestSuite">
+
+<!--This includes Before Suite prior to exection of test cases-->
     <test name="Before Suite">
         <classes>
             <class name="Parent.BeforeSuite"/>
         </classes>
     </test>
 
+<!--This includes Test cases to be automated-->
     <test name="Test Method">
         <classes>
             <class name="Android.LoginFunctionality"/>
-            <class name="Android.ForYou_GreetingMessageVerification"/>
+            <class name="Android.ForYou_GreetingMessageANDCompletionMessageVerification"/>
         </classes>
     </test>
 
+<!--This includes After Suite after execution of test cases-->
     <test name="After Suite">
         <classes>
             <class name="Parent.AfterSuite"/>

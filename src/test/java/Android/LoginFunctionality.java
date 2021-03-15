@@ -2,6 +2,7 @@ package Android;
 
 import Parent.Reporting;
 import com.relevantcodes.extentreports.LogStatus;
+import io.appium.java_client.TouchAction;
 import org.testng.annotations.*;
 
 import static ObjectRepository.AndroidOR.CommonElements.*;
@@ -11,6 +12,7 @@ import static Parent.Constants.*;
 import static Parent.Reporting.*;
 import static Utils.CommonUtils.*;
 
+/*This is test case for Verificaton of Login Functionality through For You>>Settings*/
 public class LoginFunctionality {
     String testCaseName = "Login Functionality Test";
     String testCaseDescription = "Verify Login Functionality through For You>>Settings";
@@ -45,6 +47,7 @@ public class LoginFunctionality {
             Thread.sleep(5000);
             loginButton().click();
             Thread.sleep(5000);
+            TouchAction action = new TouchAction(driver);
             extentTest.log(LogStatus.PASS, testCaseName+" : "+testCaseDescription);
         }
         catch (Exception ex)

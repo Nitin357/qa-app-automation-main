@@ -15,12 +15,17 @@ import static ObjectRepository.AndroidOR.CommonElements.*;
 import static ObjectRepository.AndroidOR.CommonElements.continueWithoutAccountButton;
 import static Parent.Constants.*;
 
+/*Contains all the common reusable methods*/
 public class CommonUtils {
+
+/*Set device name and platform name for execution*/
     public static void setDeviceInfo()
     {
         deviceName="R9WN90G3ZBJ";
         platformName="Android";
     }
+
+/*Set driver capabilities to launch NYT app*/
     public static void setCapabilities() throws Exception
     {
            setDeviceInfo();
@@ -30,11 +35,14 @@ public class CommonUtils {
            cap.setCapability("appActivity", "com.nytimes.android.MainActivity");
     }
 
+/*Launch NYT app*/
     public static void launchNYTApp() throws Exception
     {
         setCapabilities();
         driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
     }
+
+/*Skip sign in and subscription at initial launch*/
     public static void skipInitialAccountSetup() throws Exception
     {
             Thread.sleep(10000);
@@ -43,6 +51,8 @@ public class CommonUtils {
             continueWithoutSubscribeButton().click();
             Thread.sleep(5000);
     }
+
+/*Get credentials from Excel and set them in constant values*/
     public static void getCredentialsFromExcel()
     {
         {
@@ -50,7 +60,7 @@ public class CommonUtils {
             {
                 File file = new File (System.getProperty("user.dir")+"/Credentials.xlsx");
                 FileInputStream fis = new FileInputStream(file);   //obtaining bytes from the file
-//creating Workbook instance that refers to .xlsx file
+                //creating Workbook instance that refers to .xlsx file
                 XSSFWorkbook wb = new XSSFWorkbook(fis);
                 XSSFSheet sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object
                 //for multiple values in excel
