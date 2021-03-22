@@ -14,8 +14,9 @@
 <!--This includes Test cases to be automated-->
     <test name="Test Method">
         <classes>
-            <class name="Android.LoginFunctionality"/>
-            <class name="Android.ForYou_GreetingMessageANDCompletionMessageVerification"/>
+<!--            <class name="Android.LoginFunctionality"/>-->
+<!--            <class name="Android.ForYou_GreetingMessageANDCompletionMessageVerification"/>-->
+            <class name="Android.MeterFunctionality"/>
         </classes>
     </test>
 

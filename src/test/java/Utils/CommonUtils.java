@@ -1,19 +1,29 @@
 package Utils;
 
+import com.relevantcodes.extentreports.LogStatus;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.offset.PointOption;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.Dimension;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
 import java.util.Iterator;
+import java.util.List;
 
 import static ObjectRepository.AndroidOR.CommonElements.*;
 import static ObjectRepository.AndroidOR.CommonElements.continueWithoutAccountButton;
+import static ObjectRepository.AndroidOR.ForYou.settingsIcon;
+import static ObjectRepository.AndroidOR.Sections.mostPopular;
+import static ObjectRepository.AndroidOR.Settings.*;
 import static Parent.Constants.*;
+import static Parent.Reporting.extentTest;
 
 /*Contains all the common reusable methods*/
 public class CommonUtils {
@@ -40,6 +50,8 @@ public class CommonUtils {
     {
         setCapabilities();
         driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
+
+
     }
 
 /*Skip sign in and subscription at initial launch*/
@@ -51,6 +63,95 @@ public class CommonUtils {
             continueWithoutSubscribeButton().click();
             Thread.sleep(5000);
     }
+
+/*Login as unsubscribed user*/
+    public static void loginUnsubscribedUser() throws Exception
+    {
+        Thread.sleep(5000);
+        forYouIcon().click();
+        Thread.sleep(10000);
+        settingsIcon().click();
+        Thread.sleep(5000);
+        loginOrRegisterButton().click();
+        Thread.sleep(5000);
+        loginWithEmailInsteadOption().click();
+        Thread.sleep(5000);
+        emailIdTextField().sendKeys("himanshu.sharma@diaspark.com");
+        Thread.sleep(5000);
+        passwordTextField().sendKeys("test123");
+        Thread.sleep(5000);
+        loginButton().click();
+        Thread.sleep(5000);
+        driver.navigate().back();
+    }
+
+/*Check for registration/login popup for meter*/
+    public static boolean checkMeter() throws Exception
+    {
+        boolean meterStatus=false;
+        try {
+            sectionsIcon().click();
+            Thread.sleep(10000);
+            mostPopular().click();
+
+            int meterCount = 4;
+            java.util.List<MobileElement> homeTabArticles = (List<MobileElement>) driver.findElementsById("tablet_grid_item");
+            for (int i = 0; i <= meterCount; i++) {
+                Thread.sleep(10000);
+
+                homeTabArticles = (List<MobileElement>) driver.findElementsById("tablet_grid_item");
+                System.out.println(homeTabArticles.size());
+
+                if ((i + homeTabArticles.size()) < meterCount) {
+                    for (int j = 0; j < homeTabArticles.size(); j++) {
+                        homeTabArticles.get(j).click();
+                        Thread.sleep(10000);
+                        if ((driver.findElementsById(subscriptionPopUp_ID).size() != 0)) {
+                            meterStatus = true;
+                            driver.navigate().back();
+                            driver.navigate().back();
+                            todayIcon().click();
+                            break;
+                        }
+                        driver.navigate().back();
+                        Thread.sleep(10000);
+                        i++;
+                        if (meterStatus == true) {
+                            break;
+                        }
+                    }
+                    Dimension size = driver.manage().window().getSize();
+                    int startx = size.getWidth() / 2;
+                    int endx = size.getWidth() / 2;
+                    int starty = (int) (size.getHeight() * 0.80);
+                    int endy = (int) (size.getHeight() * 0.01);
+                    new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
+                } else {
+                    homeTabArticles.get(i).click();
+                    Thread.sleep(10000);
+                    if ((driver.findElementsById(subscriptionPopUp_ID).size() != 0)) {
+                        meterStatus = true;
+                        driver.navigate().back();
+                        driver.navigate().back();
+                        todayIcon().click();
+                        break;
+                    }
+                    driver.navigate().back();
+                    Thread.sleep(10000);
+                }
+                if (meterStatus == true) {
+                    break;
+                }
+            }
+        }
+        catch (Exception E)
+        {
+            
+        }
+        return meterStatus;
+    }
+
+
 
 /*Get credentials from Excel and set them in constant values*/
     public static void getCredentialsFromExcel()
@@ -89,5 +190,4 @@ public class CommonUtils {
             }
         }
     }
-
 }
