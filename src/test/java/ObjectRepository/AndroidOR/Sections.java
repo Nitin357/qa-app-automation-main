@@ -19,4 +19,14 @@ public class Sections {
         List<MobileElement> bottomNavigation = (List<MobileElement>) driver.findElementsById(mostPopular_ID);
         return bottomNavigation.get(0);
     }
+    public static MobileElement immersive()
+    {
+        List<MobileElement> bottomNavigation = (List<MobileElement>) driver.findElementsById(mostPopular_ID);
+        return bottomNavigation.get(14);
+    }
+    public static MobileElement savedForLater()
+    {
+        List<MobileElement> bottomNavigation = (List<MobileElement>) driver.findElementsById(mostPopular_ID);
+        return bottomNavigation.get(36);
+    }
 }

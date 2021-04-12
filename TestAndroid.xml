@@ -16,7 +16,10 @@
         <classes>
 <!--            <class name="Android.LoginFunctionality"/>-->
 <!--            <class name="Android.ForYou_GreetingMessageANDCompletionMessageVerification"/>-->
-            <class name="Android.MeterFunctionality"/>
+<!--            <class name="Android.MeterFunctionality"/>-->
+<!--            <class name="Android.SaveFunctionality"/>-->
+<!--            <class name="Android.ShareFunctionality"/>-->
+            <class name="Android.CommentsFunctionality"/>
         </classes>
     </test>
 

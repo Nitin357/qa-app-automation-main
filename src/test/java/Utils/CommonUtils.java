@@ -57,11 +57,12 @@ public class CommonUtils {
 /*Skip sign in and subscription at initial launch*/
     public static void skipInitialAccountSetup() throws Exception
     {
+
             Thread.sleep(10000);
             continueWithoutAccountButton().click();
             Thread.sleep(5000);
             continueWithoutSubscribeButton().click();
-            Thread.sleep(5000);
+            Thread.sleep(10000);
     }
 
 /*Login as unsubscribed user*/
@@ -82,6 +83,30 @@ public class CommonUtils {
         Thread.sleep(5000);
         loginButton().click();
         Thread.sleep(5000);
+        driver.navigate().back();
+    }
+
+
+    /*login*/
+    public static void login() throws Exception
+    {
+
+        Thread.sleep(5000);
+        forYouIcon().click();
+        Thread.sleep(10000);
+        settingsIcon().click();
+        Thread.sleep(5000);
+        loginOrRegisterButton().click();
+        Thread.sleep(5000);
+        loginWithEmailInsteadOption().click();
+        Thread.sleep(5000);
+        emailIdTextField().sendKeys(loginUserName);
+        Thread.sleep(5000);
+        passwordTextField().sendKeys(loginUserPassword);
+        Thread.sleep(5000);
+        loginButton().click();
+        Thread.sleep(5000);
+        driver.navigate().back();
         driver.navigate().back();
     }
 
@@ -146,11 +171,22 @@ public class CommonUtils {
         }
         catch (Exception E)
         {
-            
+
         }
         return meterStatus;
     }
 
+
+    /*Scroll down page*/
+    public static void scrollDownPage()
+    {
+        Dimension size = driver.manage().window().getSize();
+        int startx = size.getWidth() / 2;
+        int endx = size.getWidth() / 2;
+        int starty = (int) (size.getHeight() * 0.80);
+        int endy = (int) (size.getHeight() * 0.01);
+        new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
+    }
 
 
 /*Get credentials from Excel and set them in constant values*/

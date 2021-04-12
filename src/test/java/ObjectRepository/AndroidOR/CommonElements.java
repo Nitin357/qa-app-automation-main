@@ -23,6 +23,15 @@ public class CommonElements {
         public static String subscriptionPopup_createAccountButton_ID="cardButton";
         public static String subscriptionPopup_loginButton_ID="login";
         public static String subscriptionPopUp_ID="card";
+        public static String articleFrontSaveButton_ID="article_front_save";
+        public static String articleFrontShareButton_ID="action_share";
+        public static String articleFrontCommentButton_ID="btnCommentsAction";
+
+        public static String commentFlagButton_ID="flagComment";
+        public static String commentRecommendButton_ID="recommendComment";
+        public static String commentReplyButton_ID="replyToComment";
+        public static String flagWindow_ID="alertTitle";
+        public static String authorNameReply_ID="author_name";
 
         //These return element directly
         //The popup for selection of account that comes at first launch of app
@@ -67,6 +76,34 @@ public class CommonElements {
         {return (MobileElement) driver.findElementById(subscriptionPopup_loginButton_ID);}
         public static MobileElement subscriptionPopup()
         {return (MobileElement) driver.findElementById(subscriptionPopUp_ID);}
+        public static MobileElement articleFrontSaveButton()
+        {return (MobileElement) driver.findElementById(articleFrontSaveButton_ID);}
+        public static MobileElement articleFrontShareButton()
+        {return (MobileElement) driver.findElementById(articleFrontShareButton_ID);}
+        public static MobileElement articleFrontCommentButton()
+        {return (MobileElement) driver.findElementById(articleFrontCommentButton_ID);}
 
 
+
+        public static MobileElement commentFlagButton()
+        {
+                List <MobileElement> commentFlagButtons = (List<MobileElement>)  driver.findElementById(commentFlagButton_ID);
+                return commentFlagButtons.get(0);
+        }
+        public static MobileElement commentRecommendButton()
+        {
+                List <MobileElement> commentRecommendButtons = (List<MobileElement>)  driver.findElementById(commentRecommendButton_ID);
+                return commentRecommendButtons.get(0);
+        }
+        public static MobileElement commentReplyButton()
+        {
+                List <MobileElement> commentReplyButtons = (List<MobileElement>)  driver.findElementById(commentReplyButton_ID);
+                return commentReplyButtons.get(0);
+        }
+        public static MobileElement flagWindow()
+        {return (MobileElement) driver.findElementById(flagWindow_ID);}
+
+
+        public static MobileElement authorNameToReply()
+        {return (MobileElement) driver.findElementById(authorNameReply_ID);}
 }
