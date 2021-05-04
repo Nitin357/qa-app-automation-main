@@ -34,7 +34,7 @@ public class LoginFunctionality {
             extentTest.log(LogStatus.INFO, "Initial Subscription & Login skipped!");
             Thread.sleep(5000);
             forYouIcon().click();
-            Thread.sleep(10000);
+            Thread.sleep(1000);
             settingsIcon().click();
             Thread.sleep(5000);
             loginOrRegisterButton().click();
