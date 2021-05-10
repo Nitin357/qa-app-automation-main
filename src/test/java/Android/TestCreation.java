@@ -22,7 +22,9 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static ObjectRepository.AndroidOR.CommonElements.*;
 import static ObjectRepository.AndroidOR.ForYou.completionMomentComponent;
@@ -44,6 +46,8 @@ import static java.awt.SystemColor.window;
 public class TestCreation {
     @Test
     public void abc() throws Exception {
+//        driver.isAppInstalled("com.android.nytimes");
+        launchNYTApp();
         /*
         *
         *
@@ -58,12 +62,16 @@ public class TestCreation {
         *
         *
         * */
-//        File directoryPath = new File("/Users/webdunia/Downloads");
-//        File filesList[] = directoryPath.listFiles();
+//delete all files in a folder
+
+
+//        Thread.sleep(10000);
+//        Thread.sleep(10000);
+//        Thread.sleep(10000);
+//        Thread.sleep(10000);
+//        Thread.sleep(10000);
+//        Thread.sleep(10000);
 //
-//        File tempFile = new File("/Users/webdunia/Downloads/NytApp.apk");
-//        boolean exists = tempFile.exists();
-//        System.out.println(exists);
 //
 //        File myFile = new File("/Users/webdunia/Downloads/NytApp.apk");
 //        myFile.renameTo(new File(System.getProperty("user.dir")+"\\Nyt.apk"));
@@ -71,8 +79,8 @@ public class TestCreation {
 //        tempFile = new File(System.getProperty("user.dir")+"\\Nyt.apk");
 //        exists = tempFile.exists();
 //        System.out.println(exists);
-
-
+//
+//
 /*
 *
 *
@@ -83,25 +91,25 @@ public class TestCreation {
 *
 * */
 
-        launchNYTApp();
-        skipInitialAccountSetup();
-        Thread.sleep(5000);
-        login();
-        Thread.sleep(5000);
-        sectionsIcon().click();
-        Thread.sleep(10000);
-        mostPopular().click();
-        Thread.sleep(10000);
-        java.util.List<MobileElement> homeTabArticles = (List<MobileElement>) driver.findElementsById("tablet_grid_item");
-        homeTabArticles.get(1).click();
-        Thread.sleep(5000);
+//        launchNYTApp();
+//        skipInitialAccountSetup();
+//        Thread.sleep(5000);
+//        login();
+//        Thread.sleep(5000);
+//        sectionsIcon().click();
+//        Thread.sleep(10000);
+//        mostPopular().click();
+//        Thread.sleep(10000);
+//        java.util.List<MobileElement> homeTabArticles = (List<MobileElement>) driver.findElementsById("tablet_grid_item");
+//        homeTabArticles.get(1).click();
+//        Thread.sleep(5000);
 
 
 //        Thread.sleep(5000);
 //        homeTabArticles.get(1).click();
 //
 //
-        MobileElement el1 = (MobileElement) driver.findElementById("//[starts-with(@id,\"link\")]");
+//        MobileElement el1 = (MobileElement) driver.findElementById("//[starts-with(@id,\"link\")]");
 
 //        Thread.sleep(10000);
 
@@ -120,24 +128,5 @@ public class TestCreation {
 //        MobileElement el2 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/com.android.internal.widget.RecyclerView/android.widget.LinearLayout[4]/android.widget.LinearLayout[1]/android.widget.FrameLayout/android.widget.ImageView");
 //        el2.click();
 
-//       WebDriver driver2=new SafariDriver();
-//        driver2.navigate().to("https://install.appcenter.ms/");
-//        Thread.sleep(10000);
-//        //Click on sign in with email instead option
-//        driver2.findElement(By.xpath("//*[@id='content']/div/div[3]/div/div[1]/div[4]/a[1]/div")).click();
-//        //enter email id and password
-//        driver2.findElement(By.name("email")).sendKeys("manish.mittal@diaspark.com");
-//        driver2.findElement(By.name("password")).sendKeys("manish1979");
-//        driver2.findElement(By.className("_3EtH0jXex")).click();
-//        Thread.sleep(10000);
-//        JavascriptExecutor js = (JavascriptExecutor) driver2;
-//        WebElement ele = driver2.findElement(By.xpath("//*[@id='layout-viewport']/div[1]/div[2]/div[2]/div[2]/ul/li[31]/a/div/div/div[2]/span[1]"));
-////        js.executeScript("arguments[0].scrollIntoView();", ele);
-//        ele.click();
-//        Thread.sleep(10000);
-//        driver2.findElement(By.className("_3EtH0jXex")).click();
-//        Robot robot = new Robot();
-//        Thread.sleep(10000);
-//        robot.keyPress(KeyEvent.VK_ENTER);
     }
 }

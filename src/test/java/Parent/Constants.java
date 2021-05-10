@@ -25,6 +25,9 @@ public class Constants {
     //Greeting Message on For You
     public static String greetingMessage="Your daily recommendations from across The Times.";
     //    public static WebDriverWait wait=new WebDriverWait(driver, 20);
-
+    public static boolean apkFileAvailable;
+    public static String apkFilePath;
+    public static String apkFileFolderPath=(System.getProperty("user.dir")+"//apkFile");
+    public static String downloadsFolderPath="/Users/webdunia/Downloads";
 
 }

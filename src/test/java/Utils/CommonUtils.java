@@ -9,13 +9,16 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.Dimension;
+import org.openqa.selenium.*;
+import org.openqa.selenium.safari.SafariDriver;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 
 import static ObjectRepository.AndroidOR.CommonElements.*;
 import static ObjectRepository.AndroidOR.CommonElements.continueWithoutAccountButton;
@@ -31,15 +34,22 @@ public class CommonUtils {
 /*Set device name and platform name for execution*/
     public static void setDeviceInfo()
     {
-        deviceName="R9WN90G3ZBJ";
         platformName="Android";
     }
 
+    /*Set driver capabilities to launch NYT app*/
+    public static void setCapabilitiesToInstallApp() throws Exception
+    {
+        setDeviceInfo();
+        cap.setCapability("platformName", platformName);
+        driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
+    }
+
+
 /*Set driver capabilities to launch NYT app*/
-    public static void setCapabilities() throws Exception
+    public static void setAppCapabilities() throws Exception
     {
            setDeviceInfo();
-           cap.setCapability("deviceName", deviceName);
            cap.setCapability("platformName", platformName);
            cap.setCapability("appPackage", "com.nytimes.android");
            cap.setCapability("appActivity", "com.nytimes.android.MainActivity");
@@ -48,7 +58,7 @@ public class CommonUtils {
 /*Launch NYT app*/
     public static void launchNYTApp() throws Exception
     {
-        setCapabilities();
+        setAppCapabilities();
         driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
 
 
@@ -188,6 +198,116 @@ public class CommonUtils {
         new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
     }
 
+    public static boolean checkAPKFilePresence(String folderPath)
+    {
+        apkFileAvailable=false;
+
+        File directoryPath = new File(folderPath);
+        File filesList[] = directoryPath.listFiles();
+        if(filesList!=null)
+        {
+            for (int i = 0; i < filesList.length; i++)
+            {
+                System.out.println(i);
+                String fileName = filesList[i].getAbsolutePath();
+                if (fileName.contains("apk")&&(!fileName.contains("download")))
+                {
+                    apkFilePath = fileName;
+                    apkFileAvailable = true;
+                    break;
+                }
+            }
+        }
+        return apkFileAvailable;
+    }
+    public static void deleteAllFilesInFolder(File file)
+    {
+        file = new File(apkFileFolderPath);
+        if(file.listFiles()!=null)
+        {
+            for (File subFile : file.listFiles())
+            {
+                if(subFile.isDirectory())
+                {
+                    deleteAllFilesInFolder(subFile);
+                }
+                else
+                {
+                    subFile.delete();
+                }
+            }
+        }
+    }
+    public static void downloadAPKFromWebsite() throws Exception
+    {
+        //erase contents of apkFile folder
+        File file=new File(apkFileFolderPath);
+        deleteAllFilesInFolder(file);
+        //clear downloads folder
+        File file2=new File(downloadsFolderPath);
+        deleteAllFilesInFolder(file2);
+
+        apkFileAvailable=false;
+        WebDriver driver2=new SafariDriver();
+        driver2.navigate().to("https://install.appcenter.ms/");
+        Thread.sleep(10000);
+        //        Click on sign in with email instead option
+        driver2.findElement(By.xpath("//*[@id='content']/div/div[3]/div/div[1]/div[4]/a[1]/div")).click();
+        // enter email id and password
+        driver2.findElement(By.name("email")).sendKeys("manish.mittal@diaspark.com");
+        driver2.findElement(By.name("password")).sendKeys("manish1979");
+        driver2.findElement(By.className("_3EtH0jXex")).click();
+        Thread.sleep(10000);
+        JavascriptExecutor js = (JavascriptExecutor) driver2;
+        Thread.sleep(10000);
+        WebElement ele = driver2.findElement(By.xpath("//*[@id='layout-viewport']/div[1]/div[2]/div[2]/div[2]/ul/li[31]/a/div/div/div[2]/span[1]"));
+        ele.click();
+        Thread.sleep(10000);
+        WebElement downloadBTN=driver2.findElement(By.xpath("//*[@id=\"layout-viewport\"]/div[1]/div[2]/div[2]/div/div[1]/div[1]/div[2]/div/div[1]/div[2]/button/div/span"));
+        System.out.println(downloadBTN.isEnabled());
+        downloadBTN.click();
+        while(!apkFileAvailable)
+        {
+            TimeUnit.SECONDS.sleep(10);
+            checkAPKFilePresence(downloadsFolderPath);
+        }
+
+
+        File downloadedAPK = new File(apkFilePath);
+        downloadedAPK.renameTo(new File(apkFileFolderPath+"\\Nyt.apk"));
+        apkFilePath=(apkFileFolderPath+"\\Nyt.apk");
+
+    }
+    /*install apk in phone*/
+    public static void installApk() throws Exception
+    {
+
+
+        if(checkAPKFilePresence(apkFileFolderPath)==false)
+        {
+            downloadAPKFromWebsite();
+        }
+        setCapabilitiesToInstallApp();
+        driver.installApp(apkFilePath);
+
+        //delete the apk file after installation
+        File file=new File(apkFileFolderPath);
+        deleteAllFilesInFolder(file);
+        driver.quit();
+//        String filePath = "/Users/webdunia/Downloads//";
+////        Creating the File object
+//        File file = new File(filePath);
+////        deleteFolder(file);
+////        System.out.println("Files deleted........");
+
+
+
+        //check if apk file is present in folder
+
+        ///if file isn't present, download it
+
+
+    }
 
 /*Get credentials from Excel and set them in constant values*/
     public static void getCredentialsFromExcel()
