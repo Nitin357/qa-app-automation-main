@@ -32,21 +32,20 @@ public class LoginFunctionality {
             Reporting.initializeReporting(testCaseName,testCaseDescription);
             extentTest.log(LogStatus.INFO, "App Launched");
             extentTest.log(LogStatus.INFO, "Initial Subscription & Login skipped!");
-            Thread.sleep(5000);
+            waitForElementLoad("id",forYouIcon_ID,5);
             forYouIcon().click();
-            Thread.sleep(1000);
+            waitForElementLoad("id",sectionIcon_ID,1);
             settingsIcon().click();
-            Thread.sleep(5000);
+            waitForElementLoad("xpath",loginOrRegisterButton_XPATH,5);
             loginOrRegisterButton().click();
-            Thread.sleep(5000);
+            waitForElementLoad("id",loginWithEmailInsteadOption_ID,5);
             loginWithEmailInsteadOption().click();
-            Thread.sleep(5000);
+            waitForSpecificTime(5);
             emailIdTextField().sendKeys(loginUserName);
-            Thread.sleep(5000);
             passwordTextField().sendKeys(loginUserPassword);
-            Thread.sleep(5000);
+            waitForElementLoad("id",loginButton_ID,5);
             loginButton().click();
-            Thread.sleep(5000);
+            waitForSpecificTime(5);
             TouchAction action = new TouchAction(driver);
             extentTest.log(LogStatus.PASS, testCaseName+" : "+testCaseDescription);
         }

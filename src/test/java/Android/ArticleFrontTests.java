@@ -12,7 +12,25 @@ import static Parent.Constants.driver;
 import static Parent.Reporting.extentTest;
 import static Utils.CommonUtils.launchNYTApp;
 import static Utils.CommonUtils.skipInitialAccountSetup;
-
+/*
+*
+*
+*
+*
+*
+*
+*
+* THIS TEST CASE IS TO BE MODIFIED ACCORDING TO CHARM BRACELET
+*
+*
+*
+*
+*
+*
+*
+*
+*
+* */
 /*This is test case for Verificaton of Login Functionality through For You>>Settings*/
 public class ArticleFrontTests {
     String testCaseName = "Comments Functionality Test";

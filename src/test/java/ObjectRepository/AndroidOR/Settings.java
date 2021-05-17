@@ -10,18 +10,18 @@ import static Parent.Constants.driver;
 /*Contains all the elements on Settings page*/
 public class Settings {
     //These are identifiers of elements
-    public static String loginOrRegisterButton_ID="/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[2]/android.widget.RelativeLayout/android.widget.TextView";
+    public static String loginOrRegisterButton_XPATH="/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[2]/android.widget.RelativeLayout/android.widget.TextView";
     public static String loginWithEmailInsteadOption_ID="already_subscriber_plv";
     public static String emailIdTextField_ID="emailInput";
     public static String passwordTextField_ID="passwordInput";
     public static String loginButton_ID="login_button_lv";
-    public static String digitalSubscriber_ID=" /hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.RelativeLayout";
+    public static String digitalSubscriber_XPATH=" /hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.RelativeLayout";
 
 
     //These return element directly
     //Login or register button
     public static MobileElement loginOrRegisterButton()
-    {return (MobileElement) driver.findElementByXPath(loginOrRegisterButton_ID);}
+    {return (MobileElement) driver.findElementByXPath(loginOrRegisterButton_XPATH);}
     //Login with email instead option in popup
     public static MobileElement loginWithEmailInsteadOption()
     {return (MobileElement) driver.findElementByAccessibilityId(loginWithEmailInsteadOption_ID);}
@@ -36,6 +36,6 @@ public class Settings {
     {return (MobileElement) driver.findElementByAccessibilityId(loginButton_ID);}
     //Identifier of signed in user
     public static MobileElement digitalSubscriber()
-    {return (MobileElement) driver.findElementByXPath(digitalSubscriber_ID);}
+    {return (MobileElement) driver.findElementByXPath(digitalSubscriber_XPATH);}
 
 }

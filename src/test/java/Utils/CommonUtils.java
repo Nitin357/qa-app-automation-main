@@ -11,6 +11,8 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.*;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,15 +25,17 @@ import java.util.concurrent.TimeUnit;
 import static ObjectRepository.AndroidOR.CommonElements.*;
 import static ObjectRepository.AndroidOR.CommonElements.continueWithoutAccountButton;
 import static ObjectRepository.AndroidOR.ForYou.settingsIcon;
+import static ObjectRepository.AndroidOR.ForYou.settingsIcon_ID;
 import static ObjectRepository.AndroidOR.Sections.mostPopular;
+import static ObjectRepository.AndroidOR.Sections.mostPopular_ID;
 import static ObjectRepository.AndroidOR.Settings.*;
 import static Parent.Constants.*;
 import static Parent.Reporting.extentTest;
 
-/*Contains all the common reusable methods*/
+   /*Contains all the common reusable methods*/
 public class CommonUtils {
 
-/*Set device name and platform name for execution*/
+    /*Set device name and platform name for execution*/
     public static void setDeviceInfo()
     {
         platformName="Android";
@@ -45,8 +49,7 @@ public class CommonUtils {
         driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
     }
 
-
-/*Set driver capabilities to launch NYT app*/
+    /*Set driver capabilities to launch NYT app*/
     public static void setAppCapabilities() throws Exception
     {
            setDeviceInfo();
@@ -55,7 +58,7 @@ public class CommonUtils {
            cap.setCapability("appActivity", "com.nytimes.android.MainActivity");
     }
 
-/*Launch NYT app*/
+    /*Launch NYT app*/
     public static void launchNYTApp() throws Exception
     {
         setAppCapabilities();
@@ -64,75 +67,75 @@ public class CommonUtils {
 
     }
 
-/*Skip sign in and subscription at initial launch*/
+    /*Skip sign in and subscription at initial launch*/
     public static void skipInitialAccountSetup() throws Exception
     {
-
-            Thread.sleep(10000);
+            waitForElementLoad("id",continueWithoutAccountButton_ID,10);
             continueWithoutAccountButton().click();
-            Thread.sleep(5000);
+            waitForElementLoad("id",continueWithoutAccountButton_ID,10);
             continueWithoutSubscribeButton().click();
-            Thread.sleep(10000);
+            waitForSpecificTime(10);
     }
 
-/*Login as unsubscribed user*/
+    /*Login as unsubscribed user*/
     public static void loginUnsubscribedUser() throws Exception
     {
-        Thread.sleep(5000);
+        waitForElementLoad("id",forYouIcon_ID,5);
         forYouIcon().click();
-        Thread.sleep(10000);
+        waitForElementLoad("id",settingsIcon_ID,10);
         settingsIcon().click();
-        Thread.sleep(5000);
+        waitForElementLoad("xpath",loginOrRegisterButton_XPATH,5);
         loginOrRegisterButton().click();
-        Thread.sleep(5000);
+        waitForElementLoad("id",loginWithEmailInsteadOption_ID,5);
         loginWithEmailInsteadOption().click();
-        Thread.sleep(5000);
+        waitForSpecificTime(5);
         emailIdTextField().sendKeys("himanshu.sharma@diaspark.com");
-        Thread.sleep(5000);
+        waitForSpecificTime(5);
         passwordTextField().sendKeys("test123");
-        Thread.sleep(5000);
+        waitForElementLoad("id",loginButton_ID,5);
         loginButton().click();
-        Thread.sleep(5000);
+        waitForSpecificTime(5);
+        driver.navigate().back();
         driver.navigate().back();
     }
 
 
-    /*login*/
+    /*Login*/
     public static void login() throws Exception
     {
 
-        Thread.sleep(5000);
+        waitForElementLoad("id",forYouIcon_ID,5);
         forYouIcon().click();
-        Thread.sleep(10000);
+        waitForElementLoad("id",settingsIcon_ID,10);
         settingsIcon().click();
-        Thread.sleep(5000);
+        waitForElementLoad("xpath",loginOrRegisterButton_XPATH,5);
         loginOrRegisterButton().click();
-        Thread.sleep(5000);
+        waitForElementLoad("id",loginWithEmailInsteadOption_ID,5);
         loginWithEmailInsteadOption().click();
-        Thread.sleep(5000);
+        waitForSpecificTime(5);
         emailIdTextField().sendKeys(loginUserName);
-        Thread.sleep(5000);
+        waitForSpecificTime(5);
         passwordTextField().sendKeys(loginUserPassword);
-        Thread.sleep(5000);
+        waitForElementLoad("id",loginButton_ID,5);
         loginButton().click();
-        Thread.sleep(5000);
+        waitForSpecificTime(5);
         driver.navigate().back();
         driver.navigate().back();
     }
 
-/*Check for registration/login popup for meter*/
+    /*Check for registration/login popup for meter*/
     public static boolean checkMeter() throws Exception
     {
         boolean meterStatus=false;
         try {
             sectionsIcon().click();
-            Thread.sleep(10000);
+            waitForElementLoad("id",mostPopular_ID,10);
             mostPopular().click();
 
             int meterCount = 4;
             java.util.List<MobileElement> homeTabArticles = (List<MobileElement>) driver.findElementsById("tablet_grid_item");
             for (int i = 0; i <= meterCount; i++) {
-                Thread.sleep(10000);
+                waitForSpecificTime(10);
 
                 homeTabArticles = (List<MobileElement>) driver.findElementsById("tablet_grid_item");
                 System.out.println(homeTabArticles.size());
@@ -140,7 +143,7 @@ public class CommonUtils {
                 if ((i + homeTabArticles.size()) < meterCount) {
                     for (int j = 0; j < homeTabArticles.size(); j++) {
                         homeTabArticles.get(j).click();
-                        Thread.sleep(10000);
+                        waitForElementLoad("id",subscriptionPopUp_ID,10);
                         if ((driver.findElementsById(subscriptionPopUp_ID).size() != 0)) {
                             meterStatus = true;
                             driver.navigate().back();
@@ -149,7 +152,7 @@ public class CommonUtils {
                             break;
                         }
                         driver.navigate().back();
-                        Thread.sleep(10000);
+                        waitForSpecificTime(10);
                         i++;
                         if (meterStatus == true) {
                             break;
@@ -163,7 +166,7 @@ public class CommonUtils {
                     new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
                 } else {
                     homeTabArticles.get(i).click();
-                    Thread.sleep(10000);
+                    waitForElementLoad("id",subscriptionPopUp_ID,10);
                     if ((driver.findElementsById(subscriptionPopUp_ID).size() != 0)) {
                         meterStatus = true;
                         driver.navigate().back();
@@ -172,7 +175,7 @@ public class CommonUtils {
                         break;
                     }
                     driver.navigate().back();
-                    Thread.sleep(10000);
+                    waitForSpecificTime(10);
                 }
                 if (meterStatus == true) {
                     break;
@@ -198,6 +201,7 @@ public class CommonUtils {
         new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
     }
 
+    /*Check presence of an apk file at the given path*/
     public static boolean checkAPKFilePresence(String folderPath)
     {
         apkFileAvailable=false;
@@ -220,6 +224,8 @@ public class CommonUtils {
         }
         return apkFileAvailable;
     }
+
+    /*Deletes all files present at the folder at the file path specified*/
     public static void deleteAllFilesInFolder(File file)
     {
         file = new File(apkFileFolderPath);
@@ -238,78 +244,92 @@ public class CommonUtils {
             }
         }
     }
+
+    /*Download apk file from website*/
     public static void downloadAPKFromWebsite() throws Exception
     {
-        //erase contents of apkFile folder
+        //Erase contents of apkFile folder
         File file=new File(apkFileFolderPath);
         deleteAllFilesInFolder(file);
-        //clear downloads folder
+        //Clear downloads folder
         File file2=new File(downloadsFolderPath);
         deleteAllFilesInFolder(file2);
-
         apkFileAvailable=false;
         WebDriver driver2=new SafariDriver();
         driver2.navigate().to("https://install.appcenter.ms/");
-        Thread.sleep(10000);
-        //        Click on sign in with email instead option
+        waitForSpecificTime(10);
+        //Click on sign in with email instead option
         driver2.findElement(By.xpath("//*[@id='content']/div/div[3]/div/div[1]/div[4]/a[1]/div")).click();
-        // enter email id and password
+        //Enter email id and password
         driver2.findElement(By.name("email")).sendKeys("manish.mittal@diaspark.com");
         driver2.findElement(By.name("password")).sendKeys("manish1979");
         driver2.findElement(By.className("_3EtH0jXex")).click();
-        Thread.sleep(10000);
+        waitForSpecificTime(10);
         JavascriptExecutor js = (JavascriptExecutor) driver2;
-        Thread.sleep(10000);
+        waitForSpecificTime(10);
         WebElement ele = driver2.findElement(By.xpath("//*[@id='layout-viewport']/div[1]/div[2]/div[2]/div[2]/ul/li[31]/a/div/div/div[2]/span[1]"));
         ele.click();
-        Thread.sleep(10000);
+        waitForSpecificTime(10);
         WebElement downloadBTN=driver2.findElement(By.xpath("//*[@id=\"layout-viewport\"]/div[1]/div[2]/div[2]/div/div[1]/div[1]/div[2]/div/div[1]/div[2]/button/div/span"));
         System.out.println(downloadBTN.isEnabled());
         downloadBTN.click();
         while(!apkFileAvailable)
         {
-            TimeUnit.SECONDS.sleep(10);
+            waitForSpecificTime(10);
             checkAPKFilePresence(downloadsFolderPath);
         }
-
-
         File downloadedAPK = new File(apkFilePath);
         downloadedAPK.renameTo(new File(apkFileFolderPath+"\\Nyt.apk"));
         apkFilePath=(apkFileFolderPath+"\\Nyt.apk");
-
     }
-    /*install apk in phone*/
+
+    /*Install apk in phone*/
     public static void installApk() throws Exception
     {
-
-
         if(checkAPKFilePresence(apkFileFolderPath)==false)
         {
             downloadAPKFromWebsite();
         }
         setCapabilitiesToInstallApp();
         driver.installApp(apkFilePath);
-
-        //delete the apk file after installation
+        //Delete the apk file after installation
         File file=new File(apkFileFolderPath);
         deleteAllFilesInFolder(file);
         driver.quit();
-//        String filePath = "/Users/webdunia/Downloads//";
-////        Creating the File object
-//        File file = new File(filePath);
-////        deleteFolder(file);
-////        System.out.println("Files deleted........");
+    }
 
-
-
-        //check if apk file is present in folder
-
-        ///if file isn't present, download it
-
+    /*Wait for given number of seconds for element located by XPATH/ID*/
+    public static void waitForElementLoad(String locatedBY, String locator, int secondsToWait) throws Exception
+    {
+        WebDriverWait wait = new WebDriverWait(driver,secondsToWait*1000);
+        WebElement elementToBeWaitedFor;
+        switch (locatedBY)
+        {
+            case "id": elementToBeWaitedFor = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(locator)));
+                        break;
+            case "xpath":elementToBeWaitedFor = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+                        break;
+            default: waitForSpecificTime(secondsToWait);
+                break;
+        }
 
     }
 
-/*Get credentials from Excel and set them in constant values*/
+
+    public static void waitForSpecificTime(int seconds)
+    {
+
+        long start = System.currentTimeMillis();
+        long elapsedTime =0;
+        while(elapsedTime*1000==seconds)
+        {
+            long end = System.currentTimeMillis();
+            elapsedTime = end - start;
+        }
+
+    }
+
+    /*Get credentials from Excel and set them in constant values*/
     public static void getCredentialsFromExcel()
     {
         {

@@ -37,9 +37,10 @@ public class MeterFunctionality {
                 extentTest.log(LogStatus.FAIL, "Meter status for Anonymous user");
             }
 
-            Thread.sleep(10000);
+
+            waitForSpecificTime(10);
             loginUnsubscribedUser();
-            Thread.sleep(10000);
+            waitForSpecificTime(10);
             boolean meterStatusUnsubscribedUser = checkMeter();
 
             if(meterStatusUnsubscribedUser)

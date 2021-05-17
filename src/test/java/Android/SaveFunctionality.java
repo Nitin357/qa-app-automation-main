@@ -21,6 +21,25 @@ import static Parent.Constants.*;
 import static Parent.Reporting.extentTest;
 import static Utils.CommonUtils.*;
 
+/*
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ * THIS TEST CASE IS TO BE MODIFIED ACCORDING TO CHARM BRACELET
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ * */
 /*This is test case for Verificaton of Login Functionality through For You>>Settings*/
 public class SaveFunctionality {
     @BeforeClass

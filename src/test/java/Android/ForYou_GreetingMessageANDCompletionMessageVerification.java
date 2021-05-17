@@ -13,12 +13,12 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static ObjectRepository.AndroidOR.CommonElements.forYouIcon;
+import static ObjectRepository.AndroidOR.CommonElements.forYouIcon_ID;
 import static ObjectRepository.AndroidOR.ForYou.settingsIcon;
 import static ObjectRepository.AndroidOR.Settings.*;
 import static Parent.Constants.*;
 import static Parent.Reporting.extentTest;
-import static Utils.CommonUtils.launchNYTApp;
-import static Utils.CommonUtils.skipInitialAccountSetup;
+import static Utils.CommonUtils.*;
 
 /*This is test case for Verificaton of Greeting Message and Completion Moment Component in For You*/
 public class ForYou_GreetingMessageANDCompletionMessageVerification {
@@ -28,7 +28,7 @@ public class ForYou_GreetingMessageANDCompletionMessageVerification {
     {
         launchNYTApp();
         skipInitialAccountSetup();
-        Thread.sleep(5000);
+        waitForElementLoad("id",forYouIcon_ID,5);
         forYouIcon().click();
     }
 
@@ -45,7 +45,7 @@ public class ForYou_GreetingMessageANDCompletionMessageVerification {
             extentTest.log(LogStatus.INFO, "App Launched");
             extentTest.log(LogStatus.INFO, "Initial Subscription & Login skipped!");
             extentTest.log(LogStatus.INFO, "For You Icon Clicked!");
-            Thread.sleep(10000);
+            waitForSpecificTime(10);
             if(ForYou.greetingMessage().getText().equals(greetingMessage))
             {
                 extentTest.log(LogStatus.INFO, "Greeting message verified");
@@ -72,8 +72,7 @@ public class ForYou_GreetingMessageANDCompletionMessageVerification {
         try
         {
             Reporting.initializeReporting(testCaseName,testCaseDescription);
-            Thread.sleep(10000);
-
+            waitForSpecificTime(10);
             //Scrolling functionality
             Dimension size = driver.manage().window().getSize();
             int startx = size.getWidth()/2;
