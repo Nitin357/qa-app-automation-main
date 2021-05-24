@@ -14,12 +14,22 @@
 <!--This includes Test cases to be automated-->
     <test name="Test Method">
         <classes>
-<!--            <class name="Android.LoginFunctionality"/>-->
-<!--            <class name="Android.ForYou_GreetingMessageANDCompletionMessageVerification"/>-->
-<!--            <class name="Android.MeterFunctionality"/>-->
-<!--            <class name="Android.SaveFunctionality"/>-->
-<!--            <class name="Android.ShareFunctionality"/>-->
-            <class name="Android.CommentsFunctionality"/>
+            <class name="Android.LoginFunctionality"/>
+            <class name="Android.MeterFunctionality"/>
+            <class name="Android.ForYou_GreetingMessageANDCompletionMessageVerification">
+                <methods>
+                    <include name="greetingMessage"/>
+                    <include name="completionMessage"/>
+                </methods>
+            </class>
+
+            <class name="Android.ArticleFrontTests_CharmBracelet">
+                <methods>
+                    <include name="shareButtonTest"/>
+                    <exclude name="commentsButton_Functionality"/>
+<!--                    <include name="saveButtonTest"/>-->
+                </methods>
+            </class>
         </classes>
     </test>
 

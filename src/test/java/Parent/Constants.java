@@ -29,5 +29,6 @@ public class Constants {
     public static String apkFilePath;
     public static String apkFileFolderPath=(System.getProperty("user.dir")+"//apkFile");
     public static String downloadsFolderPath="/Users/webdunia/Downloads";
+    public static String expectedAricleHeading = "How Joe Biden Can Win a Nobel Peace Prize";
 
 }

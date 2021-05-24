@@ -23,15 +23,19 @@ public class CommonElements {
         public static String subscriptionPopup_createAccountButton_ID="cardButton";
         public static String subscriptionPopup_loginButton_ID="login";
         public static String subscriptionPopUp_ID="card";
+
         public static String articleFrontSaveButton_ID="article_front_save";
         public static String articleFrontShareButton_ID="action_share";
-        public static String articleFrontCommentButton_ID="btnCommentsAction";
-
+        public static String articleFrontCommentButton_ID="action_comments";
         public static String commentFlagButton_ID="flagComment";
         public static String commentRecommendButton_ID="recommendComment";
         public static String commentReplyButton_ID="replyToComment";
         public static String flagWindow_ID="alertTitle";
+        public static String flagWindow_cancelButton_ID = "button2";
         public static String authorNameReply_ID="author_name";
+        public static String savedLaterArticleHeadings_ID = "row_sf_headline";
+
+        public static String shareMessageAndroid_Xpath= "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/com.android.internal.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.TextView";
 
         //These return element directly
         //The popup for selection of account that comes at first launch of app
@@ -103,7 +107,19 @@ public class CommonElements {
         public static MobileElement flagWindow()
         {return (MobileElement) driver.findElementById(flagWindow_ID);}
 
-
+        public static MobileElement flagWindow_cancelButton()
+        {
+                return (MobileElement) driver.findElementById(flagWindow_cancelButton_ID);
+        }
         public static MobileElement authorNameToReply()
         {return (MobileElement) driver.findElementById(authorNameReply_ID);}
+
+        public static List<MobileElement> savedLaterArticleHeadings()
+        {
+                return (List<MobileElement>) driver.findElementsById(savedLaterArticleHeadings_ID);
+        }
+        public static MobileElement shareMessageAndroid()
+        {
+                return (MobileElement) driver.findElementsByXPath(shareMessageAndroid_Xpath);
+        }
 }

@@ -329,6 +329,15 @@ public class CommonUtils {
 
     }
 
+    public static void goBackToHomeTab()
+    {
+        do{
+            driver.navigate().back();
+            waitForSpecificTime(2);
+        }while(driver.findElementsById(todayIcon_ID).size()!=0);
+        todayIcon().click();
+    }
+
     /*Get credentials from Excel and set them in constant values*/
     public static void getCredentialsFromExcel()
     {
