@@ -33,6 +33,7 @@ public class ForYou_GreetingMessageANDCompletionMessageVerification {
     }
 
 
+    //This test case verifies Greeting Message on For You tab
     @Test
     public void greetingMessage() throws Exception
     {
@@ -63,6 +64,8 @@ public class ForYou_GreetingMessageANDCompletionMessageVerification {
         }
     }
 
+
+    //This test case verifies completion message on for you tab
     @Test
     public void completionMessage() throws Exception
     {

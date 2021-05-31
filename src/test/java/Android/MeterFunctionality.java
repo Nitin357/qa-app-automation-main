@@ -39,7 +39,7 @@ public class MeterFunctionality {
 
 
             waitForSpecificTime(10);
-            loginUnsubscribedUser();
+            login(false);
             waitForSpecificTime(10);
             boolean meterStatusUnsubscribedUser = checkMeter();
 

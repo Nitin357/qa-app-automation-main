@@ -1,10 +1,8 @@
 package Android;
 
-import ObjectRepository.AndroidOR.Home;
 import Parent.Reporting;
 import com.relevantcodes.extentreports.LogStatus;
 import io.appium.java_client.MobileElement;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -13,7 +11,7 @@ import java.util.List;
 import static ObjectRepository.AndroidOR.CommonElements.*;
 import static ObjectRepository.AndroidOR.Sections.*;
 import static Parent.Constants.driver;
-import static Parent.Constants.expectedAricleHeading;
+import static Parent.Constants.expectedArticleHeading;
 import static Parent.Reporting.extentTest;
 import static Utils.CommonUtils.*;
 
@@ -26,6 +24,7 @@ public class ArticleFrontTests_CharmBracelet {
     {
         launchNYTApp();
         skipInitialAccountSetup();
+        login(true);
         reachToExpectedArticle();
     }
 
@@ -158,7 +157,7 @@ public class ArticleFrontTests_CharmBracelet {
             {
                 for(int i=0;i<savedLaterArticleHeadings().size();i++)
                 {
-                    if(savedLaterArticleHeadings().get(i).equals(expectedAricleHeading))
+                    if(savedLaterArticleHeadings().get(i).equals(expectedArticleHeading))
                     {
 
                         extentTest.log(LogStatus.INFO,"Save button working properly");
@@ -199,11 +198,11 @@ public class ArticleFrontTests_CharmBracelet {
         waitForSpecificTime(10);
         searchButton().click();
         waitForElementLoad("id",searchField_ID,10);
-        searchField().sendKeys(expectedAricleHeading);
+        searchField().sendKeys(expectedArticleHeading);
         List <MobileElement> searchResults = searchResultArticleHeadings();
         for(int i =0;i< searchResults.size();i++)
         {
-            if (searchResults.get(i).getText().equals(expectedAricleHeading))
+            if (searchResults.get(i).getText().equals(expectedArticleHeading))
             {
                 searchResults.get(i).click();
             }

@@ -6,20 +6,14 @@ import java.util.List;
 
 import static Parent.Constants.driver;
 
-/*Contains all the elements on Home page*/
+/*Contains all the elements on WEBSITE*/
 public class Web {
     /*
     * These are ElementLocators
     */
-    public static String homeTabArticles_ID="root_layout";
 
     /*
-    * These return home tab articles list
+    * These return WEB ELEMENTS
     */
-    public static List<MobileElement> homeTabArticles()
-    {
-        List<MobileElement> homeTabArticles = (List<MobileElement>) driver.findElementsById(homeTabArticles_ID);
-        return homeTabArticles;
-    }
 
 }
