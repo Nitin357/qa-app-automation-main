@@ -13,11 +13,15 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+
 import static ObjectRepository.AndroidOR.CommonElements.*;
 import static ObjectRepository.AndroidOR.CommonElements.continueWithoutAccountButton;
 import static ObjectRepository.AndroidOR.ForYou.settingsIcon;
@@ -28,8 +32,7 @@ import static ObjectRepository.AndroidOR.Settings.*;
 import static Parent.Constants.*;
 import static Parent.Reporting.extentTest;
 
-
-/*Contains all the common reusable methods*/
+   /*Contains all the common reusable methods*/
 public class CommonUtils {
 
     /*Set device name and platform name for execution*/
@@ -60,6 +63,8 @@ public class CommonUtils {
     {
         setAppCapabilities();
         driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
+
+
     }
 
     /*Skip sign in and subscription at initial launch*/
@@ -72,23 +77,9 @@ public class CommonUtils {
             waitForSpecificTime(10);
     }
 
-
-    /*Login*/
-    public static void login(Boolean userSubscriptionStatus) throws Exception
+    /*Login as unsubscribed user*/
+    public static void loginUnsubscribedUser() throws Exception
     {
-
-        String userEmail="",userPassword="";
-        if (userSubscriptionStatus)
-        {
-            userEmail = loginUserName_SubscriberUser;
-            userPassword = loginUserPassword_SubscribedUser;
-        }
-        else
-        {
-            userEmail = loginUserName_UnsubscriberUser;
-            userPassword = loginUserPassword_UnsubscribedUser;
-        }
-        goBackToHomeTab();
         waitForElementLoad("id",forYouIcon_ID,5);
         forYouIcon().click();
         waitForElementLoad("id",settingsIcon_ID,10);
@@ -98,9 +89,9 @@ public class CommonUtils {
         waitForElementLoad("id",loginWithEmailInsteadOption_ID,5);
         loginWithEmailInsteadOption().click();
         waitForSpecificTime(5);
-        emailIdTextField().sendKeys(userEmail);
+        emailIdTextField().sendKeys("himanshu.sharma@diaspark.com");
         waitForSpecificTime(5);
-        passwordTextField().sendKeys(userPassword);
+        passwordTextField().sendKeys("test123");
         waitForElementLoad("id",loginButton_ID,5);
         loginButton().click();
         waitForSpecificTime(5);
@@ -108,18 +99,28 @@ public class CommonUtils {
         driver.navigate().back();
     }
 
-    /*Logout*/
-    public static void logout() throws Exception
+
+    /*Login*/
+    public static void login() throws Exception
     {
 
-        goBackToHomeTab();
         waitForElementLoad("id",forYouIcon_ID,5);
         forYouIcon().click();
         waitForElementLoad("id",settingsIcon_ID,10);
         settingsIcon().click();
         waitForElementLoad("xpath",loginOrRegisterButton_XPATH,5);
         loginOrRegisterButton().click();
-
+        waitForElementLoad("id",loginWithEmailInsteadOption_ID,5);
+        loginWithEmailInsteadOption().click();
+        waitForSpecificTime(5);
+        emailIdTextField().sendKeys(loginUserName);
+        waitForSpecificTime(5);
+        passwordTextField().sendKeys(loginUserPassword);
+        waitForElementLoad("id",loginButton_ID,5);
+        loginButton().click();
+        waitForSpecificTime(5);
+        driver.navigate().back();
+        driver.navigate().back();
     }
 
     /*Check for registration/login popup for meter*/
@@ -315,7 +316,6 @@ public class CommonUtils {
     }
 
 
-    /*Wait for specific no of seconds passed as argument to this method*/
     public static void waitForSpecificTime(int seconds)
     {
 
@@ -329,7 +329,6 @@ public class CommonUtils {
 
     }
 
-    /*Go back to home tab from anywhere on app*/
     public static void goBackToHomeTab()
     {
         do{
@@ -367,11 +366,8 @@ public class CommonUtils {
                     }j=0;
                     i++;
                 }i=0;
-                loginUserName_SubscriberUser =credentials[1][0];
-                loginUserPassword_SubscribedUser =credentials[1][1];
-
-                loginUserName_UnsubscriberUser =credentials[2][0];
-                loginUserPassword_UnsubscribedUser =credentials[2][1];
+                loginUserName=credentials[1][0];
+                loginUserPassword=credentials[1][1];
             }
             catch(Exception e)
             {
