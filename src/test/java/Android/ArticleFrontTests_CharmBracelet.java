@@ -29,7 +29,7 @@ public class ArticleFrontTests_CharmBracelet {
     }
 
 
-    /*This test case tests functionality of share button on CharmBracelet*/
+/*This test case tests functionality of share button on CharmBracelet*/
     @Test
     public void shareButtonTest() throws Exception
     {
@@ -48,7 +48,7 @@ public class ArticleFrontTests_CharmBracelet {
             else
             {
 
-                extentTest.log(LogStatus.INFO,"Share Button is not working properly");
+                extentTest.log(LogStatus.INFO,"Share Button NOT working properly");
                 extentTest.log(LogStatus.FAIL, testCaseName+" : "+testCaseDescription);
             }
 

@@ -12,7 +12,6 @@ import static Utils.CommonUtils.*;
 public class MeterFunctionality {
     String testCaseName = "Meter Functionality Test";
     String testCaseDescription = "Verify Meter For Unsubscribed and Anonymous user";
-
     @BeforeTest
     public void setUp() throws Exception
     {
