@@ -36,6 +36,12 @@ public class CommonElements {
         public static String savedLaterArticleHeadings_ID = "row_sf_headline";
 
         public static String shareMessageAndroid_Xpath= "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/com.android.internal.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.TextView";
+        public static String moreOptionsArticleFront_ID = "More options";
+        public static String textSizeOptionArticleFront_ID = "content";
+        public static String textSize_ID = "text1";
+        public static String okButton_TextSizeWindow_ID = "button1";
+        public static String articleHeaing_ID = "link-1e69d2db";
+        public static String textSizeIcon_Text = "Text Size";
 
         //These return element directly
         //The popup for selection of account that comes at first launch of app
@@ -179,6 +185,48 @@ public class CommonElements {
         //Share message on clicking share button on android TAB
         public static MobileElement shareMessageAndroid()
         {
-                return (MobileElement) driver.findElementsByXPath(shareMessageAndroid_Xpath);
+                return (MobileElement) driver.findElementByXPath(shareMessageAndroid_Xpath);
+        }
+
+        public static MobileElement moreOptionsArticleFront()
+        {
+                return (MobileElement) driver.findElementById(moreOptionsArticleFront_ID);
+        }
+
+        public static MobileElement textSize_Articlefront()
+        {
+                return (MobileElement) driver.findElementsById(textSizeOptionArticleFront_ID).get(0);
+        }
+        public static MobileElement small_TextSize()
+        {
+                return (MobileElement) driver.findElementsById(textSize_ID).get(0);
+        }
+        public static MobileElement medium_TextSize()
+        {
+                return (MobileElement) driver.findElementsById(textSize_ID).get(1);
+        }
+        public static MobileElement large_TextSize()
+        {
+                return (MobileElement) driver.findElementsById(textSize_ID).get(2);
+        }
+        public static MobileElement extraLarge_TextSize()
+        {
+                return (MobileElement) driver.findElementsById(textSize_ID).get(3);
+        }
+        public static MobileElement jumbo_TextSize()
+        {
+                return (MobileElement) driver.findElementsById(textSize_ID).get(4);
+        }
+        public static MobileElement okButton_TextSizeWindow()
+        {
+                return (MobileElement) driver.findElementById(okButton_TextSizeWindow_ID);
+        }
+        public static MobileElement articleHeaing()
+        {
+                return (MobileElement) driver.findElementById(articleHeaing_ID);
+        }
+        public static MobileElement textSizeIcon()
+        {
+                return (MobileElement) driver.findElementByLinkText(textSizeIcon_Text);
         }
 }
