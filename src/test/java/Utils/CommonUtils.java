@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import static ObjectRepository.AndroidOR.CommonElements.*;
@@ -88,11 +89,7 @@ public class CommonUtils {
             userEmail = loginUserName_UnsubscriberUser;
             userPassword = loginUserPassword_UnsubscribedUser;
         }
-        goBackToHomeTab();
-        waitForElementLoad("id",forYouIcon_ID,5);
-        forYouIcon().click();
-        waitForElementLoad("id",settingsIcon_ID,10);
-        settingsIcon().click();
+        goToSettingsPage();
         waitForElementLoad("xpath",loginOrRegisterButton_XPATH,5);
         loginOrRegisterButton().click();
         waitForElementLoad("id",loginWithEmailInsteadOption_ID,5);
@@ -108,8 +105,26 @@ public class CommonUtils {
         driver.navigate().back();
     }
 
+    /*Go to settings page*/
+    public static void goToSettingsPage() throws Exception
+    {
+        goBackToHomeTab();
+        waitForElementLoad("id",forYouIcon_ID,5);
+        forYouIcon().click();
+        waitForElementLoad("id",settingsIcon_ID,10);
+        settingsIcon().click();
+        waitForSpecificTime(5);
+    }
+
+    /*Generate random email id and password*/
+    public static void generateRandomEamail_Password()
+    {
+        Date date = new Date();
+        randomEmailID= "automationtest"+date+"@maildrop.cc";
+        randomPassword= "ATP@"+date+"atp";
+    }
     /*Logout*/
-    public static void logout() throws Exception
+    public static void logoutIfLoggedIn() throws Exception
     {
 
         goBackToHomeTab();
@@ -118,7 +133,11 @@ public class CommonUtils {
         waitForElementLoad("id",settingsIcon_ID,10);
         settingsIcon().click();
         waitForElementLoad("xpath",loginOrRegisterButton_XPATH,5);
-        loginOrRegisterButton().click();
+        if(logoutButton().isDisplayed())
+        {
+            logoutButton().click();
+            confirmLogoutButton().click();
+        }
 
     }
 

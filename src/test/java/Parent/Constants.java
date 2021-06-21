@@ -40,5 +40,9 @@ public class Constants {
     public static String downloadsFolderPath="/Users/webdunia/Downloads";
     //Heading of an article on which we are performing article front tests
     public static String expectedArticleHeading = "How Joe Biden Can Win a Nobel Peace Prize";
+    //random email id to be created during execution
+    public static String randomEmailID = "";
+    //random email id's password to be created during execution
+    public static String randomPassword = "";
 
 }
