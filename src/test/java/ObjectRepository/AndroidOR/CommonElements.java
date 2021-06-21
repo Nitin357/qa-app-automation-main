@@ -42,6 +42,9 @@ public class CommonElements {
         public static String okButton_TextSizeWindow_ID = "button1";
         public static String articleHeaing_ID = "link-1e69d2db";
         public static String textSizeIcon_Text = "Text Size";
+        public static String getContinueWithoutAccountButton_NewAcct_ID="buttonCancel";
+        public static String loginbutton_ArticleFront_Save_ID ="button1";
+
 
         //These return element directly
         //The popup for selection of account that comes at first launch of app
@@ -223,10 +226,20 @@ public class CommonElements {
         }
         public static MobileElement articleHeaing()
         {
+
                 return (MobileElement) driver.findElementById(articleHeaing_ID);
         }
         public static MobileElement textSizeIcon()
         {
                 return (MobileElement) driver.findElementByLinkText(textSizeIcon_Text);
         }
+        public static MobileElement continueWithoutSubscription_NewUser()
+        {
+                return (MobileElement) driver.findElementById(getContinueWithoutAccountButton_NewAcct_ID);
+        }
+        public static MobileElement loginButton_ArticleFront_Save()
+        {
+                return (MobileElement) driver.findElementById(loginbutton_ArticleFront_Save_ID);
+        }
+
 }

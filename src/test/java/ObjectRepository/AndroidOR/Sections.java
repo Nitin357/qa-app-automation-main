@@ -38,6 +38,12 @@ public class Sections {
         return bottomNavigation.get(36);
     }
 
+    //"Saved for later" option in sections
+    public static MobileElement recentlyViewed() {
+        List<MobileElement> bottomNavigation = (List<MobileElement>) driver.findElementsById(mostPopular_ID);
+        return bottomNavigation.get(41);
+    }
+
     //Search button on top right
     public static MobileElement searchButton() {
         MobileElement searchButton = (MobileElement) driver.findElementById(searchButton_ID);
