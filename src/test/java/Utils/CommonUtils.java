@@ -105,6 +105,7 @@ public class CommonUtils {
         driver.navigate().back();
     }
 
+
     /*Go to settings page*/
     public static void goToSettingsPage() throws Exception
     {

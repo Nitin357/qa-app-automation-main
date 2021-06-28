@@ -16,11 +16,12 @@ public class Sections {
     public static String searchButton_ID = "Search";
     public static String searchField_ID = "search_src_text";
     public static String searchResultArticleHeadings_ID = "row_search_headline";
-
+    public static String recentlyViewedArticleHeadings_ID = "row_recently_viewed_headline";
+    public static String mostPopularHeader_TEXT = "Most Popular";
     /*
     These return element directly
      */
-    //Settings icon at top right in for you page
+    //Most popular icon at section page
     public static MobileElement mostPopular() {
         List<MobileElement> bottomNavigation = (List<MobileElement>) driver.findElementsById(mostPopular_ID);
         return bottomNavigation.get(0);
@@ -50,6 +51,13 @@ public class Sections {
         return searchButton;
     }
 
+    //"PODCAST" option in sections
+    public static MobileElement podcast() {
+        List<MobileElement> bottomNavigation = (List<MobileElement>) driver.findElementsById(mostPopular_ID);
+        return bottomNavigation.get(37);
+    }
+
+
     //Search firld that appears on clicking search button
     public static MobileElement searchField()
     {
@@ -63,5 +71,20 @@ public class Sections {
         List <MobileElement> searchResultAtricleHeadings = (List<MobileElement>) driver.findElementsById(searchResultArticleHeadings_ID);
         return searchResultAtricleHeadings;
     }
+    //Headings of articles that appear on ercently viewed section
+    public static List<MobileElement> recentlyviewedArticleHeadings()
+    {
+        List <MobileElement> recentlyViewedSectionAtricleHeadings = (List<MobileElement>) driver.findElementsById(recentlyViewedArticleHeadings_ID);
+        return recentlyViewedSectionAtricleHeadings;
+    }
+    //Headings of articles that appear on most popular section
+    public static MobileElement mostPopularSectionHeader()
+    {
+        MobileElement mostPopularHeading = (MobileElement) driver.findElementsByLinkText(mostPopularHeader_TEXT);
+        return mostPopularHeading;
+    }
+
+
+
 
 }
