@@ -13,7 +13,7 @@ public class Podcasts {
      */
     public static String podcastsPage_ID = "collection-podcasts";
     public static String podcastPlayButton_ID = "LISTEN";
-    public static String podcastsIndicator_ID="";
+    public static String podcastsIndicator_ID = "audio_indicator";
     /*
     These return element directly
      */

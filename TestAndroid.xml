@@ -15,21 +15,21 @@
     <test name="Test Method">
         <classes>
             <class name="Android.LoginFunctionality"/>
-            <class name="Android.MeterFunctionality"/>
-            <class name="Android.ForYou_GreetingMessageANDCompletionMessageVerification">
-                <methods>
-                    <include name="greetingMessage"/>
-                    <include name="completionMessage"/>
-                </methods>
-            </class>
-
-            <class name="Android.ArticleFrontTests_CharmBracelet">
-                <methods>
-                    <include name="shareButtonTest"/>
-                    <exclude name="commentsButton_Functionality"/>
+<!--            <class name="Android.MeterFunctionality"/>-->
+<!--            <class name="Android.ForYou_GreetingMessageANDCompletionMessageVerification">-->
+<!--                <methods>-->
+<!--                    <include name="greetingMessage"/>-->
+<!--                    <include name="completionMessage"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!---->
+<!--            <class name="Android.ArticleFrontTests_CharmBracelet">-->
+<!--                <methods>-->
+<!--                    <include name="shareButtonTest"/>-->
+<!--                    <exclude name="commentsButton_Functionality"/>-->
 <!--                    <include name="saveButtonTest"/>-->
-                </methods>
-            </class>
+<!--                </methods>-->
+<!--            </class>-->
         </classes>
     </test>
 
