@@ -44,5 +44,9 @@ public class Constants {
     public static String randomEmailID = "";
     //random email id's password to be created during execution
     public static String randomPassword = "";
+    //channel followed by user for test
+    public static String recentlyFollowedChannel = "Health & Fitness";
+    //trending section header
+    public static String trendingSectionHeader = "TRENDING IN FOR YOU";
 
 }
