@@ -30,12 +30,12 @@ public class CommonElements {
         public static String commentFlagButton_ID="flagComment";
         public static String commentRecommendButton_ID="recommendComment";
         public static String commentReplyButton_ID="replyToComment";
-        public static String flagWindow_ID="alertTitle";
+        public static String flagWindow_ID="action_bar_root";
         public static String flagWindow_cancelButton_ID = "button2";
         public static String authorNameReply_ID="author_name";
         public static String savedLaterArticleHeadings_ID = "row_sf_headline";
 
-        public static String shareMessageAndroid_Xpath= "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/com.android.internal.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.TextView";
+        public static String shareMessageAndroid_Xpath= "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.TabHost/android.widget.LinearLayout/android.widget.FrameLayout/com.android.internal.widget.ViewPager/android.widget.RelativeLayout/com.android.internal.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView";
         public static String moreOptionsArticleFront_ID = "More options";
         public static String textSizeOptionArticleFront_ID = "content";
         public static String textSize_ID = "text1";
@@ -143,22 +143,22 @@ public class CommonElements {
         //Flag button on Comment window
         public static MobileElement commentFlagButton()
         {
-                List <MobileElement> commentFlagButtons = (List<MobileElement>)  driver.findElementById(commentFlagButton_ID);
-                return commentFlagButtons.get(0);
+                MobileElement commentFlagButtons = (MobileElement)  driver.findElementById(commentFlagButton_ID);
+                return commentFlagButtons;
         }
 
         //Recommend button on Comment window
         public static MobileElement commentRecommendButton()
         {
-                List <MobileElement> commentRecommendButtons = (List<MobileElement>)  driver.findElementById(commentRecommendButton_ID);
-                return commentRecommendButtons.get(0);
+                MobileElement commentRecommendButtons = (MobileElement)  driver.findElementById(commentRecommendButton_ID);
+                return commentRecommendButtons;
         }
 
         //Reply button on Comment window
         public static MobileElement commentReplyButton()
         {
-                List <MobileElement> commentReplyButtons = (List<MobileElement>)  driver.findElementById(commentReplyButton_ID);
-                return commentReplyButtons.get(0);
+                MobileElement commentReplyButtons = (MobileElement)  driver.findElementById(commentReplyButton_ID);
+                return commentReplyButtons;
         }
 
         //Comment flag window

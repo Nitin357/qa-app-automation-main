@@ -23,21 +23,14 @@ public class TrendingBlock_ForYou {
     String testCaseName;
     String testCaseDescription;
 
-    @BeforeTest
-    public void setUp() throws Exception {
-        launchNYTApp();
-        skipInitialAccountSetup();
-    }
-
-
     /*This test case tests navigation of most popular section from sections tab*/
     @Test
-    public void shareButtonTest() throws Exception {
+    public void trendingBlockVisiblityTest() throws Exception {
         testCaseName = "Test followed channels functionality";
         testCaseDescription = "Test presence of new articles in feed for newly followed channel";
         try{
             Reporting.initializeReporting(testCaseName, testCaseDescription);
-
+            setUp();
             //for logged out user
             forYouIcon().click();
             waitForSpecificTime(5);

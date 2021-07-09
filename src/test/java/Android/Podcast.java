@@ -18,20 +18,14 @@ public class Podcast {
     String testCaseName;
     String testCaseDescription;
 
-    @BeforeTest
-    public void setUp() throws Exception {
-        launchNYTApp();
-        skipInitialAccountSetup();
-    }
-
-
     /*This test case tests navigation of most popular section from sections tab*/
     @Test
-    public void shareButtonTest() throws Exception {
+    public void podcastTest() throws Exception {
         testCaseName = "Test podcast functionality";
         testCaseDescription = "Test presence of podcast indicator on all the tabs";
         try {
             Reporting.initializeReporting(testCaseName, testCaseDescription);
+            setUp();
             sectionsIcon().click();
             podcast().click();
             boolean homeTabPresence=false,forYouTabPresence=false,sectionsTabPresence=false,afPresence=false;

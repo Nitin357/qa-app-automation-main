@@ -10,9 +10,13 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
@@ -23,8 +27,8 @@ import static ObjectRepository.AndroidOR.CommonElements.*;
 import static ObjectRepository.AndroidOR.CommonElements.continueWithoutAccountButton;
 import static ObjectRepository.AndroidOR.ForYou.settingsIcon;
 import static ObjectRepository.AndroidOR.ForYou.settingsIcon_ID;
-import static ObjectRepository.AndroidOR.Sections.mostPopular;
-import static ObjectRepository.AndroidOR.Sections.mostPopular_ID;
+import static ObjectRepository.AndroidOR.Sections.*;
+import static ObjectRepository.AndroidOR.Sections.searchResultArticleHeadings;
 import static ObjectRepository.AndroidOR.Settings.*;
 import static Parent.Constants.*;
 import static Parent.Reporting.extentTest;
@@ -66,6 +70,10 @@ public class CommonUtils {
     /*Skip sign in and subscription at initial launch*/
     public static void skipInitialAccountSetup() throws Exception
     {
+            waitForSpecificTime(2);
+            TouchAction touch=new TouchAction(driver);
+            Dimension size = driver.manage().window().getSize();
+            new TouchAction(driver).press(PointOption.point(size.getWidth()/10, size.getHeight()/10)).release().perform();
             waitForElementLoad("id",continueWithoutAccountButton_ID,10);
             continueWithoutAccountButton().click();
             waitForElementLoad("id",continueWithoutAccountButton_ID,10);
@@ -90,19 +98,18 @@ public class CommonUtils {
             userPassword = loginUserPassword_UnsubscribedUser;
         }
         goToSettingsPage();
-        waitForElementLoad("xpath",loginOrRegisterButton_XPATH,5);
+        waitForSpecificTime(2);
         loginOrRegisterButton().click();
-        waitForElementLoad("id",loginWithEmailInsteadOption_ID,5);
+        waitForSpecificTime(5);
         loginWithEmailInsteadOption().click();
-        waitForSpecificTime(5);
+//        waitForSpecificTime(5);
         emailIdTextField().sendKeys(userEmail);
-        waitForSpecificTime(5);
+//        waitForSpecificTime(5);
         passwordTextField().sendKeys(userPassword);
-        waitForElementLoad("id",loginButton_ID,5);
+//        waitForSpecificTime(5);
         loginButton().click();
         waitForSpecificTime(5);
-        driver.navigate().back();
-        driver.navigate().back();
+        goBackToHomeTab();
     }
 
 
@@ -112,7 +119,7 @@ public class CommonUtils {
         goBackToHomeTab();
         waitForElementLoad("id",forYouIcon_ID,5);
         forYouIcon().click();
-        waitForElementLoad("id",settingsIcon_ID,10);
+        waitForSpecificTime(5);
         settingsIcon().click();
         waitForSpecificTime(5);
     }
@@ -133,7 +140,7 @@ public class CommonUtils {
         forYouIcon().click();
         waitForElementLoad("id",settingsIcon_ID,10);
         settingsIcon().click();
-        waitForElementLoad("xpath",loginOrRegisterButton_XPATH,5);
+        waitForSpecificTime(5);
         if(logoutButton().isDisplayed())
         {
             logoutButton().click();
@@ -146,7 +153,6 @@ public class CommonUtils {
     public static boolean checkMeter() throws Exception
     {
         boolean meterStatus=false;
-        try {
             sectionsIcon().click();
             waitForElementLoad("id",mostPopular_ID,10);
             mostPopular().click();
@@ -154,15 +160,14 @@ public class CommonUtils {
             int meterCount = 4;
             java.util.List<MobileElement> homeTabArticles = (List<MobileElement>) driver.findElementsById("tablet_grid_item");
             for (int i = 0; i <= meterCount; i++) {
-                waitForSpecificTime(10);
-
+                waitForSpecificTime(2);
                 homeTabArticles = (List<MobileElement>) driver.findElementsById("tablet_grid_item");
                 System.out.println(homeTabArticles.size());
 
                 if ((i + homeTabArticles.size()) < meterCount) {
                     for (int j = 0; j < homeTabArticles.size(); j++) {
                         homeTabArticles.get(j).click();
-                        waitForElementLoad("id",subscriptionPopUp_ID,10);
+                        waitForSpecificTime(5);
                         if ((driver.findElementsById(subscriptionPopUp_ID).size() != 0)) {
                             meterStatus = true;
                             driver.navigate().back();
@@ -185,7 +190,7 @@ public class CommonUtils {
                     new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
                 } else {
                     homeTabArticles.get(i).click();
-                    waitForElementLoad("id",subscriptionPopUp_ID,10);
+                    waitForSpecificTime(5);
                     if ((driver.findElementsById(subscriptionPopUp_ID).size() != 0)) {
                         meterStatus = true;
                         driver.navigate().back();
@@ -193,21 +198,25 @@ public class CommonUtils {
                         todayIcon().click();
                         break;
                     }
-                    driver.navigate().back();
-                    waitForSpecificTime(10);
+                    else {
+                        driver.navigate().back();
+                        waitForSpecificTime(2);
+                    }
                 }
                 if (meterStatus == true) {
                     break;
                 }
             }
-        }
-        catch (Exception E)
-        {
 
-        }
         return meterStatus;
     }
 
+    /*Opens app and skips initial login */
+    public static void setUp() throws Exception
+    {
+        launchNYTApp();
+        skipInitialAccountSetup();
+    }
 
     /*Scroll down page*/
     public static void scrollDownPage()
@@ -321,12 +330,11 @@ public class CommonUtils {
     public static void waitForElementLoad(String locatedBY, String locator, int secondsToWait) throws Exception
     {
         WebDriverWait wait = new WebDriverWait(driver,secondsToWait*1000);
-        WebElement elementToBeWaitedFor;
         switch (locatedBY)
         {
-            case "id": elementToBeWaitedFor = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(locator)));
+            case "id": wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(locator)));
                         break;
-            case "xpath":elementToBeWaitedFor = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+            case "xpath":wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
                         break;
             default: waitForSpecificTime(secondsToWait);
                 break;
@@ -341,7 +349,7 @@ public class CommonUtils {
 
         long start = System.currentTimeMillis();
         long elapsedTime =0;
-        while(elapsedTime*1000==seconds)
+        while(elapsedTime<seconds*1000)
         {
             long end = System.currentTimeMillis();
             elapsedTime = end - start;
@@ -352,12 +360,41 @@ public class CommonUtils {
     /*Go back to home tab from anywhere on app*/
     public static void goBackToHomeTab()
     {
-        do{
-            driver.navigate().back();
-            waitForSpecificTime(2);
-        }while(driver.findElementsById(todayIcon_ID).size()!=0);
+        if(driver.findElementsById(todayIcon_ID).size()==0)
+        {
+            while (driver.findElementsById(todayIcon_ID).size() == 0)
+            {
+                driver.navigate().back();
+                waitForSpecificTime(2);
+            }
+        }
         todayIcon().click();
     }
+
+    //This method is used to reach to a specific article on which this test is to be executed
+    public static void reachToExpectedArticle() throws Exception
+    {
+        goBackToHomeTab();
+        sectionsIcon().click();
+        waitForSpecificTime(2);
+        searchButton().click();
+        waitForElementLoad("id",searchField_ID,10);
+        searchField().sendKeys(expectedArticleHeading);
+        driver.getKeyboard().pressKey("\n");
+        waitForSpecificTime(10);
+//        searchField().sendKeys(Keys.ENTER);
+        List <MobileElement> searchResults = searchResultArticleHeadings();
+        for(int i =0;i< searchResults.size();i++)
+        {
+            if (searchResults.get(i).getText().equals(expectedArticleHeading))
+            {
+                searchResults.get(i).click();
+                break;
+            }
+        }
+        waitForSpecificTime(5);
+    }
+
 
     /*Get credentials from Excel and set them in constant values*/
     public static void getCredentialsFromExcel()

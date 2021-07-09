@@ -5,7 +5,6 @@ import com.relevantcodes.extentreports.LogStatus;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import static Android.ArticleFrontTests_CharmBracelet.reachToExpectedArticle;
 import static ObjectRepository.AndroidOR.CommonElements.*;
 import static ObjectRepository.AndroidOR.Sections.recentlyViewed;
 import static ObjectRepository.AndroidOR.Settings.*;
@@ -15,14 +14,6 @@ import static Utils.CommonUtils.*;
 
 /*This is test case for Verificaton of Login Functionality through For You>>Settings*/
 public class NativeLogin_SocialLogin {
-
-    @BeforeTest
-    public void setUp() throws Exception
-    {
-        launchNYTApp();
-        skipInitialAccountSetup();
-    }
-
     @Test
     public void nativeLoginFunctionality() throws Exception
     {
@@ -34,14 +25,14 @@ public class NativeLogin_SocialLogin {
             Reporting.initializeReporting(testCaseName,testCaseDescription);
             extentTest.log(LogStatus.INFO, "App Launched");
             extentTest.log(LogStatus.INFO, "Initial Subscription & Login skipped!");
-
+            setUp();
             logoutIfLoggedIn();
             goBackToHomeTab();
             goToSettingsPage();
-            waitForElementLoad("xpath",loginOrRegisterButton_XPATH,5);
+            waitForSpecificTime(5);
             loginOrRegisterButton().click();
             loginWithEmailInsteadOption().click();
-            waitForElementLoad("id",loginWithEmailInsteadOption_ID,5);
+            waitForSpecificTime(5);
             createOne_NewAccountOption().click();
             waitForElementLoad("id",createAccountWithEmailInstead_ID,5);
             createAccountWithEmailInstead().click();
@@ -83,7 +74,7 @@ public class NativeLogin_SocialLogin {
             Reporting.initializeReporting(testCaseName,testCaseDescription);
             extentTest.log(LogStatus.INFO, "App Launched");
             extentTest.log(LogStatus.INFO, "Initial Subscription & Login skipped!");
-
+            setUp();
             logoutIfLoggedIn();
             loginOrRegisterButton().click();
             loginWithGoogleButton().click();
@@ -139,12 +130,12 @@ public class NativeLogin_SocialLogin {
             Reporting.initializeReporting(testCaseName,testCaseDescription);
             extentTest.log(LogStatus.INFO, "App Launched");
             extentTest.log(LogStatus.INFO, "Initial Subscription & Login skipped!");
-
+            setUp();
             logoutIfLoggedIn();
             reachToExpectedArticle();
             articleFrontSaveButton().click();
             loginButton_ArticleFront_Save().click();
-            waitForElementLoad("id",loginWithEmailInsteadOption_ID,5);
+            waitForSpecificTime(5);
             loginWithEmailInsteadOption().click();
             waitForSpecificTime(5);
             emailIdTextField().sendKeys(loginUserName_SubscriberUser);
@@ -183,13 +174,13 @@ public class NativeLogin_SocialLogin {
             Reporting.initializeReporting(testCaseName,testCaseDescription);
             extentTest.log(LogStatus.INFO, "App Launched");
             extentTest.log(LogStatus.INFO, "Initial Subscription & Login skipped!");
-
+            setUp();
             logoutIfLoggedIn();
             goBackToHomeTab();
             sectionsIcon().click();
             recentlyViewed().click();
             loginButton_ArticleFront_Save().click();
-            waitForElementLoad("id",loginWithEmailInsteadOption_ID,5);
+            waitForSpecificTime(5);
             loginWithEmailInsteadOption().click();
             waitForSpecificTime(5);
             emailIdTextField().sendKeys(loginUserName_SubscriberUser);

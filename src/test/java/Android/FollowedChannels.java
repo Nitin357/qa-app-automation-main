@@ -25,20 +25,14 @@ public class FollowedChannels {
     String testCaseName;
     String testCaseDescription;
 
-    @BeforeTest
-    public void setUp() throws Exception {
-        launchNYTApp();
-        skipInitialAccountSetup();
-    }
-
-
     /*This test case tests navigation of most popular section from sections tab*/
     @Test
-    public void shareButtonTest() throws Exception {
+    public void followedChannels() throws Exception {
         testCaseName = "Test followed channels functionality";
         testCaseDescription = "Test presence of new articles in feed for newly followed channel";
         try{
             Reporting.initializeReporting(testCaseName, testCaseDescription);
+            setUp();
             login(false);
             goBackToHomeTab();
             forYouIcon().click();

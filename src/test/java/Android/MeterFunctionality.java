@@ -12,12 +12,6 @@ import static Utils.CommonUtils.*;
 public class MeterFunctionality {
     String testCaseName = "Meter Functionality Test";
     String testCaseDescription = "Verify Meter For Unsubscribed and Anonymous user";
-    @BeforeTest
-    public void setUp() throws Exception
-    {
-        launchNYTApp();
-        skipInitialAccountSetup();
-    }
 
     @Test
     public void meterFunctionality() throws Exception
@@ -26,8 +20,8 @@ public class MeterFunctionality {
         try
         {
             Reporting.initializeReporting(testCaseName,testCaseDescription);
+            setUp();
             boolean meterStatusAnonymousUser = CommonUtils.checkMeter();
-
             if(meterStatusAnonymousUser)
             {
                 extentTest.log(LogStatus.PASS, "Meter status for Anonymous user");
@@ -38,9 +32,9 @@ public class MeterFunctionality {
             }
 
 
-            waitForSpecificTime(10);
+            waitForSpecificTime(5);
             login(false);
-            waitForSpecificTime(10);
+            waitForSpecificTime(5);
             boolean meterStatusUnsubscribedUser = checkMeter();
 
             if(meterStatusUnsubscribedUser)

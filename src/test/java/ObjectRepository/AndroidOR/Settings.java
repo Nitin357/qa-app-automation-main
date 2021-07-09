@@ -10,7 +10,7 @@ import static Parent.Constants.driver;
 /*Contains all the elements on Settings page*/
 public class Settings {
     //These are identifiers of elements
-    public static String loginOrRegisterButton_XPATH="/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[2]/android.widget.RelativeLayout/android.widget.TextView";
+    public static String loginOrRegisterButton_XPATH="/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.ScrollView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[2]/android.widget.RelativeLayout/android.widget.TextView";
     public static String loginWithEmailInsteadOption_ID="already_subscriber_plv";
     public static String emailIdTextField_ID="emailInput";
     public static String passwordTextField_ID="passwordInput";

@@ -3,9 +3,12 @@ package Android;
 import Parent.Reporting;
 import com.relevantcodes.extentreports.LogStatus;
 import io.appium.java_client.MobileElement;
+import org.openqa.selenium.By;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 import static ObjectRepository.AndroidOR.CommonElements.*;
@@ -19,194 +22,146 @@ import static Utils.CommonUtils.*;
 public class ArticleFrontTests_CharmBracelet {
     String testCaseName;
     String testCaseDescription;
-    @BeforeTest
-    public void setUp() throws Exception
-    {
-        launchNYTApp();
-        skipInitialAccountSetup();
-        login(true);
-        reachToExpectedArticle();
-    }
 
-
-/*This test case tests functionality of share button on CharmBracelet*/
+    /*This test case tests functionality of share button on CharmBracelet*/
     @Test
-    public void shareButtonTest() throws Exception
-    {
+    public void shareButtonTest() throws Exception {
         testCaseName = "Test Share Button functionality";
         testCaseDescription = "Test Share Button functionality on Article Front >> Charm Bracelet";
-        try
-        {
+        try {
             Reporting.initializeReporting(testCaseName, testCaseDescription);
+            setUp();
+            login(true);
+            reachToExpectedArticle();
             articleFrontShareButton().click();
-            if(shareMessageAndroid().isDisplayed())
-            {
-                extentTest.log(LogStatus.INFO,"Share Button working properly");
-                extentTest.log(LogStatus.PASS, testCaseName+" : "+testCaseDescription);
+            waitForSpecificTime(2);
+            if (shareMessageAndroid().isDisplayed()) {
+                extentTest.log(LogStatus.INFO, "Share Button working properly");
+                extentTest.log(LogStatus.PASS, testCaseName + " : " + testCaseDescription);
                 driver.navigate().back();
-            }
-            else
-            {
+            } else {
 
-                extentTest.log(LogStatus.INFO,"Share Button NOT working properly");
-                extentTest.log(LogStatus.FAIL, testCaseName+" : "+testCaseDescription);
+                extentTest.log(LogStatus.INFO, "Share Button NOT working properly");
+                extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
             }
 
-        }
-        catch (Exception ex)
-        {
-            extentTest.log(LogStatus.FAIL, testCaseName+" : "+testCaseDescription);
+        } catch (Exception ex) {
+            extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
         }
     }
 
 
-
-/*This test case tests functionality of comments button on CharmBracelet and all the functionalities inside comment window*/
+    /*This test case tests functionality of comments button on CharmBracelet and all the functionalities inside comment window*/
     @Test
-    public void commentsButton_Functionality() throws Exception
-    {
+    public void commentsButton_Functionality() throws Exception {
         testCaseName = "Test Comments Button and comments functionality";
         testCaseDescription = "Test comments Button functionality on Article Front >> Charm Bracelet and rest of the comments functionality i.e. reporting,flagging etc on comments";
-        boolean flagButtonStatus=false,recommendButtonStatus=false,replyButtonStatus=false;
-        try
-        {
+        boolean flagButtonStatus = false, recommendButtonStatus = false, replyButtonStatus = false;
+        try {
             Reporting.initializeReporting(testCaseName, testCaseDescription);
+            setUp();
+            login(true);
+            reachToExpectedArticle();
             articleFrontCommentButton().click();
-            waitForElementLoad("id",commentFlagButton_ID,10);
+            waitForSpecificTime(5);
             commentFlagButton().click();
-            if(flagWindow().isDisplayed())
+            waitForSpecificTime(2);
+            if (driver.findElements(By.id(flagWindow_ID)).size()!=0)
             {
-                flagButtonStatus=true;
-                extentTest.log(LogStatus.INFO,"Flag button working");
-                flagWindow_cancelButton().click();
+                flagButtonStatus = true;
+                extentTest.log(LogStatus.INFO, "Flag button working");
+                driver.navigate().back();
             }
-            else
-            {
-                extentTest.log(LogStatus.INFO,"Flag button NOT working");
+            else {
+                extentTest.log(LogStatus.INFO, "Flag button NOT working");
 
             }
-            int earlierRecommendations,laterRecommendations;
+            int earlierRecommendations, laterRecommendations;
             String earlierRecommendationsText = commentRecommendButton().getText();
-            earlierRecommendations= Integer.parseInt(earlierRecommendationsText.substring(earlierRecommendationsText.indexOf("("),earlierRecommendationsText.indexOf(")")));
+            earlierRecommendations = Integer.parseInt(earlierRecommendationsText.substring(earlierRecommendationsText.indexOf("(")+1, earlierRecommendationsText.indexOf(")")));
 
             commentRecommendButton().click();
             waitForSpecificTime(5);
             String laterRecommendationsText = commentRecommendButton().getText();
-            laterRecommendations= Integer.parseInt(laterRecommendationsText.substring(laterRecommendationsText.indexOf("("),laterRecommendationsText.indexOf(")")));
+            laterRecommendations = Integer.parseInt(laterRecommendationsText.substring(laterRecommendationsText.indexOf("(")+1, laterRecommendationsText.indexOf(")")));
 
-            if(laterRecommendations>earlierRecommendations)
-            {
-                recommendButtonStatus=true;
-                extentTest.log(LogStatus.INFO,"Recommend button working");
-            }
-            else
-            {
-                extentTest.log(LogStatus.INFO,"Recommend button NOT working");
+            if (laterRecommendations > earlierRecommendations||laterRecommendations < earlierRecommendations) {
+                recommendButtonStatus = true;
+                extentTest.log(LogStatus.INFO, "Recommend button working");
+                commentRecommendButton().click();
+            } else {
+                extentTest.log(LogStatus.INFO, "Recommend button NOT working");
             }
 
             commentReplyButton().click();
-            waitForSpecificTime(5);
-            if(authorNameToReply().isDisplayed())
-            {
-                replyButtonStatus=true;
-                extentTest.log(LogStatus.INFO,"Reply button working");
+            waitForSpecificTime(2);
+            if (driver.findElements(By.id(authorNameReply_ID)).size()!=0) {
+                replyButtonStatus = true;
+                extentTest.log(LogStatus.INFO, "Reply button working");
                 driver.navigate().back();
-            }
-            else
-            {
-                extentTest.log(LogStatus.INFO,"Reply button NOT working");
+            } else {
+                extentTest.log(LogStatus.INFO, "Reply button NOT working");
             }
 
-            if(flagButtonStatus&&recommendButtonStatus&&replyButtonStatus)
-            {
-                extentTest.log(LogStatus.INFO,"Comment functionality working properly");
-                extentTest.log(LogStatus.PASS, testCaseName+" : "+testCaseDescription);
-            }
-            else
-            {
-                extentTest.log(LogStatus.INFO,"Comment functionality working properly");
-                extentTest.log(LogStatus.FAIL, testCaseName+" : "+testCaseDescription);
+            if (flagButtonStatus && recommendButtonStatus && replyButtonStatus) {
+                extentTest.log(LogStatus.INFO, "Comment functionality working properly");
+                extentTest.log(LogStatus.PASS, testCaseName + " : " + testCaseDescription);
+            } else {
+                extentTest.log(LogStatus.INFO, "Comment functionality working properly");
+                extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
 
             }
-        }
-        catch (Exception ex)
-        {
-            extentTest.log(LogStatus.FAIL, testCaseName+" : "+testCaseDescription);
+        } catch (Exception ex) {
+            extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
         }
 
     }
 
 
-
-/*This test case tests functionality of save button on CharmBracelet*/
+    /*This test case tests functionality of save button on CharmBracelet*/
     @Test
-    public void saveButtonTest() throws Exception
-    {
+    public void saveButtonTest() throws Exception {
         testCaseName = "Test Save Button functionality";
         testCaseDescription = "Test Save Button functionality on Article Front >> Charm Bracelet";
-        try
-        {
+        try {
             Reporting.initializeReporting(testCaseName, testCaseDescription);
+            setUp();
+            login(true);
+            reachToExpectedArticle();
             articleFrontSaveButton().click();
             goBackToHomeTab();
             sectionsIcon().click();
-            waitForElementLoad("id",mostPopular_ID,10);
-            savedForLater().click();waitForSpecificTime(5);
-            boolean headingFound=false;
-            for(int pageSwipeUp = 0; pageSwipeUp<3;pageSwipeUp++)
-            {
-                for(int i=0;i<savedLaterArticleHeadings().size();i++)
-                {
-                    if(savedLaterArticleHeadings().get(i).equals(expectedArticleHeading))
-                    {
+            waitForElementLoad("id", mostPopular_ID, 10);
+            savedForLater().click();
+            waitForSpecificTime(5);
+            boolean headingFound = false;
+            for (int pageSwipeUp = 0; pageSwipeUp < 3; pageSwipeUp++) {
+                for (int i = 0; i < savedLaterArticleHeadings().size(); i++) {
+                    if (savedLaterArticleHeadings().get(i).equals(expectedArticleHeading)) {
 
-                        extentTest.log(LogStatus.INFO,"Save button working properly");
-                        extentTest.log(LogStatus.PASS, testCaseName+" : "+testCaseDescription);
+                        extentTest.log(LogStatus.INFO, "Save button working properly");
+                        extentTest.log(LogStatus.PASS, testCaseName + " : " + testCaseDescription);
                         savedLaterArticleHeadings().get(i).click();
                         waitForSpecificTime(10);
                         articleFrontSaveButton().click();
-                        headingFound=true;
+                        headingFound = true;
                         break;
                     }
                 }
-                if(headingFound)
-                {
+                if (headingFound) {
                     break;
                 }
             }
 
-            if(headingFound==false)
-            {
-                extentTest.log(LogStatus.INFO,"Saved article not found in saved articles section");
-                extentTest.log(LogStatus.FAIL, testCaseName+" : "+testCaseDescription);
+            if (headingFound == false) {
+                extentTest.log(LogStatus.INFO, "Saved article not found in saved articles section");
+                extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
             }
             goBackToHomeTab();
+        } catch (Exception ex) {
+            extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
         }
-        catch (Exception ex)
-        {
-            extentTest.log(LogStatus.FAIL, testCaseName+" : "+testCaseDescription);
-        }
-    }
-
-
-
-//This method is used to reach to a specific article on which this test is to be executed
-    public static void reachToExpectedArticle() throws Exception
-    {
-        goBackToHomeTab();
-        sectionsIcon().click();
-        waitForSpecificTime(10);
-        searchButton().click();
-        waitForElementLoad("id",searchField_ID,10);
-        searchField().sendKeys(expectedArticleHeading);
-        List <MobileElement> searchResults = searchResultArticleHeadings();
-        for(int i =0;i< searchResults.size();i++)
-        {
-            if (searchResults.get(i).getText().equals(expectedArticleHeading))
-            {
-                searchResults.get(i).click();
-            }
-        }
-        waitForSpecificTime(10);
     }
 }
+
+

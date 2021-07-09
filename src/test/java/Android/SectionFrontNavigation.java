@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static Android.ArticleFrontTests_CharmBracelet.reachToExpectedArticle;
+
 import static ObjectRepository.AndroidOR.CommonElements.sectionsIcon;
 import static ObjectRepository.AndroidOR.Sections.*;
 import static Parent.Constants.expectedArticleHeading;
@@ -20,20 +20,14 @@ public class SectionFrontNavigation {
     String testCaseName;
     String testCaseDescription;
 
-    @BeforeTest
-    public void setUp() throws Exception {
-        launchNYTApp();
-        skipInitialAccountSetup();
-    }
-
-
     /*This test case tests navigation of most popular section from sections tab*/
     @Test
-    public void shareButtonTest() throws Exception {
+    public void sectionFrontNavigation() throws Exception {
         testCaseName = "Test Most popular functionality";
         testCaseDescription = "Test navigation of most popular from sections tab";
         try {
             Reporting.initializeReporting(testCaseName, testCaseDescription);
+            setUp();
             sectionsIcon().click();
             mostPopular().click();
             waitForSpecificTime(5);

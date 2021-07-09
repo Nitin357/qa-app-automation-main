@@ -16,12 +16,6 @@ import static Utils.CommonUtils.*;
 public class LoginFunctionality {
     String testCaseName = "Login Functionality Test";
     String testCaseDescription = "Verify Login Functionality through For You>>Settings";
-    @BeforeTest
-    public void setUp() throws Exception
-    {
-        launchNYTApp();
-        skipInitialAccountSetup();
-    }
 
     @Test
     public void loginFunctionality() throws Exception
@@ -32,6 +26,7 @@ public class LoginFunctionality {
             Reporting.initializeReporting(testCaseName,testCaseDescription);
             extentTest.log(LogStatus.INFO, "App Launched");
             extentTest.log(LogStatus.INFO, "Initial Subscription & Login skipped!");
+            setUp();
             login(true);
             extentTest.log(LogStatus.PASS, testCaseName+" : "+testCaseDescription);
         }

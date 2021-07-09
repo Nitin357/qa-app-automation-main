@@ -6,7 +6,7 @@ import com.relevantcodes.extentreports.LogStatus;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import static Android.ArticleFrontTests_CharmBracelet.reachToExpectedArticle;
+
 import static ObjectRepository.AndroidOR.CommonElements.*;
 import static ObjectRepository.AndroidOR.ForYou.*;
 import static ObjectRepository.AndroidOR.Settings.*;
@@ -16,16 +16,6 @@ import static Utils.CommonUtils.*;
 
 /*This is test case for Verificaton of changing font size in application*/
 public class FontSize {
-    @BeforeTest
-    public void setUp() throws Exception
-    {
-        launchNYTApp();
-        skipInitialAccountSetup();
-        login(true);
-
-    }
-
-
     @Test
     public void articleFront_FontSize() throws Exception
     {
@@ -35,6 +25,8 @@ public class FontSize {
         try
         {
             Reporting.initializeReporting(testCaseName,testCaseDescription);
+            setUp();
+            login(true);
             boolean jumboSizeChange=false,extraLargeSizeChange=false;
             String earlierSize,laterSize;
             int eSize,lSize;
@@ -98,11 +90,13 @@ public class FontSize {
             boolean smallSizeChange=false,jumboSizeChange=false;
             int eSize,lSize;
             Reporting.initializeReporting(testCaseName,testCaseDescription);
+            setUp();
+            login(true);
             goBackToHomeTab();
             forYouIcon().click();
             waitForElementLoad("id",settingsIcon_ID,10);
             settingsIcon().click();
-            waitForElementLoad("xpath",loginOrRegisterButton_XPATH,5);
+            waitForSpecificTime(5);
             textSizeIcon().click();
             large_TextSize().click();
             okButton_TextSizeWindow().click();
@@ -112,7 +106,7 @@ public class FontSize {
             eSize = Integer.parseInt(earlierSize.substring(0,earlierSize.indexOf('p')));
             waitForElementLoad("id",settingsIcon_ID,10);
             settingsIcon().click();
-            waitForElementLoad("xpath",loginOrRegisterButton_XPATH,5);
+            waitForSpecificTime(5);
             textSizeIcon().click();
             small_TextSize().click();
             okButton_TextSizeWindow().click();
@@ -128,7 +122,7 @@ public class FontSize {
             eSize=lSize;
             waitForElementLoad("id",settingsIcon_ID,10);
             settingsIcon().click();
-            waitForElementLoad("xpath",loginOrRegisterButton_XPATH,5);
+            waitForSpecificTime(5);
             textSizeIcon().click();
             jumbo_TextSize().click();
             okButton_TextSizeWindow().click();
