@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <!--This xml file includes test cases to be executed.-->
 <!--Test cases can be commented /uncommented as per excecution requirement-->
-<suite name="AndroidTestSuite">
+<suite name="AndroidTestSuite" preserve-order = "true" thread-count="0" >
 
 <!--This includes Before Suite prior to exection of test cases-->
     <test name="Before Suite">
@@ -14,22 +14,40 @@
 <!--This includes Test cases to be automated-->
     <test name="Test Method">
         <classes>
-            <class name="Android.LoginFunctionality"/>
-            <class name="Android.MeterFunctionality"/>
-            <class name="Android.ForYou_GreetingMessageANDCompletionMessageVerification">
-                <methods>
-                    <include name="greetingMessage"/>
-                    <include name="completionMessage"/>
-                </methods>
-            </class>
-
-            <class name="Android.ArticleFrontTests_CharmBracelet">
-                <methods>
-                    <include name="shareButtonTest"/>
-                    <exclude name="commentsButton_Functionality"/>
+<!--            <class name="Android.LoginFunctionality"/>-->
+<!--            <class name="Android.MeterFunctionality"/>-->
+<!--            <class name="Android.ForYou_GreetingMessageANDCompletionMessageVerification">-->
+<!--                <methods>-->
+<!--                    <include name="greetingMessage"/>-->
+<!--                    <include name="completionMessage"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--            <class name="Android.ArticleFrontTests_CharmBracelet">-->
+<!--                <methods>-->
+<!--                    <include name="shareButtonTest"/>-->
+<!--                    <include name="commentsButton_Functionality"/>-->
 <!--                    <include name="saveButtonTest"/>-->
-                </methods>
-            </class>
+<!--                </methods>-->
+<!--            </class>-->
+<!--            <class name="Android.FollowedChannels"/>-->
+<!--            <class name="Android.FontSize">-->
+<!--                <methods>-->
+<!--                    <include name="articleFront_FontSize"/>-->
+<!--                    <include name="forYouSectionFront_FontSize"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--            <class name="Android.NativeLogin_SocialLogin">-->
+<!--                <methods>-->
+<!--                    <include name="nativeLoginFunctionality"/>-->
+<!--                    <include name="socialLoginFunctionality"/>-->
+<!--                    <include name="articleFrontLogin"/>-->
+<!--                    <include name="recentlyViewedLogin"/>-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--            <class name="Android.Podcast"/>-->
+<!--            <class name="Android.RecentlyViewed"/>-->
+<!--            <class name="Android.SectionFrontNavigation"/>-->
+            <class name="Android.TrendingBlock_ForYou"/>
         </classes>
     </test>
 

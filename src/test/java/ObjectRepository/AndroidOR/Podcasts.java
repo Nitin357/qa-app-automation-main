@@ -11,9 +11,9 @@ public class Podcasts {
     /*
     These are identifiers of elements
      */
-    public static String podcastsPage_ID = "collection-podcasts";
-    public static String podcastPlayButton_ID = "LISTEN";
-    public static String podcastsIndicator_ID="";
+    public static String podcastsPage_ID = "collection-highlights-container";
+    public static String podcastPlayButton_Xpath = "//*[@text='LISTEN']";
+    public static String podcastsIndicator_ID = "audio_indicator";
     /*
     These return element directly
      */
@@ -23,7 +23,7 @@ public class Podcasts {
     }
     public static MobileElement playButton()
     {
-        return (MobileElement) driver.findElementById(podcastPlayButton_ID);
+        return (MobileElement) driver.findElementByXPath(podcastPlayButton_Xpath);
     }
     public static MobileElement podcastIndicator()
     {

@@ -3,10 +3,11 @@ package Android;
 import Parent.Reporting;
 import Utils.CommonUtils;
 import com.relevantcodes.extentreports.LogStatus;
+import org.openqa.selenium.Dimension;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import static Android.ArticleFrontTests_CharmBracelet.reachToExpectedArticle;
+
 import static ObjectRepository.AndroidOR.CommonElements.*;
 import static ObjectRepository.AndroidOR.ForYou.*;
 import static ObjectRepository.AndroidOR.Settings.*;
@@ -16,16 +17,6 @@ import static Utils.CommonUtils.*;
 
 /*This is test case for Verificaton of changing font size in application*/
 public class FontSize {
-    @BeforeTest
-    public void setUp() throws Exception
-    {
-        launchNYTApp();
-        skipInitialAccountSetup();
-        login(true);
-
-    }
-
-
     @Test
     public void articleFront_FontSize() throws Exception
     {
@@ -35,50 +26,55 @@ public class FontSize {
         try
         {
             Reporting.initializeReporting(testCaseName,testCaseDescription);
+            setUp();
+            login(true);
             boolean jumboSizeChange=false,extraLargeSizeChange=false;
             String earlierSize,laterSize;
-            int eSize,lSize;
+            Dimension eSize,lSize;
 
             reachToExpectedArticle();
             waitForSpecificTime(5);
             moreOptionsArticleFront().click();
+            waitForSpecificTime(2);
             textSize_Articlefront().click();
             large_TextSize().click();
             okButton_TextSizeWindow().click();
-            earlierSize = articleHeaing().getCssValue("font-size");
-            eSize = Integer.parseInt(earlierSize.substring(0,earlierSize.indexOf('p')));
+            waitForSpecificTime(2);
+            eSize = opinionBannerArticleFront().getSize();
             waitForSpecificTime(5);
             moreOptionsArticleFront().click();
+            waitForSpecificTime(2);
             textSize_Articlefront().click();
+            waitForSpecificTime(2);
             extraLarge_TextSize().click();
             okButton_TextSizeWindow().click();
-            laterSize = articleHeaing().getCssValue("font-size");
-            lSize = Integer.parseInt(earlierSize.substring(0,earlierSize.indexOf('p')));
-            if(lSize>eSize)
+            waitForSpecificTime(2);
+            lSize = opinionBannerArticleFront().getSize();
+            if(eSize.height<lSize.height||eSize.width<lSize.width)
             {
-                extentTest.log(LogStatus.INFO, "Size changed to small");
+                extentTest.log(LogStatus.INFO, "Size changed to Extra Large");
                 extraLargeSizeChange = true;
             }
             eSize=lSize;
             waitForSpecificTime(5);
             moreOptionsArticleFront().click();
+            waitForSpecificTime(2);
             textSize_Articlefront().click();
+            waitForSpecificTime(1);
             jumbo_TextSize().click();
             okButton_TextSizeWindow().click();
-            laterSize = articleHeaing().getCssValue("font-size");
-            lSize = Integer.parseInt(earlierSize.substring(0,earlierSize.indexOf('p')));
-            if(lSize>eSize)
+            waitForSpecificTime(2);
+            lSize = opinionBannerArticleFront().getSize();
+            System.out.println(eSize+":"+lSize);
+            if(eSize.height<lSize.height||eSize.width<lSize.width)
             {
-                extentTest.log(LogStatus.INFO, "Size changed to small");
+                extentTest.log(LogStatus.INFO, "Size changed to Jumbo");
                 jumboSizeChange = true;
             }
             if(jumboSizeChange&&extraLargeSizeChange)
             {
                 extentTest.log(LogStatus.PASS,testCaseName+" : "+ testCaseDescription);
             }
-
-
-
         }
         catch (Exception ex)
         {
@@ -96,47 +92,49 @@ public class FontSize {
         {
             String earlierSize,laterSize;
             boolean smallSizeChange=false,jumboSizeChange=false;
-            int eSize,lSize;
+            Dimension eSize,lSize;
             Reporting.initializeReporting(testCaseName,testCaseDescription);
+            setUp();
+            login(true);
             goBackToHomeTab();
             forYouIcon().click();
-            waitForElementLoad("id",settingsIcon_ID,10);
+            waitForSpecificTime(2);
             settingsIcon().click();
-            waitForElementLoad("xpath",loginOrRegisterButton_XPATH,5);
+            waitForSpecificTime(2);
             textSizeIcon().click();
+            waitForSpecificTime(2);
             large_TextSize().click();
             okButton_TextSizeWindow().click();
             driver.navigate().back();
-            waitForSpecificTime(5);
-            earlierSize = greetingMessage().getCssValue("font-size");
-            eSize = Integer.parseInt(earlierSize.substring(0,earlierSize.indexOf('p')));
-            waitForElementLoad("id",settingsIcon_ID,10);
+            waitForSpecificTime(2);
+            eSize = greetingMessage().getSize();
+            waitForSpecificTime(2);
             settingsIcon().click();
-            waitForElementLoad("xpath",loginOrRegisterButton_XPATH,5);
+            waitForSpecificTime(5);
             textSizeIcon().click();
+            waitForSpecificTime(1);
             small_TextSize().click();
             okButton_TextSizeWindow().click();
             driver.navigate().back();
             waitForSpecificTime(5);
-            laterSize = greetingMessage().getCssValue("font-size");
-            lSize = Integer.parseInt(laterSize.substring(0,earlierSize.indexOf('p')));
-            if(lSize<eSize)
+            lSize = greetingMessage().getSize();
+            if(eSize.height>lSize.height||eSize.width>lSize.width)
             {
                 extentTest.log(LogStatus.INFO, "Size changed to small");
                 smallSizeChange = true;
             }
             eSize=lSize;
-            waitForElementLoad("id",settingsIcon_ID,10);
+            waitForSpecificTime(5);
             settingsIcon().click();
-            waitForElementLoad("xpath",loginOrRegisterButton_XPATH,5);
+            waitForSpecificTime(5);
             textSizeIcon().click();
+            waitForSpecificTime(1);
             jumbo_TextSize().click();
             okButton_TextSizeWindow().click();
             driver.navigate().back();
             waitForSpecificTime(5);
-            laterSize = greetingMessage().getCssValue("font-size");
-            lSize = Integer.parseInt(laterSize.substring(0,earlierSize.indexOf('p')));
-            if(lSize>eSize)
+            lSize = greetingMessage().getSize();
+            if(eSize.height<lSize.height||eSize.width<lSize.width)
             {
                 extentTest.log(LogStatus.INFO, "Size changed to jumbo");
                 jumboSizeChange=true;

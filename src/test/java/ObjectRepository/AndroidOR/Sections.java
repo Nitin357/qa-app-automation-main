@@ -13,11 +13,11 @@ public class Sections {
     These are identifiers of elements
      */
     public static String mostPopular_ID = "title_sections";
-    public static String searchButton_ID = "Search";
+    public static String searchButton_AccessiblityID = "Search";
     public static String searchField_ID = "search_src_text";
     public static String searchResultArticleHeadings_ID = "row_search_headline";
     public static String recentlyViewedArticleHeadings_ID = "row_recently_viewed_headline";
-    public static String mostPopularHeader_TEXT = "Most Popular";
+    public static String mostPopularHeader_Xpath = "//*[@text='Most Popular']";
     /*
     These return element directly
      */
@@ -36,25 +36,25 @@ public class Sections {
     //"Saved for later" option in sections
     public static MobileElement savedForLater() {
         List<MobileElement> bottomNavigation = (List<MobileElement>) driver.findElementsById(mostPopular_ID);
-        return bottomNavigation.get(36);
+        return bottomNavigation.get(35);
     }
 
     //"Saved for later" option in sections
     public static MobileElement recentlyViewed() {
         List<MobileElement> bottomNavigation = (List<MobileElement>) driver.findElementsById(mostPopular_ID);
-        return bottomNavigation.get(41);
+        return bottomNavigation.get(40);
     }
 
     //Search button on top right
     public static MobileElement searchButton() {
-        MobileElement searchButton = (MobileElement) driver.findElementById(searchButton_ID);
+        MobileElement searchButton = (MobileElement) driver.findElementByAccessibilityId(searchButton_AccessiblityID);
         return searchButton;
     }
 
     //"PODCAST" option in sections
     public static MobileElement podcast() {
         List<MobileElement> bottomNavigation = (List<MobileElement>) driver.findElementsById(mostPopular_ID);
-        return bottomNavigation.get(37);
+        return bottomNavigation.get(36);
     }
 
 
@@ -80,7 +80,7 @@ public class Sections {
     //Headings of articles that appear on most popular section
     public static MobileElement mostPopularSectionHeader()
     {
-        MobileElement mostPopularHeading = (MobileElement) driver.findElementsByLinkText(mostPopularHeader_TEXT);
+        MobileElement mostPopularHeading = (MobileElement) driver.findElementsByXPath(mostPopularHeader_Xpath);
         return mostPopularHeading;
     }
 

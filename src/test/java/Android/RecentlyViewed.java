@@ -9,35 +9,30 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static Android.ArticleFrontTests_CharmBracelet.reachToExpectedArticle;
 import static ObjectRepository.AndroidOR.CommonElements.*;
 import static ObjectRepository.AndroidOR.Sections.*;
 import static Parent.Constants.driver;
 import static Parent.Constants.expectedArticleHeading;
 import static Parent.Reporting.extentTest;
 import static Utils.CommonUtils.*;
+import static Utils.CommonUtils.setUp;
 
 /*This is contains all test cases related to Charm Bracelet*/
 public class RecentlyViewed {
     String testCaseName;
     String testCaseDescription;
 
-    @BeforeTest
-    public void setUp() throws Exception {
-        launchNYTApp();
-        skipInitialAccountSetup();
-        login(false);
-        reachToExpectedArticle();
-    }
-
-
     /*This test case tests functionality of recently viewed option in sections tab*/
     @Test
-    public void shareButtonTest() throws Exception {
+    public void recentlyViewedTest() throws Exception {
         testCaseName = "Test Recently viewed functionality";
         testCaseDescription = "Test Share Button functionality on Recently viewed articles";
         try {
             Reporting.initializeReporting(testCaseName, testCaseDescription);
+            setUp();
+            createRandomNewUser_Login();
+            goBackToHomeTab();
+            reachToExpectedArticle();
             goBackToHomeTab();
             sectionsIcon().click();
             recentlyViewed().click();
@@ -50,9 +45,15 @@ public class RecentlyViewed {
                     if (articleHeadings.get(i).getText().equals(expectedArticleHeading))
                     {
                         articlePresence = true;
+                        break;
                     }
                 }
+                if(articlePresence)
+                {
+                    break;
+                }
                 scrollDownPage();
+                scrollPage++;
             } while (scrollPage <= 3);
 
             if (articlePresence) {

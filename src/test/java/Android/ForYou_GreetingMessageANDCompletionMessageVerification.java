@@ -23,16 +23,6 @@ import static Utils.CommonUtils.*;
 /*This is test case for Verificaton of Greeting Message and Completion Moment Component in For You*/
 public class ForYou_GreetingMessageANDCompletionMessageVerification {
 
-    @BeforeClass
-    public void setUp() throws Exception
-    {
-        launchNYTApp();
-        skipInitialAccountSetup();
-        waitForElementLoad("id",forYouIcon_ID,5);
-        forYouIcon().click();
-    }
-
-
     //This test case verifies Greeting Message on For You tab
     @Test
     public void greetingMessage() throws Exception
@@ -44,6 +34,9 @@ public class ForYou_GreetingMessageANDCompletionMessageVerification {
         {
             Reporting.initializeReporting(testCaseName,testCaseDescription);
             extentTest.log(LogStatus.INFO, "App Launched");
+            setUp();
+            waitForElementLoad("id",forYouIcon_ID,5);
+            forYouIcon().click();
             extentTest.log(LogStatus.INFO, "Initial Subscription & Login skipped!");
             extentTest.log(LogStatus.INFO, "For You Icon Clicked!");
             waitForSpecificTime(10);
@@ -75,18 +68,25 @@ public class ForYou_GreetingMessageANDCompletionMessageVerification {
         try
         {
             Reporting.initializeReporting(testCaseName,testCaseDescription);
+            setUp();
+            waitForElementLoad("id",forYouIcon_ID,5);
+            forYouIcon().click();
             waitForSpecificTime(10);
-            //Scrolling functionality
-            Dimension size = driver.manage().window().getSize();
-            int startx = size.getWidth()/2;
-            int endx = size.getWidth()/2;
-            int starty = (int)(size.getHeight()* 0.80);
-            int endy = (int)(size.getHeight()* 0.01);
-            new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
-            new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
-            new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
-            new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
-            new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
+            for(int i=0;i<5;i++)
+            {
+                scrollDownPage();
+            }
+//            //Scrolling functionality
+//            Dimension size = driver.manage().window().getSize();
+//            int startx = size.getWidth()/2;
+//            int endx = size.getWidth()/2;
+//            int starty = (int)(size.getHeight()* 0.80);
+//            int endy = (int)(size.getHeight()* 0.01);
+//            new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
+//            new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
+//            new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
+//            new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
+//            new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
             if(ForYou.completionMomentComponent().getText().equals(completionMomentMessage))
             {
                 extentTest.log(LogStatus.INFO, "Completion moment component verified");
