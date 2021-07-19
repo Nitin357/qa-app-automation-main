@@ -38,12 +38,17 @@ public class CommonElements {
         public static String shareMessageAndroid_Xpath= "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.TabHost/android.widget.LinearLayout/android.widget.FrameLayout/com.android.internal.widget.ViewPager/android.widget.RelativeLayout/com.android.internal.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView";
         public static String moreOptionsArticleFront_ID = "More options";
         public static String textSizeOptionArticleFront_ID = "content";
-        public static String textSize_ID = "text1";
-        public static String okButton_TextSizeWindow_ID = "button1";
-        public static String articleHeaing_ID = "link-1e69d2db";
-        public static String textSizeIcon_Text = "Text Size";
+        public static String textSize_Jumbo_Xpath = "//*[@text='Jumbo']";
+        public static String textSize_ExtraLarge_Xpath = "//*[@text='Extra Large']";
+        public static String textSize_Large_Xpath = "//*[@text='Large']";
+        public static String textSize_Medium_Xpath = "//*[@text='Medium']";
+        public static String textSize_Small_Xpath = "//*[@text='Small']";
+        public static String okButton_TextSizeWindow_ID = "//*[@text='OK']";
+        public static String articleFront_OpinionBanner_Xpath = "//*[@text='OPINION']";
+        public static String articleHeaing_Xpath = "//*[@text='How Joe Biden Can Win a Nobel Peace Prize']";
+        public static String textSizeIcon_Xpath = "//*[@text='Text Size']";
         public static String getContinueWithoutAccountButton_NewAcct_ID="buttonCancel";
-        public static String loginbutton_ArticleFront_Save_ID ="button1";
+        public static String loginbutton_ArticleFront_Save_ID ="android:id/button1";
 
 
         //These return element directly
@@ -193,45 +198,53 @@ public class CommonElements {
 
         public static MobileElement moreOptionsArticleFront()
         {
-                return (MobileElement) driver.findElementById(moreOptionsArticleFront_ID);
+                return (MobileElement) driver.findElementByAccessibilityId(moreOptionsArticleFront_ID);
         }
 
         public static MobileElement textSize_Articlefront()
         {
                 return (MobileElement) driver.findElementsById(textSizeOptionArticleFront_ID).get(0);
         }
+
+        public static MobileElement loginSignup_Articlefront()
+        {
+                return (MobileElement) driver.findElementsById(textSizeOptionArticleFront_ID).get(3);
+        }
         public static MobileElement small_TextSize()
         {
-                return (MobileElement) driver.findElementsById(textSize_ID).get(0);
+                return (MobileElement) driver.findElementByXPath(textSize_Small_Xpath);
         }
         public static MobileElement medium_TextSize()
         {
-                return (MobileElement) driver.findElementsById(textSize_ID).get(1);
+                return (MobileElement) driver.findElementByXPath(textSize_Medium_Xpath);
         }
         public static MobileElement large_TextSize()
         {
-                return (MobileElement) driver.findElementsById(textSize_ID).get(2);
+                return (MobileElement) driver.findElementByXPath(textSize_Large_Xpath);
         }
         public static MobileElement extraLarge_TextSize()
         {
-                return (MobileElement) driver.findElementsById(textSize_ID).get(3);
+                return (MobileElement) driver.findElementByXPath(textSize_ExtraLarge_Xpath);
         }
         public static MobileElement jumbo_TextSize()
         {
-                return (MobileElement) driver.findElementsById(textSize_ID).get(4);
+                return (MobileElement) driver.findElementByXPath(textSize_Jumbo_Xpath);
         }
         public static MobileElement okButton_TextSizeWindow()
         {
-                return (MobileElement) driver.findElementById(okButton_TextSizeWindow_ID);
+                return (MobileElement) driver.findElementById("android:id/button1");
         }
         public static MobileElement articleHeaing()
         {
-
-                return (MobileElement) driver.findElementById(articleHeaing_ID);
+                return (MobileElement) driver.findElementById(articleHeaing_Xpath);
+        }
+        public static MobileElement opinionBannerArticleFront()
+        {
+                return (MobileElement) driver.findElementByXPath(articleFront_OpinionBanner_Xpath);
         }
         public static MobileElement textSizeIcon()
         {
-                return (MobileElement) driver.findElementByLinkText(textSizeIcon_Text);
+                return (MobileElement) driver.findElementByXPath(textSizeIcon_Xpath);
         }
         public static MobileElement continueWithoutSubscription_NewUser()
         {

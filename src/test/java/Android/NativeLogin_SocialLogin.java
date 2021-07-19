@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static ObjectRepository.AndroidOR.CommonElements.*;
+import static ObjectRepository.AndroidOR.ForYou.settingsIcon;
 import static ObjectRepository.AndroidOR.Sections.recentlyViewed;
 import static ObjectRepository.AndroidOR.Settings.*;
 import static Parent.Constants.*;
@@ -23,32 +24,34 @@ public class NativeLogin_SocialLogin {
         try
         {
             Reporting.initializeReporting(testCaseName,testCaseDescription);
-            extentTest.log(LogStatus.INFO, "App Launched");
-            extentTest.log(LogStatus.INFO, "Initial Subscription & Login skipped!");
             setUp();
-            logoutIfLoggedIn();
-            goBackToHomeTab();
-            goToSettingsPage();
-            waitForSpecificTime(5);
+            forYouIcon().click();
+            waitForSpecificTime(2);
+            settingsIcon().click();
+            waitForSpecificTime(2);
             loginOrRegisterButton().click();
+            waitForSpecificTime(2);
             loginWithEmailInsteadOption().click();
-            waitForSpecificTime(5);
+            waitForSpecificTime(2);
             createOne_NewAccountOption().click();
-            waitForElementLoad("id",createAccountWithEmailInstead_ID,5);
+            waitForSpecificTime(2);
             createAccountWithEmailInstead().click();
             generateRandomEamail_Password();
-            waitForSpecificTime(5);
+            waitForSpecificTime(1);
             emailIdTextField().sendKeys(randomEmailID);
-            waitForSpecificTime(5);
+            waitForSpecificTime(1);
             passwordTextField().sendKeys(randomPassword);
             confirmPasswordTextField().sendKeys(randomPassword);
+            waitForSpecificTime(2);
             createAccountButton_Settings_Login_CA().click();
+            waitForSpecificTime(5);
             if((driver.findElementsById(accountCreationConfirmation_ID)).size()!=0)
             {
                 extentTest.log(LogStatus.PASS, testCaseName+" : "+testCaseDescription);
                 continueWithoutSubscription_NewUser().click();
                 waitForSpecificTime(2);
-                logoutIfLoggedIn();            }
+                logoutButton().click();
+            }
             else
             {
                 extentTest.log(LogStatus.FAIL, testCaseName+" : "+testCaseDescription);
@@ -72,29 +75,30 @@ public class NativeLogin_SocialLogin {
         try
         {
             Reporting.initializeReporting(testCaseName,testCaseDescription);
-            extentTest.log(LogStatus.INFO, "App Launched");
-            extentTest.log(LogStatus.INFO, "Initial Subscription & Login skipped!");
             setUp();
             logoutIfLoggedIn();
             loginOrRegisterButton().click();
+            waitForSpecificTime(2);
             loginWithGoogleButton().click();
             waitForSpecificTime(5);
-            if(driver.findElementsByXPath(googleLoginWindow_XPATH).size()!=0)
+            if(driver.findElementsById(logInWithGoogleButton_ID).size()==0)
             {
                 extentTest.log(LogStatus.PASS, "Google login window present");
                 googleLogin=true;
+                driver.navigate().back();
             }
             else
             {
                 extentTest.log(LogStatus.FAIL, "Google login window present");
                 googleLogin=false;
             }
-            driver.navigate().back();
             loginWithFacebookButton().click();
-            if(driver.findElementsById(facebookLoginWindow_ID).size()!=0)
+            waitForSpecificTime(5);
+            if(driver.findElementsById(logInWithFacebookButton_ID).size()==0)
             {
                 extentTest.log(LogStatus.PASS, "FB login window present");
                 fbLogin=true;
+                driver.navigate().back();
             }
             else
             {
@@ -108,7 +112,7 @@ public class NativeLogin_SocialLogin {
             }
             else
             {
-                extentTest.log(LogStatus.PASS,testCaseName+":"+testCaseDescription);
+                extentTest.log(LogStatus.FAIL,testCaseName+":"+testCaseDescription);
             }
 
 
@@ -128,25 +132,27 @@ public class NativeLogin_SocialLogin {
         try
         {
             Reporting.initializeReporting(testCaseName,testCaseDescription);
-            extentTest.log(LogStatus.INFO, "App Launched");
-            extentTest.log(LogStatus.INFO, "Initial Subscription & Login skipped!");
             setUp();
-            logoutIfLoggedIn();
             reachToExpectedArticle();
-            articleFrontSaveButton().click();
-            loginButton_ArticleFront_Save().click();
+            waitForSpecificTime(2);
+            moreOptionsArticleFront().click();
+            waitForSpecificTime(2);
+            loginSignup_Articlefront().click();
+//            articleFrontSaveButton().click();
+            waitForSpecificTime(2);
+//            loginButton_ArticleFront_Save().click();
             waitForSpecificTime(5);
             loginWithEmailInsteadOption().click();
             waitForSpecificTime(5);
             emailIdTextField().sendKeys(loginUserName_SubscriberUser);
             waitForSpecificTime(5);
             passwordTextField().sendKeys(loginUserPassword_SubscribedUser);
-            waitForElementLoad("id",loginButton_ID,5);
+            waitForSpecificTime(5);
             loginButton().click();
             waitForSpecificTime(5);
             goBackToHomeTab();
             goToSettingsPage();
-            if(logoutButton().isDisplayed())
+            if(driver.findElementsByXPath(logOutButton_Xpath).size()!=0)
             {
                 extentTest.log(LogStatus.PASS, testCaseName+":"+testCaseDescription);
             }
@@ -172,26 +178,24 @@ public class NativeLogin_SocialLogin {
         try
         {
             Reporting.initializeReporting(testCaseName,testCaseDescription);
-            extentTest.log(LogStatus.INFO, "App Launched");
-            extentTest.log(LogStatus.INFO, "Initial Subscription & Login skipped!");
             setUp();
             logoutIfLoggedIn();
             goBackToHomeTab();
             sectionsIcon().click();
             recentlyViewed().click();
             loginButton_ArticleFront_Save().click();
-            waitForSpecificTime(5);
+            waitForSpecificTime(2);
             loginWithEmailInsteadOption().click();
-            waitForSpecificTime(5);
+            waitForSpecificTime(2);
             emailIdTextField().sendKeys(loginUserName_SubscriberUser);
-            waitForSpecificTime(5);
+            waitForSpecificTime(2);
             passwordTextField().sendKeys(loginUserPassword_SubscribedUser);
-            waitForElementLoad("id",loginButton_ID,5);
+            waitForSpecificTime(2);
             loginButton().click();
-            waitForSpecificTime(5);
+            waitForSpecificTime(2);
             goBackToHomeTab();
             goToSettingsPage();
-            if(logoutButton().isDisplayed())
+            if(driver.findElementsByXPath(logOutButton_Xpath).size()!=0)
             {
                 extentTest.log(LogStatus.PASS, testCaseName+":"+testCaseDescription);
             }

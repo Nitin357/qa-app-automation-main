@@ -26,11 +26,9 @@ public class Podcast {
         try {
             Reporting.initializeReporting(testCaseName, testCaseDescription);
             setUp();
-            sectionsIcon().click();
-            podcast().click();
+            login(true);
+            reachToExpectedPodcastArticle();
             boolean homeTabPresence=false,forYouTabPresence=false,sectionsTabPresence=false,afPresence=false;
-            waitForElementLoad("id",podcastsPage_ID,10);
-            podcastPage().click();
             waitForSpecificTime(5);
             playButton().click();
             waitForSpecificTime(5);
@@ -48,6 +46,7 @@ public class Podcast {
                 homeTabPresence = true;
             }
             forYouIcon().click();
+            waitForSpecificTime(5);
             //checkfor indicator
             if(Constants.driver.findElementsById(podcastsIndicator_ID).size()!=0)
             {
@@ -55,6 +54,7 @@ public class Podcast {
                 forYouTabPresence = true;
             }
             sectionsIcon().click();
+            waitForSpecificTime(5);
             //check for indicator
             if(Constants.driver.findElementsById(podcastsIndicator_ID).size()!=0)
             {

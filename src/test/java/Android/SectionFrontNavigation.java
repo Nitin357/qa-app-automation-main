@@ -11,6 +11,7 @@ import java.util.List;
 
 import static ObjectRepository.AndroidOR.CommonElements.sectionsIcon;
 import static ObjectRepository.AndroidOR.Sections.*;
+import static Parent.Constants.driver;
 import static Parent.Constants.expectedArticleHeading;
 import static Parent.Reporting.extentTest;
 import static Utils.CommonUtils.*;
@@ -31,7 +32,7 @@ public class SectionFrontNavigation {
             sectionsIcon().click();
             mostPopular().click();
             waitForSpecificTime(5);
-            if (mostPopularSectionHeader().isDisplayed())
+            if (driver.findElementsByXPath(mostPopularHeader_Xpath).size()!=0)
             {
                 extentTest.log(LogStatus.PASS, testCaseName + " : " + testCaseDescription);
             }

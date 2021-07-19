@@ -112,6 +112,38 @@ public class CommonUtils {
         goBackToHomeTab();
     }
 
+    /*Login*/
+    public static void createRandomNewUser_Login() throws Exception
+    {
+        goBackToHomeTab();
+        forYouIcon().click();
+        waitForSpecificTime(2);
+        settingsIcon().click();
+        waitForSpecificTime(2);
+        loginOrRegisterButton().click();
+        waitForSpecificTime(2);
+        loginWithEmailInsteadOption().click();
+        waitForSpecificTime(2);
+        createOne_NewAccountOption().click();
+        waitForSpecificTime(2);
+        createAccountWithEmailInstead().click();
+        generateRandomEamail_Password();
+        waitForSpecificTime(1);
+        emailIdTextField().sendKeys(randomEmailID);
+        waitForSpecificTime(2);
+        passwordTextField().sendKeys(randomPassword);
+        waitForSpecificTime(1);
+        confirmPasswordTextField().sendKeys(randomPassword);
+        waitForSpecificTime(2);
+        createAccountButton_Settings_Login_CA().click();
+        waitForSpecificTime(5);
+        do{
+            continueWithoutSubscription_NewUser().click();
+            waitForSpecificTime(2);
+        }while(driver.findElementsById(getContinueWithoutAccountButton_NewAcct_ID).size()!=0);
+        waitForSpecificTime(2);
+        driver.navigate().back();
+    }
 
     /*Go to settings page*/
     public static void goToSettingsPage() throws Exception
@@ -125,11 +157,12 @@ public class CommonUtils {
     }
 
     /*Generate random email id and password*/
-    public static void generateRandomEamail_Password()
+    public static void generateRandomEamail_Password() throws Exception
     {
-        Date date = new Date();
-        randomEmailID= "automationtest"+date+"@maildrop.cc";
-        randomPassword= "ATP@"+date+"atp";
+//        Date date = new Date();
+        String currentTime= String.valueOf((System.currentTimeMillis()));
+        randomEmailID= "automationtest"+currentTime+"@maildrop.cc";
+        randomPassword= "ATP@"+currentTime+"atp";
     }
     /*Logout*/
     public static void logoutIfLoggedIn() throws Exception
@@ -138,12 +171,13 @@ public class CommonUtils {
         goBackToHomeTab();
         waitForElementLoad("id",forYouIcon_ID,5);
         forYouIcon().click();
-        waitForElementLoad("id",settingsIcon_ID,10);
+        waitForSpecificTime(2);
         settingsIcon().click();
-        waitForSpecificTime(5);
-        if(logoutButton().isDisplayed())
+        waitForSpecificTime(2);
+        if(driver.findElementsByXPath(logOutButton_Xpath).size()!=0)
         {
             logoutButton().click();
+            waitForSpecificTime(2);
             confirmLogoutButton().click();
         }
 
@@ -357,6 +391,11 @@ public class CommonUtils {
 
     }
 
+    public static void refreshForYouPage()
+    {
+
+    }
+
     /*Go back to home tab from anywhere on app*/
     public static void goBackToHomeTab()
     {
@@ -371,6 +410,29 @@ public class CommonUtils {
         todayIcon().click();
     }
 
+    //This method is used to reach to a specific article on which this test is to be executed
+    public static void reachToExpectedPodcastArticle() throws Exception
+    {
+        goBackToHomeTab();
+        sectionsIcon().click();
+        waitForSpecificTime(2);
+        searchButton().click();
+        waitForElementLoad("id",searchField_ID,10);
+        searchField().sendKeys(expectedPodcastArticleHeading);
+        driver.getKeyboard().pressKey("\n");
+        waitForSpecificTime(10);
+//        searchField().sendKeys(Keys.ENTER);
+        List <MobileElement> searchResults = searchResultArticleHeadings();
+        for(int i =0;i< searchResults.size();i++)
+        {
+            if (searchResults.get(i).getText().equals(expectedPodcastArticleHeading))
+            {
+                searchResults.get(i).click();
+                break;
+            }
+        }
+        waitForSpecificTime(5);
+    }
     //This method is used to reach to a specific article on which this test is to be executed
     public static void reachToExpectedArticle() throws Exception
     {

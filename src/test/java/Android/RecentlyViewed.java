@@ -30,7 +30,8 @@ public class RecentlyViewed {
         try {
             Reporting.initializeReporting(testCaseName, testCaseDescription);
             setUp();
-            login(false);
+            createRandomNewUser_Login();
+            goBackToHomeTab();
             reachToExpectedArticle();
             goBackToHomeTab();
             sectionsIcon().click();
@@ -44,9 +45,15 @@ public class RecentlyViewed {
                     if (articleHeadings.get(i).getText().equals(expectedArticleHeading))
                     {
                         articlePresence = true;
+                        break;
                     }
                 }
+                if(articlePresence)
+                {
+                    break;
+                }
                 scrollDownPage();
+                scrollPage++;
             } while (scrollPage <= 3);
 
             if (articlePresence) {

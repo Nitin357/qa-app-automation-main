@@ -39,18 +39,23 @@ public class TrendingBlock_ForYou {
                 List<MobileElement> channelsPresent=channelNames_ForYou();
                 for(int i =0 ; i<channelsPresent.size();i++)
                 {
-                    if(channelsPresent.get(i).getText().equals(trendingSectionHeader));
+                    channelsPresent=channelNames_ForYou();
+                    if((channelsPresent.get(i).getText()).equals(trendingSectionHeader))
                     {
                         blockPresence=true;
                         extentTest.log(LogStatus.PASS, testCaseName + " : " + testCaseDescription);
                         break;
+                    }
+                    else
+                    {
+                        scrollDownPage();
+                        waitForSpecificTime(2);
                     }
                 }
                 if(blockPresence)
                 {
                     break;
                 }
-                scrollDownPage();
             }while(Constants.driver.findElementsById(completionMomentComponent_ID).size()==0);
             if(!blockPresence)
             {

@@ -22,13 +22,13 @@
 <!--                    <include name="completionMessage"/>-->
 <!--                </methods>-->
 <!--            </class>-->
-            <class name="Android.ArticleFrontTests_CharmBracelet">
-                <methods>
+<!--            <class name="Android.ArticleFrontTests_CharmBracelet">-->
+<!--                <methods>-->
 <!--                    <include name="shareButtonTest"/>-->
 <!--                    <include name="commentsButton_Functionality"/>-->
-                    <include name="saveButtonTest"/>
-                </methods>
-            </class>
+<!--                    <include name="saveButtonTest"/>-->
+<!--                </methods>-->
+<!--            </class>-->
 <!--            <class name="Android.FollowedChannels"/>-->
 <!--            <class name="Android.FontSize">-->
 <!--                <methods>-->
@@ -47,7 +47,7 @@
 <!--            <class name="Android.Podcast"/>-->
 <!--            <class name="Android.RecentlyViewed"/>-->
 <!--            <class name="Android.SectionFrontNavigation"/>-->
-<!--            <class name="Android.TrendingBlock_ForYou"/>-->
+            <class name="Android.TrendingBlock_ForYou"/>
         </classes>
     </test>
 

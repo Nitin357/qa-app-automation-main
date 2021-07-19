@@ -34,7 +34,6 @@ public class FollowedChannels {
             Reporting.initializeReporting(testCaseName, testCaseDescription);
             setUp();
             login(false);
-            goBackToHomeTab();
             forYouIcon().click();
             waitForSpecificTime(5);
             int counter=0;
@@ -45,6 +44,8 @@ public class FollowedChannels {
                 {
                     settingsGameSection().click();
                     settingsOptionPresentOnForYou=true;
+                    extentTest.log(LogStatus.PASS, "Manage Interests through Game Block");
+                    break;
                 }
                 else
                 {
@@ -53,10 +54,12 @@ public class FollowedChannels {
             }while(Constants.driver.findElementsById(completionMomentComponent_ID).size()==0);
             if(settingsOptionPresentOnForYou)
             {
+                waitForSpecificTime(5);
                 topicsOfInterest().click();
+                waitForSpecificTime(5);
                 healthAndFitnessAddButton().click();
-                extentTest.log(LogStatus.PASS, "Manage Interests through Game Block");
                 waitForSpecificTime(2);
+                driver.navigate().back();
                 goBackToHomeTab();
                 forYouIcon().click();
                 waitForSpecificTime(5);
@@ -79,6 +82,7 @@ public class FollowedChannels {
             }
             else
             {
+                extentTest.log(LogStatus.FAIL, "Manage Interests present through Game Block");
                 extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
             }
         } catch (Exception ex) {
