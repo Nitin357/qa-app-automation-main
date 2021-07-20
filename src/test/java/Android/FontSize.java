@@ -87,7 +87,7 @@ public class FontSize {
     {
 
         String testCaseName = "Font Size Functionality Test";
-        String testCaseDescription = "Verify change in font size on for you tab by changing it from the app";
+        String testCaseDescription = "Verify change in font size on for you tab by changing it from for You";
         try
         {
             String earlierSize,laterSize;
@@ -105,6 +105,7 @@ public class FontSize {
             waitForSpecificTime(2);
             large_TextSize().click();
             okButton_TextSizeWindow().click();
+            waitForSpecificTime(2);
             driver.navigate().back();
             waitForSpecificTime(2);
             eSize = greetingMessage().getSize();

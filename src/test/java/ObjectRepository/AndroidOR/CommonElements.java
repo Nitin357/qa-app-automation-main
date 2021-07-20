@@ -49,7 +49,7 @@ public class CommonElements {
         public static String textSizeIcon_Xpath = "//*[@text='Text Size']";
         public static String getContinueWithoutAccountButton_NewAcct_ID="buttonCancel";
         public static String loginbutton_ArticleFront_Save_ID ="android:id/button1";
-
+        public static String adSlug_Text_Xpath= "//*[@text='ADVERTISEMENT']";
 
         //These return element directly
         //The popup for selection of account that comes at first launch of app
@@ -99,14 +99,14 @@ public class CommonElements {
         public static MobileElement forYouIcon()
         {
                 List <MobileElement> bottomNavigation = (List<MobileElement>) driver.findElementsById(forYouIcon_ID);
-                return bottomNavigation.get(1);
+                return bottomNavigation.get(2);
         }
 
         //Sections icon at bottom of application
         public static MobileElement sectionsIcon()
         {
                 List <MobileElement> bottomNavigation = (List<MobileElement>) driver.findElementsById(sectionIcon_ID);
-                return bottomNavigation.get(2);
+                return bottomNavigation.get(3);
         }
 
         //Create account button on subscription popup window
@@ -254,5 +254,8 @@ public class CommonElements {
         {
                 return (MobileElement) driver.findElementById(loginbutton_ArticleFront_Save_ID);
         }
-
+        public static MobileElement adSlug_Text()
+        {
+                return (MobileElement) driver.findElementByXPath(adSlug_Text_Xpath);
+        }
 }
