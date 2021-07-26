@@ -196,7 +196,7 @@ public class CommonUtils {
             for (int i = 0; i <= meterCount; i++) {
                 waitForSpecificTime(2);
                 homeTabArticles = (List<MobileElement>) driver.findElementsById("tablet_grid_item");
-                System.out.println(homeTabArticles.size());
+//                System.out.println(homeTabArticles.size());
 
                 if ((i + homeTabArticles.size()) < meterCount) {
                     for (int j = 0; j < homeTabArticles.size(); j++) {
@@ -209,9 +209,17 @@ public class CommonUtils {
                             todayIcon().click();
                             break;
                         }
-                        driver.navigate().back();
-                        waitForSpecificTime(10);
-                        i++;
+                        else {
+                            waitForSpecificTime(2);
+                            scrollDownPage();
+                            waitForSpecificTime(2);
+                            scrollDownPage();
+                            waitForSpecificTime(2);
+                            scrollDownPage();
+                            driver.navigate().back();
+                            waitForSpecificTime(10);
+                            i++;
+                        }
                         if (meterStatus == true) {
                             break;
                         }
@@ -233,6 +241,12 @@ public class CommonUtils {
                         break;
                     }
                     else {
+                        waitForSpecificTime(2);
+                        scrollDownPage();
+                        waitForSpecificTime(2);
+                        scrollDownPage();
+                        waitForSpecificTime(2);
+                        scrollDownPage();
                         driver.navigate().back();
                         waitForSpecificTime(2);
                     }
@@ -457,6 +471,18 @@ public class CommonUtils {
         waitForSpecificTime(5);
     }
 
+    /*Check presence of ad slug*/
+    public static boolean checkAdPresence()
+    {
+        if(driver.findElementsByXPath(adSlug_Text_Xpath).size()!=0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     /*Get credentials from Excel and set them in constant values*/
     public static void getCredentialsFromExcel()
