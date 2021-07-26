@@ -24,7 +24,7 @@ public class AdPresence_ForYou {
 
     /*This test case tests navigation of most popular section from sections tab*/
     @Test
-    public void podcastTest() throws Exception {
+    public void adPresence() throws Exception {
         testCaseName = "Test Presence of AD slug";
         testCaseDescription = "Test ad slug on for you>>article front";
         try {
