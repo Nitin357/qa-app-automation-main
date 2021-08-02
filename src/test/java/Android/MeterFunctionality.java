@@ -8,7 +8,9 @@ import org.testng.annotations.Test;
 import static Parent.Reporting.extentTest;
 import static Utils.CommonUtils.*;
 
-/*This is test case for Verificaton of Meter For Unsubscribed and Anonymous user*/
+/*
+*This is test case for Verificaton of Meter For Unsubscribed and Anonymous user
+*/
 public class MeterFunctionality {
     String testCaseName = "Meter Functionality Test";
     String testCaseDescription = "Verify Meter For Unsubscribed and Anonymous user";

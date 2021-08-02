@@ -9,7 +9,9 @@ import static Parent.Constants.driver;
 
 /*Contains all the elements on Settings page*/
 public class Settings {
-    //These are identifiers of elements
+    /*
+    *These are identifiers of elements
+    */
     public static String loginOrRegisterButton_XPATH="/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.ScrollView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[2]/android.widget.RelativeLayout/android.widget.TextView";
     public static String loginWithEmailInsteadOption_ID="already_subscriber_plv";
     public static String emailIdTextField_ID="emailInput";
@@ -28,7 +30,9 @@ public class Settings {
     public static String accountCreationConfirmation_ID="emailHeader";
     public static String confirmLogoutButton_ID="button1";
 
-    //These return element directly
+    /*
+    *These return element directly
+    */
     //Login or register button
     public static MobileElement loginOrRegisterButton()
     {return (MobileElement) driver.findElementByXPath(loginOrRegisterButton_XPATH);}
@@ -50,24 +54,34 @@ public class Settings {
     //Identifier for LOG OUT Button
     public static MobileElement logoutButton()
     {return (MobileElement) driver.findElementByXPath(logOutButton_Xpath);}
+    //Login with google button on login window
     public static MobileElement loginWithGoogleButton()
     {return (MobileElement) driver.findElementById(logInWithGoogleButton_ID);}
+    //Login with facebook button on login window
     public static MobileElement loginWithFacebookButton()
     {return (MobileElement) driver.findElementById(logInWithFacebookButton_ID);}
+    //Google login window
     public static MobileElement googleLoginWindow()
     {return (MobileElement) driver.findElementById(googleLoginWindow_ID);}
+    //Facebook login window
     public static MobileElement facebookLoginWindow()
     {return (MobileElement) driver.findElementById(facebookLoginWindow_ID);}
+    //Create one button to create new account on login window
     public static MobileElement createOne_NewAccountOption()
     {return (MobileElement) driver.findElementById(createOneAccountOption_ID);}
+    //Create account with email instead option on account creation window
     public static MobileElement createAccountWithEmailInstead()
     {return (MobileElement) driver.findElementByAccessibilityId(createAccountWithEmailInstead_ID);}
+    //Confirm password text field on new account creation window
     public static MobileElement confirmPasswordTextField()
     {return (MobileElement) driver.findElementById(confirmPasswordTextField_ID);}
+    //Create account button after filling all details to create new account
     public static MobileElement createAccountButton_Settings_Login_CA()
     {return (MobileElement) driver.findElementByAccessibilityId(createAccountButton_ID);}
+    //Account creation confirmation button on new account creation window
     public static MobileElement accountCreationConfirmation()
     {return (MobileElement) driver.findElementById(accountCreationConfirmation_ID);}
+    //Confirm logout button while logging out
     public static MobileElement confirmLogoutButton()
     {return (MobileElement) driver.findElementById(confirmLogoutButton_ID);}
 

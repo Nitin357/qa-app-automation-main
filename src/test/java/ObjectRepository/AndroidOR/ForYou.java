@@ -9,14 +9,18 @@ import static Parent.Constants.driver;
 
 /*Contains all the elements on For You page*/
 public class ForYou {
-    //These are identifiers of elements
+    /*
+    *These are identifiers of elements
+     */
     public static String settingsIcon_ID="Settings";
     public static String greetingMessage_ID="textViewSalutation";
     public static String completionMomentComponent_ID="completionHeadline";
     public static String channelNames_ForYou_ID="kicker";
     public static String settings_GamesSection_ID = "gameEnd";
 
-    //These return element directly
+    /*
+    *These return element directly
+     */
     //Settings icon at top right in for you page
     public static MobileElement settingsIcon()
     {return (MobileElement) driver.findElementByAccessibilityId(settingsIcon_ID);}

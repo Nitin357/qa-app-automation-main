@@ -8,14 +8,15 @@ import static Parent.Constants.driver;
 
 /*Contains all the elements on For You page*/
 public class ManageInterests {
-    //These are identifiers of elements
-
+    /*
+    *These are identifiers of elements
+     */
     public static String channelHeadings_ID="title";
     public static String healthAndFitnessChannel_XPATH="//*[@text='Health & Fitness']";
     public static String topicsOfInterestChannel_XPATH="//*[@text='Topics of Interest']";
-
-
-    //These return element directly
+    /*
+    *These return element directly
+     */
     //Columns and features
     public static MobileElement colsASndFeatures()
     {return (MobileElement) driver.findElementsByAccessibilityId(channelHeadings_ID).get(0);}

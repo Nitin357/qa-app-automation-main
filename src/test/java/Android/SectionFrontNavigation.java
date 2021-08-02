@@ -16,15 +16,15 @@ import static Parent.Constants.expectedArticleHeading;
 import static Parent.Reporting.extentTest;
 import static Utils.CommonUtils.*;
 
-/*This is contains all test cases related to Charm Bracelet*/
+/*
+*This test case tests navigation of most popular section from sections tab
+*/
 public class SectionFrontNavigation {
     String testCaseName;
     String testCaseDescription;
-
-    /*This test case tests navigation of most popular section from sections tab*/
     @Test
     public void sectionFrontNavigation() throws Exception {
-        testCaseName = "Test Most popular functionality";
+        testCaseName = "Test Most popular navigation functionality";
         testCaseDescription = "Test navigation of most popular from sections tab";
         try {
             Reporting.initializeReporting(testCaseName, testCaseDescription);

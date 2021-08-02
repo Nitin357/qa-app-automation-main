@@ -20,12 +20,12 @@ import static Parent.Constants.*;
 import static Parent.Reporting.extentTest;
 import static Utils.CommonUtils.*;
 
-/*This is test case for followed channels functionality*/
+/*
+ *This test case tests navigation of most popular section from sections tab
+ */
 public class FollowedChannels {
     String testCaseName;
     String testCaseDescription;
-
-    /*This test case tests navigation of most popular section from sections tab*/
     @Test
     public void followedChannels() throws Exception {
         testCaseName = "Test followed channels functionality";

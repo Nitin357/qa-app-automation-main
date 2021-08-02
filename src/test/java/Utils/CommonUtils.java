@@ -1,6 +1,5 @@
 package Utils;
 
-import com.relevantcodes.extentreports.LogStatus;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
@@ -14,36 +13,40 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import static ObjectRepository.AndroidOR.CommonElements.*;
 import static ObjectRepository.AndroidOR.CommonElements.continueWithoutAccountButton;
 import static ObjectRepository.AndroidOR.ForYou.settingsIcon;
-import static ObjectRepository.AndroidOR.ForYou.settingsIcon_ID;
 import static ObjectRepository.AndroidOR.Sections.*;
 import static ObjectRepository.AndroidOR.Sections.searchResultArticleHeadings;
 import static ObjectRepository.AndroidOR.Settings.*;
 import static Parent.Constants.*;
-import static Parent.Reporting.extentTest;
 
-
-/*Contains all the common reusable methods*/
+/*
+*Contains all the common methods that are used multiple times
+*/
 public class CommonUtils {
 
-    /*Set device name and platform name for execution*/
+    /*
+     *This method is used to set platform name of device on which tests are to be executed
+     *Arguments: None
+     *Return   : Nothing
+     */
     public static void setDeviceInfo()
     {
+
         platformName="Android";
     }
 
-    /*Set driver capabilities to launch NYT app*/
+    /*
+     *This method is used to set capabilities for android device (used to install app when it isn't already installed on the device)
+     *Arguments: None
+     *Return   : Nothing
+     */
     public static void setCapabilitiesToInstallApp() throws Exception
     {
         setDeviceInfo();
@@ -51,7 +54,11 @@ public class CommonUtils {
         driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
     }
 
-    /*Set driver capabilities to launch NYT app*/
+    /*
+     *This method is used to set capabilities for android device and NYT alpha app (used when app is already installed on the device)
+     *Arguments: None
+     *Return   : Nothing
+     */
     public static void setAppCapabilities() throws Exception
     {
            setDeviceInfo();
@@ -60,14 +67,22 @@ public class CommonUtils {
            cap.setCapability("appActivity", "com.nytimes.android.MainActivity");
     }
 
-    /*Launch NYT app*/
+    /*
+     *This method is used to launch NYT alpha app with all the set capabilities
+     *Arguments: None
+     *Return   : Nothing
+     */
     public static void launchNYTApp() throws Exception
     {
         setAppCapabilities();
         driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
     }
 
-    /*Skip sign in and subscription at initial launch*/
+    /*
+     *This method is used to skip initial account login and subscription while launching fresh installed app
+     *Arguments: None
+     *Return   : Nothing
+     */
     public static void skipInitialAccountSetup() throws Exception
     {
             waitForSpecificTime(2);
@@ -81,8 +96,11 @@ public class CommonUtils {
             waitForSpecificTime(10);
     }
 
-
-    /*Login*/
+    /*
+     *This method is used to login for subscribed/unsubscribed user
+     *Arguments: (boolean) userSubscriptionStatus: true for subscribed user and false for unsubscribed user
+     *Return   : Nothing
+     */
     public static void login(Boolean userSubscriptionStatus) throws Exception
     {
 
@@ -112,7 +130,11 @@ public class CommonUtils {
         goBackToHomeTab();
     }
 
-    /*Login*/
+    /*
+     *This method is used to create random "maildrop.cc" account and login with those credentials
+     *Arguments: None
+     *Return   : Nothing
+     */
     public static void createRandomNewUser_Login() throws Exception
     {
         goBackToHomeTab();
@@ -145,7 +167,11 @@ public class CommonUtils {
         driver.navigate().back();
     }
 
-    /*Go to settings page*/
+    /*
+     *This method is used to reach to the settings page from anywhere on the app
+     *Arguments: None
+     *Return   : Nothing
+     */
     public static void goToSettingsPage() throws Exception
     {
         goBackToHomeTab();
@@ -156,18 +182,25 @@ public class CommonUtils {
         waitForSpecificTime(5);
     }
 
-    /*Generate random email id and password*/
+    /*
+     *This method is used to generate random email id and password using "maipdrop.cc" extension and set them in global variables
+     *Arguments: None
+     *Return   : Nothing
+     */
     public static void generateRandomEamail_Password() throws Exception
     {
-//        Date date = new Date();
         String currentTime= String.valueOf((System.currentTimeMillis()));
         randomEmailID= "automationtest"+currentTime+"@maildrop.cc";
         randomPassword= "ATP@"+currentTime+"atp";
     }
-    /*Logout*/
+
+    /*
+     *This method is used to logout from anywhere on the app
+     *Arguments: None
+     *Return   : Nothing
+     */
     public static void logoutIfLoggedIn() throws Exception
     {
-
         goBackToHomeTab();
         waitForElementLoad("id",forYouIcon_ID,5);
         forYouIcon().click();
@@ -180,24 +213,24 @@ public class CommonUtils {
             waitForSpecificTime(2);
             confirmLogoutButton().click();
         }
-
     }
 
-    /*Check for registration/login popup for meter*/
+    /*
+     *This method is used to check for meter by tapping on 4 new articles
+     *Arguments: None
+     *Return   : (boolean): true if meter is present in 4 attempts otherwise false
+     */
     public static boolean checkMeter() throws Exception
     {
         boolean meterStatus=false;
             sectionsIcon().click();
             waitForElementLoad("id",mostPopular_ID,10);
             mostPopular().click();
-
             int meterCount = 4;
             java.util.List<MobileElement> homeTabArticles = (List<MobileElement>) driver.findElementsById("tablet_grid_item");
             for (int i = 0; i <= meterCount; i++) {
                 waitForSpecificTime(2);
                 homeTabArticles = (List<MobileElement>) driver.findElementsById("tablet_grid_item");
-//                System.out.println(homeTabArticles.size());
-
                 if ((i + homeTabArticles.size()) < meterCount) {
                     for (int j = 0; j < homeTabArticles.size(); j++) {
                         homeTabArticles.get(j).click();
@@ -259,14 +292,22 @@ public class CommonUtils {
         return meterStatus;
     }
 
-    /*Opens app and skips initial login */
+    /*
+     *This method is used to launch the installed app and skip initial set up
+     *Arguments: None
+     *Return   : Nothing
+     */
     public static void setUp() throws Exception
     {
         launchNYTApp();
         skipInitialAccountSetup();
     }
 
-    /*Scroll down page*/
+    /*
+     *This method is used to scroll down the page once
+     *Arguments: None
+     *Return   : Nothing
+     */
     public static void scrollDownPage()
     {
         Dimension size = driver.manage().window().getSize();
@@ -277,7 +318,11 @@ public class CommonUtils {
         new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
     }
 
-    /*Check presence of an apk file at the given path*/
+    /*
+     *This method is used to check apk files in a folder
+     *Arguments: (String) folderPath: location of folder where apk files are to be searched
+     *Return   : (boolean) true if a file is present otherwise false
+     */
     public static boolean checkAPKFilePresence(String folderPath)
     {
         apkFileAvailable=false;
@@ -301,7 +346,11 @@ public class CommonUtils {
         return apkFileAvailable;
     }
 
-    /*Deletes all files present at the folder at the file path specified*/
+    /*
+     *This method is used to delete all the files in a specific folder
+     *Arguments: (File) file: location of folder from where files are to be deleted
+     *Return   : Nothing
+     */
     public static void deleteAllFilesInFolder(File file)
     {
         file = new File(apkFileFolderPath);
@@ -321,7 +370,11 @@ public class CommonUtils {
         }
     }
 
-    /*Download apk file from website*/
+    /*
+     *This method is used to download apk file in pc and if there is any already there, delete it first and then download latest apk
+     *Arguments: None
+     *Return   : Nothing
+     */
     public static void downloadAPKFromWebsite() throws Exception
     {
         //Erase contents of apkFile folder
@@ -359,7 +412,11 @@ public class CommonUtils {
         apkFilePath=(apkFileFolderPath+"\\Nyt.apk");
     }
 
-    /*Install apk in phone*/
+    /*
+     *This method is used to install apk file in phone if app isn't already installed
+     *Arguments: None
+     *Return   : Nothing
+     */
     public static void installApk() throws Exception
     {
         if(checkAPKFilePresence(apkFileFolderPath)==false)
@@ -374,7 +431,13 @@ public class CommonUtils {
         driver.quit();
     }
 
-    /*Wait for given number of seconds for element located by XPATH/ID*/
+    /*
+     *This method is used to wait for a specific time to find visiblity of web element passed to it
+     *Arguments: (string) locatedBY : type of locator used to find element (xpath/id/any other)
+     *           (string) locator   : locator used to find element
+     *           (int)              :  no of seconds to wait before checking visiblity of element
+     *Return   : Nothing
+     */
     public static void waitForElementLoad(String locatedBY, String locator, int secondsToWait) throws Exception
     {
         WebDriverWait wait = new WebDriverWait(driver,secondsToWait*1000);
@@ -390,8 +453,11 @@ public class CommonUtils {
 
     }
 
-
-    /*Wait for specific no of seconds passed as argument to this method*/
+    /*
+     *This method is used to wait for a specific time before execution of next step
+     *Arguments: (int) seconds : no. of seconds to wait before going to next step
+     *Return   : Nothing
+     */
     public static void waitForSpecificTime(int seconds)
     {
 
@@ -405,12 +471,21 @@ public class CommonUtils {
 
     }
 
+    /*
+     *This method is used to refresh for you page
+     *Arguments: None
+     *Return   : Nothing
+     */
     public static void refreshForYouPage()
     {
 
     }
 
-    /*Go back to home tab from anywhere on app*/
+    /*
+     *This method is used to reach to home tab from anywhere on the app
+     *Arguments: None
+     *Return   : Nothing
+     */
     public static void goBackToHomeTab()
     {
         if(driver.findElementsById(todayIcon_ID).size()==0)
@@ -424,7 +499,13 @@ public class CommonUtils {
         todayIcon().click();
     }
 
-    //This method is used to reach to a specific article on which this test is to be executed
+
+    /*
+     *This method is used to reach to a specific article on which podcast related test is to be executed
+     *Article heading of specific article:  "The Heat Wave That Hit the Pacific Northwest"
+     *Arguments: None
+     *Return   : Nothing
+     */
     public static void reachToExpectedPodcastArticle() throws Exception
     {
         goBackToHomeTab();
@@ -435,7 +516,6 @@ public class CommonUtils {
         searchField().sendKeys(expectedPodcastArticleHeading);
         driver.getKeyboard().pressKey("\n");
         waitForSpecificTime(10);
-//        searchField().sendKeys(Keys.ENTER);
         List <MobileElement> searchResults = searchResultArticleHeadings();
         for(int i =0;i< searchResults.size();i++)
         {
@@ -447,7 +527,13 @@ public class CommonUtils {
         }
         waitForSpecificTime(5);
     }
-    //This method is used to reach to a specific article on which this test is to be executed
+
+    /*
+    *This method is used to reach to a specific article on which the test is to be executed
+    *Article heading of specific article: "How Joe Biden Can Win a Nobel Peace Prize"
+    *Arguments: None
+    *Return   : Nothing
+    */
     public static void reachToExpectedArticle() throws Exception
     {
         goBackToHomeTab();
@@ -458,7 +544,6 @@ public class CommonUtils {
         searchField().sendKeys(expectedArticleHeading);
         driver.getKeyboard().pressKey("\n");
         waitForSpecificTime(10);
-//        searchField().sendKeys(Keys.ENTER);
         List <MobileElement> searchResults = searchResultArticleHeadings();
         for(int i =0;i< searchResults.size();i++)
         {
@@ -471,7 +556,11 @@ public class CommonUtils {
         waitForSpecificTime(5);
     }
 
-    /*Check presence of ad slug*/
+    /*
+    *Checks presence of ad slug
+    *Arguments: None
+    *Return   : (Boolean) true if ad slug is present otherwise false
+    */
     public static boolean checkAdPresence()
     {
         if(driver.findElementsByXPath(adSlug_Text_Xpath).size()!=0)
@@ -484,7 +573,11 @@ public class CommonUtils {
         }
     }
 
-    /*Get credentials from Excel and set them in constant values*/
+    /*
+    *Get credentials from Excel and set them in constant values
+    *Arguments: None
+    *Return   : Nothing
+    */
     public static void getCredentialsFromExcel()
     {
         {

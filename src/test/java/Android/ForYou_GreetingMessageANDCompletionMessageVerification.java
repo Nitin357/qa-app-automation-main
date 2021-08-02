@@ -20,10 +20,14 @@ import static Parent.Constants.*;
 import static Parent.Reporting.extentTest;
 import static Utils.CommonUtils.*;
 
-/*This is test case for Verificaton of Greeting Message and Completion Moment Component in For You*/
+/*
+*These are test cases for Verificaton of Greeting Message and Completion Moment Component in For You
+*/
 public class ForYou_GreetingMessageANDCompletionMessageVerification {
 
-    //This test case verifies Greeting Message on For You tab
+    /*
+    *This test case verifies Greeting Message on For You tab
+     */
     @Test
     public void greetingMessage() throws Exception
     {
@@ -57,8 +61,9 @@ public class ForYou_GreetingMessageANDCompletionMessageVerification {
         }
     }
 
-
-    //This test case verifies completion message on for you tab
+    /*
+    *This test case verifies completion message on for you tab
+     */
     @Test
     public void completionMessage() throws Exception
     {
@@ -76,17 +81,6 @@ public class ForYou_GreetingMessageANDCompletionMessageVerification {
             {
                 scrollDownPage();
             }
-//            //Scrolling functionality
-//            Dimension size = driver.manage().window().getSize();
-//            int startx = size.getWidth()/2;
-//            int endx = size.getWidth()/2;
-//            int starty = (int)(size.getHeight()* 0.80);
-//            int endy = (int)(size.getHeight()* 0.01);
-//            new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
-//            new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
-//            new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
-//            new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
-//            new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
             if(ForYou.completionMomentComponent().getText().equals(completionMomentMessage))
             {
                 extentTest.log(LogStatus.INFO, "Completion moment component verified");

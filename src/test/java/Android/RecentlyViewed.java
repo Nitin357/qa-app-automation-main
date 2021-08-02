@@ -17,16 +17,16 @@ import static Parent.Reporting.extentTest;
 import static Utils.CommonUtils.*;
 import static Utils.CommonUtils.setUp;
 
-/*This is contains all test cases related to Charm Bracelet*/
+/*
+*This test case tests functionality of recently viewed option in sections tab
+*/
 public class RecentlyViewed {
     String testCaseName;
     String testCaseDescription;
-
-    /*This test case tests functionality of recently viewed option in sections tab*/
     @Test
     public void recentlyViewedTest() throws Exception {
         testCaseName = "Test Recently viewed functionality";
-        testCaseDescription = "Test Share Button functionality on Recently viewed articles";
+        testCaseDescription = "Test functionality of Recently viewed articles";
         try {
             Reporting.initializeReporting(testCaseName, testCaseDescription);
             setUp();
@@ -55,7 +55,6 @@ public class RecentlyViewed {
                 scrollDownPage();
                 scrollPage++;
             } while (scrollPage <= 3);
-
             if (articlePresence) {
                 extentTest.log(LogStatus.INFO, "Article found in recently viewed tab");
                 extentTest.log(LogStatus.PASS, testCaseName + " : " + testCaseDescription);
@@ -63,7 +62,6 @@ public class RecentlyViewed {
                 extentTest.log(LogStatus.INFO, "Article NOT found in recently viewed tab");
                 extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
             }
-
         } catch (Exception ex) {
             extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
         }

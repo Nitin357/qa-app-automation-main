@@ -10,7 +10,9 @@ import static Parent.Constants.driver;
 
 /*Contains all the common elements (not page specific)*/
 public class CommonElements {
-        //These are identifiers of elements
+        /*
+        *These are identifiers of elements
+         */
         public static String accountSelectionPopUp_ID="credential_picker_layout";
         public static String noneOfTheAboveAccountSelection_ID="cancel";
         public static String createAccountButton_ID="createAccountButton";
@@ -23,7 +25,6 @@ public class CommonElements {
         public static String subscriptionPopup_createAccountButton_ID="cardButton";
         public static String subscriptionPopup_loginButton_ID="login";
         public static String subscriptionPopUp_ID="card";
-
         public static String articleFrontSaveButton_ID="article_front_save";
         public static String articleFrontShareButton_ID="action_share";
         public static String articleFrontCommentButton_ID="action_comments";
@@ -34,7 +35,6 @@ public class CommonElements {
         public static String flagWindow_cancelButton_ID = "button2";
         public static String authorNameReply_ID="author_name";
         public static String savedLaterArticleHeadings_ID = "row_sf_headline";
-
         public static String shareMessageAndroid_Xpath= "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.TabHost/android.widget.LinearLayout/android.widget.FrameLayout/com.android.internal.widget.ViewPager/android.widget.RelativeLayout/com.android.internal.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout[2]/android.widget.TextView";
         public static String moreOptionsArticleFront_ID = "More options";
         public static String textSizeOptionArticleFront_ID = "content";
@@ -51,7 +51,9 @@ public class CommonElements {
         public static String loginbutton_ArticleFront_Save_ID ="android:id/button1";
         public static String adSlug_Text_Xpath= "//*[@text='ADVERTISEMENT']";
 
-        //These return element directly
+        /*
+        *These return element directly
+         */
         //The popup for selection of account that comes at first launch of app
         public static MobileElement accountSelectionPopUp()
         {
@@ -196,64 +198,91 @@ public class CommonElements {
                 return (MobileElement) driver.findElementByXPath(shareMessageAndroid_Xpath);
         }
 
+        //More options list in article front
         public static MobileElement moreOptionsArticleFront()
         {
                 return (MobileElement) driver.findElementByAccessibilityId(moreOptionsArticleFront_ID);
         }
 
+        //Text size option in article front
         public static MobileElement textSize_Articlefront()
         {
                 return (MobileElement) driver.findElementsById(textSizeOptionArticleFront_ID).get(0);
         }
 
+        //Login/SignUp option on article front
         public static MobileElement loginSignup_Articlefront()
         {
                 return (MobileElement) driver.findElementsById(textSizeOptionArticleFront_ID).get(3);
         }
+
+        //small text size option while changing text sizes
         public static MobileElement small_TextSize()
         {
                 return (MobileElement) driver.findElementByXPath(textSize_Small_Xpath);
         }
+
+        //medium text size option while changing text sizes
         public static MobileElement medium_TextSize()
         {
                 return (MobileElement) driver.findElementByXPath(textSize_Medium_Xpath);
         }
+
+        //large text size option while changing text sizes
         public static MobileElement large_TextSize()
         {
                 return (MobileElement) driver.findElementByXPath(textSize_Large_Xpath);
         }
+
+        //extra large text size option while changing text sizes
         public static MobileElement extraLarge_TextSize()
         {
                 return (MobileElement) driver.findElementByXPath(textSize_ExtraLarge_Xpath);
         }
+
+        //jumbo text size option while changing text sizes
         public static MobileElement jumbo_TextSize()
         {
                 return (MobileElement) driver.findElementByXPath(textSize_Jumbo_Xpath);
         }
+
+        //OK button on text size changing windoe
         public static MobileElement okButton_TextSizeWindow()
         {
                 return (MobileElement) driver.findElementById("android:id/button1");
         }
+
+        //Article heading of expected article "How Joe Biden ..."
         public static MobileElement articleHeaing()
         {
                 return (MobileElement) driver.findElementById(articleHeaing_Xpath);
         }
+
+        //Opinion banner on article front
         public static MobileElement opinionBannerArticleFront()
         {
                 return (MobileElement) driver.findElementByXPath(articleFront_OpinionBanner_Xpath);
         }
+
+        //text size button on article front
         public static MobileElement textSizeIcon()
         {
                 return (MobileElement) driver.findElementByXPath(textSizeIcon_Xpath);
         }
+
+        //Continue without subscription button for new user
         public static MobileElement continueWithoutSubscription_NewUser()
         {
                 return (MobileElement) driver.findElementById(getContinueWithoutAccountButton_NewAcct_ID);
         }
+
+        //Login button on tapping save on article front for anonymus user
         public static MobileElement loginButton_ArticleFront_Save()
         {
                 return (MobileElement) driver.findElementById(loginbutton_ArticleFront_Save_ID);
         }
+
+        //Text "Advertisement" used to identify ad banner
         public static MobileElement adSlug_Text()
         {
                 return (MobileElement) driver.findElementByXPath(adSlug_Text_Xpath);

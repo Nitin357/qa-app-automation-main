@@ -58,7 +58,7 @@ public class Sections {
     }
 
 
-    //Search firld that appears on clicking search button
+    //Search field that appears on clicking search button
     public static MobileElement searchField()
     {
         MobileElement searchField = (MobileElement) driver.findElementById(searchField_ID);
@@ -83,8 +83,4 @@ public class Sections {
         MobileElement mostPopularHeading = (MobileElement) driver.findElementsByXPath(mostPopularHeader_Xpath);
         return mostPopularHeading;
     }
-
-
-
-
 }

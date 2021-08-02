@@ -2,15 +2,8 @@ package Android;
 
 import Parent.Reporting;
 import com.relevantcodes.extentreports.LogStatus;
-import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.util.List;
-
 import static ObjectRepository.AndroidOR.CommonElements.*;
 import static ObjectRepository.AndroidOR.Sections.*;
 import static Parent.Constants.driver;
@@ -18,12 +11,16 @@ import static Parent.Constants.expectedArticleHeading;
 import static Parent.Reporting.extentTest;
 import static Utils.CommonUtils.*;
 
-/*This is contains all test cases related to Charm Bracelet*/
+/*
+*These are test cases related to Charm Bracelet
+*/
 public class ArticleFrontTests_CharmBracelet {
     String testCaseName;
     String testCaseDescription;
 
-    /*This test case tests functionality of share button on CharmBracelet*/
+    /*
+    *This test case tests functionality of share button on CharmBracelet
+    */
     @Test
     public void shareButtonTest() throws Exception {
         testCaseName = "Test Share Button functionality";
@@ -50,8 +47,9 @@ public class ArticleFrontTests_CharmBracelet {
         }
     }
 
-
-    /*This test case tests functionality of comments button on CharmBracelet and all the functionalities inside comment window*/
+    /*
+    *This test case tests functionality of comments button on CharmBracelet and all the functionalities inside comment window
+    */
     @Test
     public void commentsButton_Functionality() throws Exception {
         testCaseName = "Test Comments Button and comments functionality";
@@ -117,8 +115,9 @@ public class ArticleFrontTests_CharmBracelet {
 
     }
 
-
-    /*This test case tests functionality of save button on CharmBracelet*/
+    /*
+    *This test case tests functionality of save button on CharmBracelet
+    */
     @Test
     public void saveButtonTest() throws Exception {
         testCaseName = "Test Save Button functionality";
@@ -163,5 +162,3 @@ public class ArticleFrontTests_CharmBracelet {
         }
     }
 }
-
-

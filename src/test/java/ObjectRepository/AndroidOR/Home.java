@@ -16,6 +16,7 @@ public class Home {
     /*
     * These return home tab articles list
     */
+    //List of articles on home tab
     public static List<MobileElement> homeTabArticles()
     {
         List<MobileElement> homeTabArticles = (List<MobileElement>) driver.findElementsById(homeTabArticles_ID);

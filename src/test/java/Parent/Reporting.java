@@ -3,23 +3,32 @@ package Parent;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 
-/*Contains all the methods for reporting purposes*/
+/*
+*Contains all the methods and variables for reporting purposes
+*/
 public class Reporting {
-
     //Path for creating Report file
     public static String extentReportFile = System.getProperty("user.dir")+"\\extentReportFile.html";
-    //    System.out.println(System.getProperty("user.dir"));
-    // Create object of extent report and specify the report file path.
+    //Create object of extent report and specify the report file path.
     public static ExtentReports extent = new ExtentReports(extentReportFile, true);
+    //Create object for reporter to be used throughout the execution
     public static ExtentTest extentTest;
 
-/*Initialize reporter*/
+    /*
+     *This method is used to initialise reporting
+     *Arguments: None
+     *Return   : Nothing
+     */
     public static void initializeReporting(String testCaseName, String testCaseDescription)
     {
         extentTest = Reporting.extent.startTest(testCaseName,testCaseDescription);
     }
 
-/*Close reporter*/
+    /*
+     *This method is used to close reporting
+     *Arguments: None
+     *Return   : Nothing
+     */
     public static void closeReporting()
     {
         // close report.

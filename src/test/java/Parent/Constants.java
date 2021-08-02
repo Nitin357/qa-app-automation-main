@@ -6,9 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-/*Contains constants vlaues to be used throughout the execution*/
-public class Constants {
-
+/*
+*Contains constant values to be used throughout the execution
+*/
+public class Constants
+{
     // Diver object
     public static AppiumDriver driver;
     //Capabilities object
@@ -27,9 +29,6 @@ public class Constants {
     public static String completionMomentMessage="You’re all caught up";
     //Greeting Message on For You
     public static String greetingMessage="Your daily recommendations from across The Times.";
-    /*   This is implicit wait and hence not used
-    //   public static WebDriverWait wait=new WebDriverWait(driver, 20);
-    */
     //Presence of apk file in project folder "qa-app-automation>>apkFile"
     public static boolean apkFileAvailable;
     //Path of apk file used to install in device
@@ -40,15 +39,14 @@ public class Constants {
     public static String downloadsFolderPath="/Users/webdunia/Downloads";
     //Heading of an article on which we are performing article front tests
     public static String expectedArticleHeading = "How Joe Biden Can Win a Nobel Peace Prize";
-    //Heading of apodcast article on which we are performing article front tests
+    //Heading of podcast article on which we are performing article front tests
     public static String expectedPodcastArticleHeading = "The Heat Wave That Hit the Pacific Northwest";
-    //random email id to be created during execution
+    //Random email id to be created during execution
     public static String randomEmailID = "";
-    //random email id's password to be created during execution
+    //Random email id's password to be created during execution
     public static String randomPassword = "";
-    //channel followed by user for test
+    //Channel followed by user for test
     public static String recentlyFollowedChannel = "Health & Fitness";
-    //trending section header
+    //Trending section header
     public static String trendingSectionHeader = "TRENDING IN FOR YOU";
-
 }

@@ -12,7 +12,9 @@ import static Parent.Constants.*;
 import static Parent.Reporting.*;
 import static Utils.CommonUtils.*;
 
-/*This is test case for Verificaton of Login Functionality through For You>>Settings*/
+/*
+*This is test case for Verificaton of Login Functionality through For You>>Settings
+*/
 public class LoginFunctionality {
     String testCaseName = "Login Functionality Test";
     String testCaseDescription = "Verify Login Functionality through For You>>Settings";

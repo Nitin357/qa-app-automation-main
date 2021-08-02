@@ -17,16 +17,16 @@ import static ObjectRepository.AndroidOR.Podcasts.podcastsIndicator_ID;
 import static Parent.Reporting.extentTest;
 import static Utils.CommonUtils.*;
 
-/*This is contains all test cases related to Charm Bracelet*/
+/*
+*This is test case presence of Ad slug
+*/
 public class AdPresence_ForYou {
     String testCaseName;
     String testCaseDescription;
-
-    /*This test case tests navigation of most popular section from sections tab*/
     @Test
     public void adPresence() throws Exception {
         testCaseName = "Test Presence of AD slug";
-        testCaseDescription = "Test ad slug on for you>>article front";
+        testCaseDescription = "Test ad slug on for you & for you>>article front";
         try {
             Reporting.initializeReporting(testCaseName, testCaseDescription);
             setUp();
@@ -69,8 +69,9 @@ public class AdPresence_ForYou {
             {
                 extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
             }
-
-        } catch (Exception ex) {
+        }
+        catch (Exception ex)
+        {
             extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
         }
     }

@@ -13,12 +13,16 @@ import static Parent.Constants.*;
 import static Parent.Reporting.extentTest;
 import static Utils.CommonUtils.*;
 
-/*This is test case for Verificaton of Login Functionality through For You>>Settings*/
+/*
+*This is test case for Verificaton of Login Functionality through For You>>Settings
+*/
 public class NativeLogin_SocialLogin {
+    /*
+    * Tests Native login functionality
+    */
     @Test
     public void nativeLoginFunctionality() throws Exception
     {
-
         String testCaseName = "Native Login Functionality Test";
         String testCaseDescription = "Verify Native Login Functionality through Settings";
         try
@@ -63,8 +67,9 @@ public class NativeLogin_SocialLogin {
         }
     }
 
-
-
+    /*
+     * Tests Social login functionality
+     */
     @Test
     public void socialLoginFunctionality() throws Exception
     {
@@ -123,6 +128,9 @@ public class NativeLogin_SocialLogin {
         }
     }
 
+    /*
+     * Tests login functionality from article front>>save later button
+     */
     @Test
     public static void articleFrontLogin()
     {
@@ -167,12 +175,12 @@ public class NativeLogin_SocialLogin {
         }
     }
 
-
-
+    /*
+     * Tests login functionality from recently viewed
+     */
     @Test
     public static void recentlyViewedLogin()
     {
-
         String testCaseName = "Test Login Functionality from recently viewed option";
         String testCaseDescription = "Verify Login Functionality from recently viewed option in sections tab";
         try

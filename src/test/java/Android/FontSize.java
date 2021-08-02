@@ -15,12 +15,16 @@ import static Parent.Constants.*;
 import static Parent.Reporting.extentTest;
 import static Utils.CommonUtils.*;
 
-/*This is test case for Verificaton of changing font size in application*/
+/*
+*These are test cases for Verificaton of changing font size in application
+*/
 public class FontSize {
+    /*
+    * This test case verifies font size change functionality on article front
+    */
     @Test
     public void articleFront_FontSize() throws Exception
     {
-
         String testCaseName = "Font Size Functionality Test";
         String testCaseDescription = "Verify change in font size on article front by changing it from the app";
         try
@@ -31,7 +35,6 @@ public class FontSize {
             boolean jumboSizeChange=false,extraLargeSizeChange=false;
             String earlierSize,laterSize;
             Dimension eSize,lSize;
-
             reachToExpectedArticle();
             waitForSpecificTime(5);
             moreOptionsArticleFront().click();
@@ -82,10 +85,12 @@ public class FontSize {
         }
     }
 
+    /*
+     * This test case verifies font size change functionality on for you section front
+     */
     @Test
     public void forYouSectionFront_FontSize() throws Exception
     {
-
         String testCaseName = "Font Size Functionality Test";
         String testCaseDescription = "Verify change in font size on for you tab by changing it from for You";
         try
@@ -144,7 +149,6 @@ public class FontSize {
             {
                 extentTest.log(LogStatus.PASS,testCaseName+" : "+ testCaseDescription);
             }
-
         }
         catch (Exception ex)
         {

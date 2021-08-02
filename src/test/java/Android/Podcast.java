@@ -13,12 +13,12 @@ import static ObjectRepository.AndroidOR.Sections.*;
 import static Parent.Reporting.extentTest;
 import static Utils.CommonUtils.*;
 
-/*This is contains all test cases related to Charm Bracelet*/
+/*
+*This test case tests podcast icon visiblity on all other pages while podcast is being played
+*/
 public class Podcast {
     String testCaseName;
     String testCaseDescription;
-
-    /*This test case tests navigation of most popular section from sections tab*/
     @Test
     public void podcastTest() throws Exception {
         testCaseName = "Test podcast functionality";
@@ -61,8 +61,6 @@ public class Podcast {
                 extentTest.log(LogStatus.INFO, "Indicator present at Sections Tab");
                 sectionsTabPresence = true;
             }
-
-
             if (homeTabPresence && forYouTabPresence && sectionsTabPresence && afPresence)
             {
                 extentTest.log(LogStatus.PASS, testCaseName + " : " + testCaseDescription);
@@ -71,7 +69,6 @@ public class Podcast {
             {
                 extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
             }
-
         } catch (Exception ex) {
             extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
         }

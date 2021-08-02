@@ -18,16 +18,16 @@ import static Parent.Constants.trendingSectionHeader;
 import static Parent.Reporting.extentTest;
 import static Utils.CommonUtils.*;
 
-/*This is test case for followed channels functionality*/
+/*
+*This is test case for checking presence of trending block on for you page
+*/
 public class TrendingBlock_ForYou {
     String testCaseName;
     String testCaseDescription;
-
-    /*This test case tests navigation of most popular section from sections tab*/
     @Test
     public void trendingBlockVisiblityTest() throws Exception {
-        testCaseName = "Test followed channels functionality";
-        testCaseDescription = "Test presence of new articles in feed for newly followed channel";
+        testCaseName = "Test tending block functionality";
+        testCaseDescription = "Test presence of trending block in for you section";
         try{
             Reporting.initializeReporting(testCaseName, testCaseDescription);
             setUp();
