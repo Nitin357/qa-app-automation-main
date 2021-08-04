@@ -71,9 +71,14 @@ public class Podcast {
             {
                 extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
             }
+<<<<<<< Updated upstream
 
+=======
+            tearDown();
+>>>>>>> Stashed changes
         } catch (Exception ex) {
             extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
+            tearDown();
         }
     }
 }

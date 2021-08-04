@@ -44,9 +44,10 @@ public class ArticleFrontTests_CharmBracelet {
                 extentTest.log(LogStatus.INFO, "Share Button NOT working properly");
                 extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
             }
-
+            tearDown();
         } catch (Exception ex) {
             extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
+            tearDown();
         }
     }
 
@@ -111,8 +112,10 @@ public class ArticleFrontTests_CharmBracelet {
                 extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
 
             }
+            tearDown();
         } catch (Exception ex) {
             extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
+            tearDown();
         }
 
     }
@@ -158,8 +161,10 @@ public class ArticleFrontTests_CharmBracelet {
                 extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
             }
             goBackToHomeTab();
+            tearDown();
         } catch (Exception ex) {
             extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
+            tearDown();
         }
     }
 }

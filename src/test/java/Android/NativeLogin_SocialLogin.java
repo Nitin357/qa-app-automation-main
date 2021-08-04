@@ -44,7 +44,7 @@ public class NativeLogin_SocialLogin {
             confirmPasswordTextField().sendKeys(randomPassword);
             waitForSpecificTime(2);
             createAccountButton_Settings_Login_CA().click();
-            waitForSpecificTime(5);
+            waitForSpecificTime(10);
             if((driver.findElementsById(accountCreationConfirmation_ID)).size()!=0)
             {
                 extentTest.log(LogStatus.PASS, testCaseName+" : "+testCaseDescription);
@@ -56,10 +56,12 @@ public class NativeLogin_SocialLogin {
             {
                 extentTest.log(LogStatus.FAIL, testCaseName+" : "+testCaseDescription);
             }
+            tearDown();
         }
         catch (Exception ex)
         {
             extentTest.log(LogStatus.FAIL, testCaseName+" : "+testCaseDescription);
+            tearDown();
         }
     }
 
@@ -114,17 +116,17 @@ public class NativeLogin_SocialLogin {
             {
                 extentTest.log(LogStatus.FAIL,testCaseName+":"+testCaseDescription);
             }
-
-
+            tearDown();
         }
         catch (Exception ex)
         {
             extentTest.log(LogStatus.FAIL, testCaseName+" : "+testCaseDescription);
+            tearDown();
         }
     }
 
     @Test
-    public static void articleFrontLogin()
+    public static void articleFrontLogin() throws Exception
     {
 
         String testCaseName = "Test Login Functionality from article front";
@@ -135,19 +137,23 @@ public class NativeLogin_SocialLogin {
             setUp();
             reachToExpectedArticle();
             waitForSpecificTime(2);
+            if((driver.findElementsById(moreOptionsArticleFront_ID).size())==0)
+            {
+                driver.navigate().back();
+            }
             moreOptionsArticleFront().click();
             waitForSpecificTime(2);
             loginSignup_Articlefront().click();
 //            articleFrontSaveButton().click();
             waitForSpecificTime(2);
 //            loginButton_ArticleFront_Save().click();
-            waitForSpecificTime(5);
+//            waitForSpecificTime(5);
             loginWithEmailInsteadOption().click();
-            waitForSpecificTime(5);
+            waitForSpecificTime(2);
             emailIdTextField().sendKeys(loginUserName_SubscriberUser);
-            waitForSpecificTime(5);
+            waitForSpecificTime(2);
             passwordTextField().sendKeys(loginUserPassword_SubscribedUser);
-            waitForSpecificTime(5);
+            waitForSpecificTime(2);
             loginButton().click();
             waitForSpecificTime(5);
             goBackToHomeTab();
@@ -160,17 +166,19 @@ public class NativeLogin_SocialLogin {
             {
                 extentTest.log(LogStatus.FAIL, testCaseName+":"+testCaseDescription);
             }
+            tearDown();
         }
         catch (Exception ex)
         {
             extentTest.log(LogStatus.FAIL, testCaseName+" : "+testCaseDescription);
+            tearDown();
         }
     }
 
 
 
     @Test
-    public static void recentlyViewedLogin()
+    public static void recentlyViewedLogin() throws Exception
     {
 
         String testCaseName = "Test Login Functionality from recently viewed option";
@@ -183,8 +191,9 @@ public class NativeLogin_SocialLogin {
             goBackToHomeTab();
             sectionsIcon().click();
             recentlyViewed().click();
-            loginButton_ArticleFront_Save().click();
             waitForSpecificTime(2);
+            loginButton_ArticleFront_Save().click();
+            waitForSpecificTime(5);
             loginWithEmailInsteadOption().click();
             waitForSpecificTime(2);
             emailIdTextField().sendKeys(loginUserName_SubscriberUser);
@@ -192,10 +201,11 @@ public class NativeLogin_SocialLogin {
             passwordTextField().sendKeys(loginUserPassword_SubscribedUser);
             waitForSpecificTime(2);
             loginButton().click();
-            waitForSpecificTime(2);
+            waitForSpecificTime(5);
             goBackToHomeTab();
             goToSettingsPage();
-            if(driver.findElementsByXPath(logOutButton_Xpath).size()!=0)
+            waitForSpecificTime(5);
+            if((driver.findElementsByXPath(logOutButton_Xpath).size())!=0)
             {
                 extentTest.log(LogStatus.PASS, testCaseName+":"+testCaseDescription);
             }
@@ -203,10 +213,12 @@ public class NativeLogin_SocialLogin {
             {
                 extentTest.log(LogStatus.FAIL, testCaseName+":"+testCaseDescription);
             }
+            tearDown();
         }
         catch (Exception ex)
         {
             extentTest.log(LogStatus.FAIL, testCaseName+" : "+testCaseDescription);
+            tearDown();
         }
     }
 }

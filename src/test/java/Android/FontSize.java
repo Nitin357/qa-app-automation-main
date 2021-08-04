@@ -20,8 +20,12 @@ public class FontSize {
     @Test
     public void articleFront_FontSize() throws Exception
     {
+<<<<<<< Updated upstream
 
         String testCaseName = "Font Size Functionality Test";
+=======
+        String testCaseName = "AF Font Size Functionality Test";
+>>>>>>> Stashed changes
         String testCaseDescription = "Verify change in font size on article front by changing it from the app";
         try
         {
@@ -75,18 +79,24 @@ public class FontSize {
             {
                 extentTest.log(LogStatus.PASS,testCaseName+" : "+ testCaseDescription);
             }
+            tearDown();
         }
         catch (Exception ex)
         {
             extentTest.log(LogStatus.FAIL, testCaseName+" : "+testCaseDescription);
+            tearDown();
         }
     }
 
     @Test
     public void forYouSectionFront_FontSize() throws Exception
     {
+<<<<<<< Updated upstream
 
         String testCaseName = "Font Size Functionality Test";
+=======
+        String testCaseName = "SF Font Size Functionality Test";
+>>>>>>> Stashed changes
         String testCaseDescription = "Verify change in font size on for you tab by changing it from for You";
         try
         {
@@ -144,11 +154,16 @@ public class FontSize {
             {
                 extentTest.log(LogStatus.PASS,testCaseName+" : "+ testCaseDescription);
             }
+<<<<<<< Updated upstream
 
+=======
+            tearDown();
+>>>>>>> Stashed changes
         }
         catch (Exception ex)
         {
             extentTest.log(LogStatus.FAIL, testCaseName+" : "+testCaseDescription);
+            tearDown();
         }
     }
 }

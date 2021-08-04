@@ -47,8 +47,14 @@ public class TestCreation {
     @Test
     public void abc() throws Exception {
 //        driver.isAppInstalled("com.android.nytimes");
-        launchNYTApp();
+//        launchNYTApp();
+        DesiredCapabilities cap2 = new DesiredCapabilities();
+        cap2.setCapability("platformName", "Android");
+        cap2.setCapability("appPackage", "com.app.wesoar");
+        AppiumDriver driver2 = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap2);
+
         /*
+
         *
         *
         *

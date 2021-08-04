@@ -67,7 +67,25 @@ public class CommonUtils {
         driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
     }
 
+<<<<<<< Updated upstream
     /*Skip sign in and subscription at initial launch*/
+=======
+    /*
+    * This method is used to close all connections
+    * Arguments: None
+    * Return   : Nothing
+    */
+    public static void tearDown() throws Exception
+    {
+        driver.quit();
+    }
+
+    /*
+     *This method is used to skip initial account login and subscription while launching fresh installed app
+     *Arguments: None
+     *Return   : Nothing
+     */
+>>>>>>> Stashed changes
     public static void skipInitialAccountSetup() throws Exception
     {
             waitForSpecificTime(2);
@@ -136,7 +154,7 @@ public class CommonUtils {
         confirmPasswordTextField().sendKeys(randomPassword);
         waitForSpecificTime(2);
         createAccountButton_Settings_Login_CA().click();
-        waitForSpecificTime(5);
+        waitForSpecificTime(10);
         do{
             continueWithoutSubscription_NewUser().click();
             waitForSpecificTime(2);
@@ -272,8 +290,8 @@ public class CommonUtils {
         Dimension size = driver.manage().window().getSize();
         int startx = size.getWidth() / 2;
         int endx = size.getWidth() / 2;
-        int starty = (int) (size.getHeight() * 0.80);
-        int endy = (int) (size.getHeight() * 0.01);
+        int starty = (int) (size.getHeight() * 0.50);
+        int endy = (int) (size.getHeight() * 0.10);
         new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
     }
 

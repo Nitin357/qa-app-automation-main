@@ -85,8 +85,10 @@ public class FollowedChannels {
                 extentTest.log(LogStatus.FAIL, "Manage Interests present through Game Block");
                 extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
             }
+            tearDown();
         } catch (Exception ex) {
             extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
+            tearDown();
         }
     }
 }

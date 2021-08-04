@@ -34,6 +34,7 @@ public class AdPresence_ForYou {
             goBackToHomeTab();
             forYouIcon().click();
             boolean adPresence_ArticleFront = false ,adPresence_ForYou = false;
+            waitForSpecificTime(5);
             List<MobileElement> channelsPresent=channelNames_ForYou();
             channelsPresent.get(1).click();
             for(int scrollCount = 0; scrollCount<10;scrollCount++ )
@@ -69,9 +70,17 @@ public class AdPresence_ForYou {
             {
                 extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
             }
+<<<<<<< Updated upstream
 
         } catch (Exception ex) {
+=======
+            tearDown();
+        }
+        catch (Exception ex)
+        {
+>>>>>>> Stashed changes
             extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
+            tearDown();
         }
     }
 }

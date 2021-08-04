@@ -38,6 +38,7 @@ public class RecentlyViewed {
             recentlyViewed().click();
             boolean articlePresence = false;
             int scrollPage = 0;
+            waitForSpecificTime(5);
             List<MobileElement> articleHeadings = recentlyviewedArticleHeadings();
             do {
                 for (int i = 0; i < articleHeadings.size(); i++)
@@ -63,9 +64,14 @@ public class RecentlyViewed {
                 extentTest.log(LogStatus.INFO, "Article NOT found in recently viewed tab");
                 extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
             }
+<<<<<<< Updated upstream
 
+=======
+            tearDown();
+>>>>>>> Stashed changes
         } catch (Exception ex) {
             extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
+            tearDown();
         }
     }
 }
