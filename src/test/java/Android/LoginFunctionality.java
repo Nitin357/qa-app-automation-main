@@ -22,7 +22,6 @@ public class LoginFunctionality {
     @Test
     public void loginFunctionality() throws Exception
     {
-
         try
         {
             Reporting.initializeReporting(testCaseName,testCaseDescription);
@@ -31,10 +30,12 @@ public class LoginFunctionality {
             setUp();
             login(true);
             extentTest.log(LogStatus.PASS, testCaseName+" : "+testCaseDescription);
+            tearDown();
         }
         catch (Exception ex)
         {
             extentTest.log(LogStatus.FAIL, testCaseName+" : "+testCaseDescription);
+            tearDown();
         }
     }
 }

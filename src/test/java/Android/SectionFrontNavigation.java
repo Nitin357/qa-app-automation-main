@@ -40,9 +40,10 @@ public class SectionFrontNavigation {
             {
                 extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
             }
-
+            tearDown();
         } catch (Exception ex) {
             extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
+            tearDown();
         }
     }
 }

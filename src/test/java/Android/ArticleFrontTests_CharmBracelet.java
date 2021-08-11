@@ -41,9 +41,10 @@ public class ArticleFrontTests_CharmBracelet {
                 extentTest.log(LogStatus.INFO, "Share Button NOT working properly");
                 extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
             }
-
+            tearDown();
         } catch (Exception ex) {
             extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
+            tearDown();
         }
     }
 
@@ -107,10 +108,11 @@ public class ArticleFrontTests_CharmBracelet {
             } else {
                 extentTest.log(LogStatus.INFO, "Comment functionality working properly");
                 extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
-
             }
+            tearDown();
         } catch (Exception ex) {
             extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
+            tearDown();
         }
 
     }
@@ -125,7 +127,7 @@ public class ArticleFrontTests_CharmBracelet {
         try {
             Reporting.initializeReporting(testCaseName, testCaseDescription);
             setUp();
-            login(true);
+            createRandomNewUser_Login();
             reachToExpectedArticle();
             articleFrontSaveButton().click();
             goBackToHomeTab();
@@ -157,8 +159,10 @@ public class ArticleFrontTests_CharmBracelet {
                 extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
             }
             goBackToHomeTab();
+            tearDown();
         } catch (Exception ex) {
             extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
+            tearDown();
         }
     }
 }

@@ -313,8 +313,8 @@ public class CommonUtils {
         Dimension size = driver.manage().window().getSize();
         int startx = size.getWidth() / 2;
         int endx = size.getWidth() / 2;
-        int starty = (int) (size.getHeight() * 0.80);
-        int endy = (int) (size.getHeight() * 0.01);
+        int starty = (int) (size.getHeight() * 0.50);
+        int endy = (int) (size.getHeight() * 0.10);
         new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
     }
 
@@ -571,6 +571,15 @@ public class CommonUtils {
         {
             return false;
         }
+    }
+    /*
+     *Close all connections
+     *Arguments: None
+     *Return   : Nothing
+     */
+    public static void tearDown()
+    {
+        driver.quit();
     }
 
     /*

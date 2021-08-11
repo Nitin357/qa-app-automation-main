@@ -34,10 +34,12 @@ public class AdPresence_ForYou {
             goBackToHomeTab();
             forYouIcon().click();
             boolean adPresence_ArticleFront = false ,adPresence_ForYou = false;
+            waitForSpecificTime(5);
             List<MobileElement> channelsPresent=channelNames_ForYou();
             channelsPresent.get(1).click();
             for(int scrollCount = 0; scrollCount<10;scrollCount++ )
             {
+                waitForSpecificTime(5);
                 adPresence_ArticleFront = checkAdPresence();
                 if(adPresence_ArticleFront)
                 {
@@ -49,8 +51,10 @@ public class AdPresence_ForYou {
                 }
             }
             Constants.driver.navigate().back();
+            waitForSpecificTime(2);
             while(Constants.driver.findElementsById(completionMomentComponent_ID).size()==0)
             {
+                waitForSpecificTime(5);
                 adPresence_ForYou = checkAdPresence();
                 if(adPresence_ForYou)
                 {
@@ -69,10 +73,12 @@ public class AdPresence_ForYou {
             {
                 extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
             }
+            tearDown();
         }
         catch (Exception ex)
         {
             extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
+            tearDown();
         }
     }
 }

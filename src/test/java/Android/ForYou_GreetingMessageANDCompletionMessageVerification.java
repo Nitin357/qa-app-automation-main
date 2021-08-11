@@ -54,10 +54,12 @@ public class ForYou_GreetingMessageANDCompletionMessageVerification {
                 extentTest.log(LogStatus.INFO, "Greeting message is incorrect");
                 extentTest.log(LogStatus.FAIL, testCaseName+" : "+testCaseDescription);
             }
+            tearDown();
         }
         catch (Exception ex)
         {
             extentTest.log(LogStatus.FAIL, testCaseName+" : "+testCaseDescription);
+            tearDown();
         }
     }
 
@@ -91,10 +93,12 @@ public class ForYou_GreetingMessageANDCompletionMessageVerification {
                 extentTest.log(LogStatus.INFO, "Completion moment component is incorrect");
                 extentTest.log(LogStatus.FAIL, testCaseName+" : "+testCaseDescription);
             }
+            tearDown();
         }
         catch (Exception ex)
         {
             extentTest.log(LogStatus.FAIL, testCaseName+" : "+testCaseDescription);
+            tearDown();
         }
     }
 }
