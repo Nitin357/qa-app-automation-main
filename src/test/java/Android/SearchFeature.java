@@ -17,10 +17,11 @@ public class SearchFeature  {
 
     String testCaseName = "Search feature Test";
     String testCaseDescription = "Search Article And Verify Article";
-    String SerchText = "How a Nuclear bomb Could Save Earth From a Stealthy Asteroid";
+    String SerchArticleText = "How a Nuclear bomb Could Save Earth From a Stealthy Asteroid";
+    String SerchKeyText = "Trump";
 
     @Test
-    public void SearchFeature() throws Exception {
+    public void SearchArticleFeature() throws Exception {
         try {
             Reporting.initializeReporting(testCaseName, testCaseDescription);
             setUp();
@@ -29,11 +30,8 @@ public class SearchFeature  {
             waitForSpecificTime(2);
             searchButton().click();
             waitForSpecificTime(2);
-            searchField().sendKeys(SerchText);
-
-
-            Boolean Text = ArticleHeading().getText().equals(SerchText);
-            if (Text) {
+            searchField().sendKeys(SerchArticleText);
+            if (searchResultArticleHeadings().size() != 0) {
                 extentTest.log(LogStatus.PASS, testCaseName + " : " + testCaseDescription);
             } else {
                 extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
@@ -44,7 +42,30 @@ public class SearchFeature  {
             tearDown();
         }
     }
-}
+        @Test
+        public void SearchKeywordFeature() throws Exception {
+            try {
+                Reporting.initializeReporting(testCaseName, testCaseDescription);
+                setUp();
+                waitForSpecificTime(2);
+                sectionsIcon().click();
+                waitForSpecificTime(2);
+                searchButton().click();
+                waitForSpecificTime(2);
+                searchField().sendKeys(SerchKeyText);
+                if (searchResultArticleHeadings().size()!=0) {
+                    extentTest.log(LogStatus.PASS, testCaseName + " : " + testCaseDescription);
+                } else {
+                    extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
+                }
+                tearDown();
+            } catch (Exception ex) {
+                extentTest.log(LogStatus.FAIL, testCaseName + " : " + testCaseDescription);
+                tearDown();
+            }
+        }
+    }
+
 
 
 
