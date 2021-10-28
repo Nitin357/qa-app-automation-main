@@ -26,6 +26,10 @@ public class Sections {
         List<MobileElement> bottomNavigation = (List<MobileElement>) driver.findElementsById(mostPopular_ID);
         return bottomNavigation.get(0);
     }
+    public static MobileElement Photos() {
+        List<MobileElement> bottomNavigation = (List<MobileElement>) driver.findElementsById(mostPopular_ID);
+        return bottomNavigation.get(12);
+    }
 
     //"IMMERSIVE" option in sections
     public static MobileElement immersive() {
