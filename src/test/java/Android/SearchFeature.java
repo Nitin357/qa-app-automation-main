@@ -4,14 +4,12 @@ import Parent.Reporting;
 import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
-
-
-import java.sql.Driver;
-
 import static ObjectRepository.AndroidOR.CommonElements.*;
 import static ObjectRepository.AndroidOR.Sections.*;
 import static Parent.Reporting.extentTest;
 import static Utils.CommonUtils.*;
+import static Parent.Constants.*;
+
 
 public class SearchFeature  {
 
@@ -31,6 +29,8 @@ public class SearchFeature  {
             searchButton().click();
             waitForSpecificTime(2);
             searchField().sendKeys(SerchArticleText);
+            driver.getKeyboard().pressKey(Keys.ENTER);
+            waitForSpecificTime(4);
             if (searchResultArticleHeadings().size() != 0) {
                 extentTest.log(LogStatus.PASS, testCaseName + " : " + testCaseDescription);
             } else {
@@ -53,6 +53,8 @@ public class SearchFeature  {
                 searchButton().click();
                 waitForSpecificTime(2);
                 searchField().sendKeys(SerchKeyText);
+                driver.getKeyboard().pressKey(Keys.ENTER);
+                waitForSpecificTime(4);
                 if (searchResultArticleHeadings().size()!=0) {
                     extentTest.log(LogStatus.PASS, testCaseName + " : " + testCaseDescription);
                 } else {

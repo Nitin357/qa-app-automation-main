@@ -49,6 +49,8 @@
             <class name="Android.SectionFrontNavigation"/>
             <class name="Android.TrendingBlock_ForYou"/>
             <class name="Android.AdPresence_ForYou"/>
+            <class name="Android.SearchFeature"/>
+            <class name="Android.Photos_Slideshow"/>
         </classes>
     </test>
 

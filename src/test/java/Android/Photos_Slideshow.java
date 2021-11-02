@@ -44,6 +44,7 @@ public class Photos_Slideshow {
                 waitForSpecificTime( 2);
             }
             Photo_list_1().click();
+            waitForSpecificTime( 3);
             for(int i=1; i<=26; i++) {
                 swipeLeft();
                 waitForSpecificTime( 2);
