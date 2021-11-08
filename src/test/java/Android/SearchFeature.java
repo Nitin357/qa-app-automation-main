@@ -55,6 +55,9 @@ public class SearchFeature  {
                 searchField().sendKeys(SerchKeyText);
                 driver.getKeyboard().pressKey(Keys.ENTER);
                 waitForSpecificTime(4);
+                scrollDownPage();
+                scrollDownPage();
+                scrollDownPage();
                 if (searchResultArticleHeadings().size()!=0) {
                     extentTest.log(LogStatus.PASS, testCaseName + " : " + testCaseDescription);
                 } else {
