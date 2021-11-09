@@ -39,7 +39,7 @@ public class Photos_Slideshow {
             Photos().click();
             waitForSpecificTime( 20);
             String photocount = photo_info().getText().replaceAll("[^0-9]", "");
-            int imagecount = Integer.parseInt(photocount);
+            int imagecount = Integer.parseInt(photocount)+3;
             Photo_list_0().click();
             waitForSpecificTime( 8);
             int image=1;
