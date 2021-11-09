@@ -30,7 +30,7 @@ public class SearchFeature  {
             waitForSpecificTime(2);
             searchField().sendKeys(SerchArticleText);
             driver.getKeyboard().pressKey(Keys.ENTER);
-            waitForSpecificTime(4);
+            waitForSpecificTime(8);
             if (searchResultArticleHeadings().size() != 0) {
                 extentTest.log(LogStatus.PASS, testCaseName + " : " + testCaseDescription);
             } else {
@@ -54,10 +54,11 @@ public class SearchFeature  {
                 waitForSpecificTime(2);
                 searchField().sendKeys(SerchKeyText);
                 driver.getKeyboard().pressKey(Keys.ENTER);
-                waitForSpecificTime(4);
+                waitForSpecificTime(8);
                 scrollDownPage();
                 scrollDownPage();
                 scrollDownPage();
+                waitForSpecificTime(2);
                 if (searchResultArticleHeadings().size()!=0) {
                     extentTest.log(LogStatus.PASS, testCaseName + " : " + testCaseDescription);
                 } else {

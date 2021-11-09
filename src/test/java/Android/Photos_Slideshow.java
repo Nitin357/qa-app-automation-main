@@ -7,6 +7,7 @@ import com.relevantcodes.extentreports.LogStatus;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import org.testng.annotations.Test;
+import static Utils.CommonUtils.*;
 
 import java.util.List;
 
@@ -34,21 +35,22 @@ public class Photos_Slideshow {
             //login(true);
             //goBackToHomeTab();
             sectionsIcon().click();
-            waitForSpecificTime(3);
+            waitForSpecificTime(5);
             Photos().click();
-            waitForSpecificTime( 5);
+            waitForSpecificTime( 20);
+            String photocount = photo_info().getText().replaceAll("[^0-9]", "");
+            int imagecount = Integer.parseInt(photocount);
             Photo_list_0().click();
-            waitForSpecificTime( 3);
-            for(int i=1; i<=25; i++) {
+            waitForSpecificTime( 8);
+            int image=1;
+            do {
                 swipeLeft();
-                waitForSpecificTime( 2);
-            }
-            Photo_list_1().click();
-            waitForSpecificTime( 3);
-            for(int i=1; i<=26; i++) {
-                swipeLeft();
-                waitForSpecificTime( 2);
-            }
+                waitForSpecificTime( 1);
+                image++;
+            }while(image<=imagecount);
+            scrollDownPage();
+            scrollDownPage();
+
             if(Photo_list_0().isDisplayed())
             {
                 extentTest.log(LogStatus.PASS, testCaseName + " : " + testCaseDescription);

@@ -10,6 +10,7 @@ public class Photos {
 
     public static String Photos_ID="overlay";
     public static String image_ID="imageView";
+    public static String Photoinfo_ID="kicker";
     //public static String Photos_ID="overlay";
 
 
@@ -24,5 +25,10 @@ public class Photos {
     {
         List<MobileElement> Photo_List = (List<MobileElement>) driver.findElementsById(Photos_ID);
         return Photo_List.get(1);
+    }
+    public static MobileElement photo_info()
+    {
+        MobileElement photoinfo= (MobileElement) driver.findElementById(Photoinfo_ID);
+        return photoinfo;
     }
 }

@@ -317,15 +317,17 @@ public class CommonUtils {
         int endy = (int) (size.getHeight() * 0.10);
         new TouchAction(driver).press(PointOption.point(startx, starty)).waitAction().moveTo(PointOption.point(endx, endy)).release().perform();
     }
+    /*
+     *This method is used to swipe the image to left
+     *Arguments: None
+     *Return   : Nothing
+     */
     public static void swipeLeft()
     {
         Dimension size = driver.manage().window().getSize();
         int Anchor = size.getHeight()/2;
         int scrollStart = (int)(size.getWidth() * 0.8);
-        //int scrollStart = (int)ScreenWidthStart;
         int scrollEnd = (int)(size.getWidth() * 0.2);
-        //int scrollEnd = (int)ScreenWidthEnd;
-
         new TouchAction(driver).press(PointOption.point(scrollStart, Anchor))
                 .waitAction()
                 .moveTo(PointOption.point(scrollEnd, Anchor)).release().perform();
