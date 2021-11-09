@@ -33,7 +33,6 @@ public class Photos_Slideshow {
             Reporting.initializeReporting(testCaseName,testCaseDescription);
             setUp();
             //login(true);
-            //goBackToHomeTab();
             sectionsIcon().click();
             waitForSpecificTime(5);
             Photos().click();
