@@ -23,6 +23,7 @@ public class SearchFeature  {
         try {
             Reporting.initializeReporting(testCaseName, testCaseDescription);
             setUp();
+            login(true);
             waitForSpecificTime(2);
             sectionsIcon().click();
             waitForSpecificTime(2);
@@ -30,7 +31,7 @@ public class SearchFeature  {
             waitForSpecificTime(2);
             searchField().sendKeys(SerchArticleText);
             driver.getKeyboard().pressKey(Keys.ENTER);
-            waitForSpecificTime(8);
+            waitForSpecificTime(10);
             if (searchResultArticleHeadings().size() != 0) {
                 extentTest.log(LogStatus.PASS, testCaseName + " : " + testCaseDescription);
             } else {
@@ -47,6 +48,7 @@ public class SearchFeature  {
             try {
                 Reporting.initializeReporting(testCaseName, testCaseDescription);
                 setUp();
+                login(true);
                 waitForSpecificTime(2);
                 sectionsIcon().click();
                 waitForSpecificTime(2);
@@ -58,7 +60,7 @@ public class SearchFeature  {
                 scrollDownPage();
                 scrollDownPage();
                 scrollDownPage();
-                waitForSpecificTime(2);
+                waitForSpecificTime(5);
                 if (searchResultArticleHeadings().size()!=0) {
                     extentTest.log(LogStatus.PASS, testCaseName + " : " + testCaseDescription);
                 } else {

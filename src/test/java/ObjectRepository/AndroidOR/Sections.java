@@ -1,7 +1,6 @@
 package ObjectRepository.AndroidOR;
 
 import io.appium.java_client.MobileElement;
-import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
@@ -73,7 +72,7 @@ public class Sections {
     public static List<MobileElement> searchResultArticleHeadings()
     {
         List <MobileElement> searchResultAtricleHeadings = (List<MobileElement>) driver.findElementsById(searchResultArticleHeadings_ID);
-        return searchResultAtricleHeadings;
+        return  searchResultAtricleHeadings;
     }
     //Headings of articles that appear on ercently viewed section
     public static List<MobileElement> recentlyviewedArticleHeadings()

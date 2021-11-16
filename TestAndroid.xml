@@ -26,7 +26,7 @@
                 <methods>
                     <include name="shareButtonTest"/>
                     <include name="commentsButton_Functionality"/>
-                    <include name="saveButtonTest"/>
+
                 </methods>
             </class>
             <class name="Android.FollowedChannels"/>

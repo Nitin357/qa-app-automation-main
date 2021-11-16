@@ -38,7 +38,8 @@ public class Photos_Slideshow {
             Photos().click();
             waitForSpecificTime( 20);
             String photocount = photo_info().getText().replaceAll("[^0-9]", "");
-            int imagecount = Integer.parseInt(photocount)+3;
+            int imagecount = Integer.parseInt(photocount);
+            int addvert = imagecount / 6;
             Photo_list_0().click();
             waitForSpecificTime( 8);
             int image=1;
@@ -46,10 +47,9 @@ public class Photos_Slideshow {
                 swipeLeft();
                 waitForSpecificTime( 1);
                 image++;
-            }while(image<=imagecount);
+            }while(image<=(imagecount+addvert));
             scrollDownPage();
             scrollDownPage();
-
             if(Photo_list_0().isDisplayed())
             {
                 extentTest.log(LogStatus.PASS, testCaseName + " : " + testCaseDescription);

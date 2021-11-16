@@ -287,4 +287,6 @@ public class CommonElements {
         {
                 return (MobileElement) driver.findElementByXPath(adSlug_Text_Xpath);
         }
+
+
 }
