@@ -67,9 +67,9 @@ public class CommonUtils {
         driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
     }
 
-<<<<<<< Updated upstream
+
     /*Skip sign in and subscription at initial launch*/
-=======
+
     /*
     * This method is used to close all connections
     * Arguments: None
@@ -85,7 +85,7 @@ public class CommonUtils {
      *Arguments: None
      *Return   : Nothing
      */
->>>>>>> Stashed changes
+
     public static void skipInitialAccountSetup() throws Exception
     {
             waitForSpecificTime(2);
